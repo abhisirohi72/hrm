@@ -18,6 +18,7 @@ use App\Http\Controllers\ShopFooterController;
 use App\Http\Controllers\Admin\DiscountController;
 use App\Http\Controllers\Admin\CartSettingController;
 use App\Http\Controllers\RazorpayPaymentController;
+use App\Http\Controllers\Admin\ProfileController;
 
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register.form');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
@@ -47,6 +48,8 @@ Route::middleware("auth")->group(function () {
     Route::get('/edit_department/{id}', [DepartmentController::class, 'editDepartment'])->name('edit.department');
     Route::get('/delete_department/{id}', [DepartmentController::class, 'deleteDepartment'])->name('delete.department');
     Route::post('/save_department', [DepartmentController::class, 'saveDepartment'])->name('save.department');
+    Route::get('/view_pages', [DepartmentController::class, 'viewPages'])->name('view.pages');
+
 
     /* BRANCH */
     Route::get('/view_branch', [BranchController::class, 'viewBranch'])->name('view.branch');
@@ -70,7 +73,6 @@ Route::middleware("auth")->group(function () {
     Route::get('/emp_joinning_letter/{id}', [EmployeeController::class, 'viewJoinningLetter'])->name('view.emp.joinning.letter');
     Route::get('/emp_joinning_letter_pdf/{id}', [EmployeeController::class, 'downloadJoinningLetter'])->name('download.emp.joinning.letter');
 
-
     /* OFFER LETTER */
     Route::get('/emp_offer_letter/{id}', [EmployeeController::class, 'viewOfferLetter'])->name('view.emp.offer.letter');
     Route::get('/emp_offer_letter_pdf/{id}', [EmployeeController::class, 'downloadOfferLetter'])->name('download.emp.offer.letter');
@@ -80,7 +82,6 @@ Route::middleware("auth")->group(function () {
     Route::get('/add_attendance', [AttendanceController::class, 'addAttendance'])->name('add.attendance');
     Route::post('/attendance/checkin', [AttendanceController::class, 'markCheckIn'])->name('attendance.checkin');
     Route::post('/attendance/checkout', [AttendanceController::class, 'markCheckOut'])->name('attendance.checkout');
-
 
     /*TELECALER FEEDBACK */
     Route::get('/view_t_feedback', [FeedbackController::class, 'viewTFeedback'])->name('view.t_feedback');
@@ -134,6 +135,10 @@ Route::middleware("auth")->group(function () {
     /*CART SETTING*/
     Route::get('/cart_setting', [CartSettingController::class, 'addCartSetting'])->name('add.cart.setting');
     Route::post('/save_cart_setting', [CartSettingController::class, 'saveCartSetting'])->name('save.cart.setting');
+
+    /*PROFILE*/
+    Route::get('/add_profile', [ProfileController::class, 'viewProfile'])->name('add.profile');
+    Route::post('/save_profile', [ProfileController::class, 'saveProfile'])->name('save.profile');
 });
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

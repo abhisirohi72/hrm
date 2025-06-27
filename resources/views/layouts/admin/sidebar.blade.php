@@ -7,12 +7,16 @@
                 <li class="nav-item nav-profile">
                     <a href="#" class="nav-link">
                         <div class="nav-profile-image">
-                            <img src="{{ asset('assets/images/faces/face1.jpg') }}" alt="profile" />
+                            @if(session('image') && session('image') != "")
+                                <img src="{{ asset('storage/users').'/'.session('image') }}" alt="profile" />
+                            @else
+                                <img src="{{ asset('assets/images/faces/face1.jpg') }}" alt="profile" />
+                            @endif
                             <span class="login-status online"></span>
                             <!--change to offline or busy as needed-->
                         </div>
                         <div class="nav-profile-text d-flex flex-column pr-3">
-                            <span class="font-weight-medium mb-2">Henry Klein</span>
+                            <span class="font-weight-medium mb-2">{{ session('name') }}</span>
                             <span class="font-weight-normal">$8,753.00</span>
                         </div>
                         <span class="badge badge-danger text-white ml-3 rounded">3</span>

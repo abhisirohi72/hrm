@@ -27,7 +27,7 @@
                                     <div class="d-flex justify-content-between align-items-start">
                                         <div class="color-card">
                                             <p class="mb-0 color-card-head">Sales</p>
-                                            <h2 class="text-white"> $8,753.<span class="h5">00</span>
+                                            <h2 class="text-white"> 8,753.<span class="h5">00</span>
                                             </h2>
                                         </div>
                                         <i class="card-icon-indicator mdi mdi-basket bg-inverse-icon-warning"></i>
@@ -42,7 +42,7 @@
                                     <div class="d-flex justify-content-between align-items-start">
                                         <div class="color-card">
                                             <p class="mb-0 color-card-head">Margin</p>
-                                            <h2 class="text-white"> $5,300.<span class="h5">00</span>
+                                            <h2 class="text-white"> 5,300.<span class="h5">00</span>
                                             </h2>
                                         </div>
                                         <i class="card-icon-indicator mdi mdi-cube-outline bg-inverse-icon-danger"></i>
@@ -57,7 +57,7 @@
                                     <div class="d-flex justify-content-between align-items-start">
                                         <div class="color-card">
                                             <p class="mb-0 color-card-head">Orders</p>
-                                            <h2 class="text-white"> $1,753.<span class="h5">00</span>
+                                            <h2 class="text-white"> 1,753.<span class="h5">00</span>
                                             </h2>
                                         </div>
                                         <i
@@ -107,7 +107,7 @@
                                             <p class="m-0 survey-head">Today Earnings</p>
                                             <div class="d-flex justify-content-between align-items-end flot-bar-wrapper">
                                                 <div>
-                                                    <h3 class="m-0 survey-value">$5,300</h3>
+                                                    <h3 class="m-0 survey-value">5,300</h3>
                                                     <p class="text-success m-0">-310 avg. sales</p>
                                                 </div>
                                                 <div id="earningChart" class="flot-chart"></div>
@@ -121,7 +121,7 @@
                                             <p class="m-0 survey-head">Product Sold</p>
                                             <div class="d-flex justify-content-between align-items-end flot-bar-wrapper">
                                                 <div>
-                                                    <h3 class="m-0 survey-value">$9,100</h3>
+                                                    <h3 class="m-0 survey-value">9,100</h3>
                                                     <p class="text-danger m-0">-310 avg. sales</p>
                                                 </div>
                                                 <div id="productChart" class="flot-chart"></div>
@@ -135,7 +135,7 @@
                                             <p class="m-0 survey-head">Today Orders</p>
                                             <div class="d-flex justify-content-between align-items-end flot-bar-wrapper">
                                                 <div>
-                                                    <h3 class="m-0 survey-value">$4,354</h3>
+                                                    <h3 class="m-0 survey-value">4,354</h3>
                                                     <p class="text-success m-0">-310 avg. sales</p>
                                                 </div>
                                                 <div id="orderChart" class="flot-chart"></div>
@@ -162,7 +162,7 @@
                                 </div>
                                 <div class="col-sm-4">
                                     <p class="mb-0 text-muted">Sales Revenue</p>
-                                    <h5 class="d-inline-block survey-value mb-0"> $2,45,500 </h5>
+                                    <h5 class="d-inline-block survey-value mb-0"> 2,45,500 </h5>
                                     <p class="d-inline-block text-danger mb-0"> last 8 months </p>
                                 </div>
                             </div>
@@ -201,7 +201,7 @@
                                             <td>
                                                 <div class="badge badge-inverse-success"> Completed </div>
                                             </td>
-                                            <td>$ 77.99</td>
+                                            <td> 77.99</td>
                                         </tr>
                                         <tr>
                                             <td>
@@ -218,7 +218,7 @@
                                             <td>
                                                 <div class="badge badge-inverse-success"> Completed </div>
                                             </td>
-                                            <td>$245.30</td>
+                                            <td>245.30</td>
                                         </tr>
                                         <tr>
                                             <td>
@@ -235,7 +235,7 @@
                                             <td>
                                                 <div class="badge badge-inverse-danger"> Completed </div>
                                             </td>
-                                            <td>$ 160.25</td>
+                                            <td> 160.25</td>
                                         </tr>
                                         <tr>
                                             <td>
@@ -252,7 +252,7 @@
                                             <td>
                                                 <div class="badge badge-inverse-success"> Declined </div>
                                             </td>
-                                            <td>$ 123.21</td>
+                                            <td> 123.21</td>
                                         </tr>
                                         <tr>
                                             <td>
@@ -269,7 +269,7 @@
                                             <td>
                                                 <div class="badge badge-inverse-danger"> Declined </div>
                                             </td>
-                                            <td>$ 150.00</td>
+                                            <td> 150.00</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -291,7 +291,7 @@
                                 <div class="pt-2">
                                     <h5 class="mb-0">Villa called Archagel</h5>
                                     <p class="mb-0 text-muted">St, San Diego, CA</p>
-                                    <h5 class="mb-0">$600/mo</h5>
+                                    <h5 class="mb-0">600/mo</h5>
                                 </div>
                             </div>
                             <div class="d-flex flex-wrap border-bottom py-2 justify-content-between">
@@ -299,7 +299,7 @@
                                 <div class="pt-2">
                                     <h5 class="mb-0">Luxury villa in Hermo</h5>
                                     <p class="mb-0 text-muted">Glendale, CA</p>
-                                    <h5 class="mb-0">$900/mo</h5>
+                                    <h5 class="mb-0">900/mo</h5>
                                 </div>
                             </div>
                             <div class="d-flex flex-wrap border-bottom py-2 justify-content-between">
@@ -307,7 +307,7 @@
                                 <div class="pt-2">
                                     <h5 class="mb-0">House on the Clarita</h5>
                                     <p class="mb-0 text-muted">Business Survey</p>
-                                    <h5 class="mb-0">$459/mo</h5>
+                                    <h5 class="mb-0">459/mo</h5>
                                 </div>
                             </div>
                             <a class="text-black mt-3 d-block font-weight-medium h6" href="#">View

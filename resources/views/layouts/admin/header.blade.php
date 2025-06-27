@@ -111,12 +111,18 @@
             </li>
             <li class="nav-item nav-profile dropdown border-0">
                 <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown">
-                    <img class="nav-profile-img mr-2" alt="" src="{{ asset('assets/images/faces/face1.jpg') }}" />
-                    <span class="profile-name">Henry Klein</span>
+                    @if(session('image') && session('image') != "")
+                        <img class="nav-profile-img mr-2" alt="" src="{{ asset('storage/users').'/'.session('image') }}" />
+                    @else
+                        <img class="nav-profile-img mr-2" alt="" src="{{ asset('assets/images/faces/face1.jpg') }}" />
+                    @endif
+                    <span class="profile-name">{{ session('name') }}</span>
                 </a>
                 <div class="dropdown-menu navbar-dropdown w-100" aria-labelledby="profileDropdown">
                     <a class="dropdown-item" href="#">
                         <i class="mdi mdi-cached mr-2 text-success"></i> Activity Log </a>
+                    <a class="dropdown-item" href="{{ route('add.profile') }}">
+                        <i class="mdi mdi-contacts mr-2 text-primary"></i> Profile Update </a>
                     <a class="dropdown-item" href="{{ route('p.logout') }}">
                         <i class="mdi mdi-logout mr-2 text-primary"></i> Signout </a>
                 </div>

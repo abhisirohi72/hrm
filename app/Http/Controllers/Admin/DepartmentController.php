@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Department;
+use App\Models\PageAccess;
 
 class DepartmentController extends Controller
 {
@@ -16,6 +17,20 @@ class DepartmentController extends Controller
         $details= Department::all(); 
 
         return view('admin.department.view', [
+            'main_title'    =>  $main_title,
+            'title'         =>  $title,
+            'details'       =>  $details
+        ]);
+    }
+
+    public function viewPages(Request $request){
+        $main_title= "Admin-View-Pages";
+
+        $title =    "Department Pages";
+
+        $details= PageAccess::all();
+
+        return view('admin.department.page_view', [
             'main_title'    =>  $main_title,
             'title'         =>  $title,
             'details'       =>  $details

@@ -27,6 +27,7 @@
                                     <tr>
                                         <th>Name</th>
                                         <th>Status</th>
+                                        <th>Page Access</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -41,6 +42,9 @@
                                                     @else
                                                         <label class="badge badge-success">Active</label>
                                                     @endif
+                                                </td>
+                                                <td>
+                                                    <a href="{{ route('view.pages') }}" class="btn btn-sm btn-info">View</a>
                                                 </td>
                                                 <td>
                                                     <a href="{{ route('edit.department', ['id'=>$item->id]) }}" class="btn btn-dark btn-icon-text">Edit

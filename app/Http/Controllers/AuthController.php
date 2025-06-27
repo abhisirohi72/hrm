@@ -49,6 +49,11 @@ class AuthController extends Controller
             $request->session()->regenerate();
             session([
                 'user'  =>  Auth::id(),
+                'name'  =>  Auth::user()->name,
+                'email' =>  Auth::user()->email,
+                'image' =>  Auth::user()->image,
+                'role'  =>  Auth::user()->role,
+                'stripe_id' => Auth::user()->stripe_id, 
             ]);
             return redirect()->route('dashboard');
         }
