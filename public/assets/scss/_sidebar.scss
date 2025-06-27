@@ -29,7 +29,8 @@
       img {
         width: calc(#{$sidebar-width-lg} - 130px);
         max-width: 100%;
-        height: 48px;
+        // height: 48px;
+        height: 130px;
         margin: auto;
         vertical-align: middle;
       }

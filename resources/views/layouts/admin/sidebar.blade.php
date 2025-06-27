@@ -1,8 +1,7 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
             <div class="text-center sidebar-brand-wrapper d-flex align-items-center">
-                <a class="sidebar-brand brand-logo" href="index.html"><img src="{{ asset('assets/images/logo.svg') }}" alt="logo" /></a>
-                <a class="sidebar-brand brand-logo-mini pl-4 pt-3" href="index.html"><img
-                        src="assets/images/logo-mini.svg" alt="logo" /></a>
+                <a class="sidebar-brand brand-logo" href="{{ route('dashboard') }}"><img src="{{ asset('frontend/images/logo.png')}}" alt="logo" style="height: 130px;"/></a>
+                <a class="sidebar-brand brand-logo-mini pl-4 pt-3" href="{{ route('dashboard') }}"><img src="{{ asset('frontend/images/logo.png')}}" alt="logo" style="height: 130px;"/></a>
             </div>
             <ul class="nav">
                 <li class="nav-item nav-profile">
@@ -91,6 +90,20 @@
                     <a class="nav-link" href="{{ route('view.footer.details') }}">
                         <i class="mdi mdi-contacts menu-icon"></i>
                         <span class="menu-title">Shop Footer Details</span>
+                    </a>
+                </li>
+
+                <li class="nav-item @if((request()->segment(1)=='discount')) active @endif">
+                    <a class="nav-link" href="{{ route('view.discount') }}">
+                        <i class="mdi mdi-contacts menu-icon"></i>
+                        <span class="menu-title">Discount</span>
+                    </a>
+                </li>
+
+                <li class="nav-item @if((request()->segment(1)=='cart_setting')) active @endif">
+                    <a class="nav-link" href="{{ route('add.cart.setting') }}">
+                        <i class="mdi mdi-contacts menu-icon"></i>
+                        <span class="menu-title">Cart Setting</span>
                     </a>
                 </li>
 

@@ -15,14 +15,28 @@ use App\Http\Controllers\Product\CategoryController;
 use App\Http\Controllers\Product\ProductController;
 use App\Http\Controllers\EcommerceController;
 use App\Http\Controllers\ShopFooterController;
+use App\Http\Controllers\Admin\DiscountController;
+use App\Http\Controllers\Admin\CartSettingController;
+use App\Http\Controllers\RazorpayPaymentController;
 
-Route::get('/', [AuthController::class, 'showRegisterForm'])->name('register.form');
+Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register.form');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login.form');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 
-Route::get("/ecommerce", [EcommerceController::class, 'eCommerce'])->name("e.commerce");
+Route::get("/", [EcommerceController::class, 'eCommerce'])->name("e.commerce");
+Route::get("/add_to_cart/{id}", [EcommerceController::class, 'addToCart'])->name("add.to.cart");
+Route::get("/view_cart", [EcommerceController::class, 'viewCart'])->name("view.cart");
+Route::get("/remove_cart_item/{id}", [EcommerceController::class, 'removeCartItem'])->name("remove.cart.item");
+Route::post("/check_stock", [EcommerceController::class, 'checkStock'])->name("check.stock");
+Route::post('/apply_coupon', [EcommerceController::class, 'applyCoupon'])->name('apply.coupon');
+Route::post('/proceed_to_pay', [EcommerceController::class, 'proceedToPay'])->name('proceed.to.pay');
+
+Route::get('/razorpay/{order_id}/{total_price}/{final_price}/{coupon_id?}', [RazorpayPaymentController::class, 'index'])->name('razorpay.index');
+Route::post('/razorpay-payment', [RazorpayPaymentController::class, 'payment'])->name('razorpay.payment');
+Route::post('/razorpay_data', [RazorpayPaymentController::class, 'razorpayDetails'])->name('razorpay.index');
+
 
 Route::middleware("auth")->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'view'])->name("dashboard");
@@ -109,6 +123,17 @@ Route::middleware("auth")->group(function () {
     Route::get('/shop_footer_details/edit/{id}', [ShopFooterController::class, 'editShopFooterDetails'])->name('edit.footer.details');
     Route::get('/shop_footer_details/delete/{id}', [ShopFooterController::class, 'deleteShopFooterDetails'])->name('delete.footer.details');
     Route::post('/save_shop_footer_details', [ShopFooterController::class, 'saveShopFooterDetails'])->name('save.footer.details');
+
+    /*DISCOUNT*/
+    Route::get('/discount', [DiscountController::class, 'viewdiscount'])->name('view.discount');
+    Route::get('/discount/add', [DiscountController::class, 'addDiscount'])->name('add.discount');
+    Route::get('/discount/edit/{id}', [DiscountController::class, 'editDiscount'])->name('edit.discount');
+    Route::get('/discount/delete/{id}', [DiscountController::class, 'deleteDiscount'])->name('delete.discount');
+    Route::post('/save_discount', [DiscountController::class, 'saveDiscount'])->name('save.discount');
+    
+    /*CART SETTING*/
+    Route::get('/cart_setting', [CartSettingController::class, 'addCartSetting'])->name('add.cart.setting');
+    Route::post('/save_cart_setting', [CartSettingController::class, 'saveCartSetting'])->name('save.cart.setting');
 });
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

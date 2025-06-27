@@ -75,7 +75,7 @@ class FeedbackController extends Controller
             'next_followup' => 'nullable|date',
         ]);
 
-        if ($request->input("edit_id") == "") {
+        // if ($request->input("edit_id") == "") {
             $insert = TelecalerFeedback::create([
                 "customer_name"   =>  $request->input("customer_name"),
                 "contact_number"  =>  $request->input("contact_number"),
@@ -85,30 +85,30 @@ class FeedbackController extends Controller
                 "next_followup"   =>  $request->input("next_followup"),
                 "user_id"         =>  Auth::user()->id,
             ]);
-
+            
             if ($insert) {
                 return redirect()->back()->with('success', 'Successfully Inserted!!!');
             } else {
                 return redirect()->back()->with('error', 'There is some issue in inserted!!!');
             }
-        } else {
+        // } else {
 
-            $update = TelecalerFeedback::where("id", $request->input("edit_id"))->update([
-                "customer_name"   =>  $request->input("customer_name"),
-                "contact_number"  =>  $request->input("contact_number"),
-                "call_purpose"    =>  $request->input("call_purpose"),
-                "insterested"     =>  $request->input("insterested"),
-                "feedback_notes"  =>  $request->input("feedback_notes"),
-                "next_followup"   =>  $request->input("next_followup"),
-                "user_id"         =>  Auth::user()->id,
-            ]);
+        //     $update = TelecalerFeedback::where("id", $request->input("edit_id"))->update([
+        //         "customer_name"   =>  $request->input("customer_name"),
+        //         "contact_number"  =>  $request->input("contact_number"),
+        //         "call_purpose"    =>  $request->input("call_purpose"),
+        //         "insterested"     =>  $request->input("insterested"),
+        //         "feedback_notes"  =>  $request->input("feedback_notes"),
+        //         "next_followup"   =>  $request->input("next_followup"),
+        //         "user_id"         =>  Auth::user()->id,
+        //     ]);
 
-            if ($update) {
-                return redirect()->back()->with('success', 'Successfully Updated!!!');
-            } else {
-                return redirect()->back()->with('error', 'There is some issue in updated!!!');
-            }
-        }
+        //     if ($update) {
+        //         return redirect()->back()->with('success', 'Successfully Updated!!!');
+        //     } else {
+        //         return redirect()->back()->with('error', 'There is some issue in updated!!!');
+        //     }
+        // }
     }
 
     public function deleteTFeedback($del_id, Request $request)

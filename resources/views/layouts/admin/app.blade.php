@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="{{ asset('assets/vendors/font-awesome/css/font-awesome.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendors/bootstrap-datepicker/bootstrap-datepic') }}ker.min.css" />
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
-    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}" />
+    <link rel="shortcut icon" href="{{ asset('frontend/images/logo.png')}}">
 </head>
 
 <body>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Ministore</title>
+    <title>{{ env('APP_NAME') }}</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,6 +16,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="{{ asset('frontend/images/logo.png')}}">
     <!-- script
     ================================================== -->
     <script src="{{ asset('frontend/js/modernizr.js') }}"></script>
@@ -131,8 +132,8 @@
     <header id="header" class="site-header header-scrolled position-fixed text-black bg-light">
       <nav id="header-nav" class="navbar navbar-expand-lg px-3 mb-3">
         <div class="container-fluid">
-          <a class="navbar-brand" href="index.html">
-            <img src="{{ asset('frontend/images/main-logo.png')}}" class="logo">
+          <a class="navbar-brand" href="{{ route('e.commerce') }}">
+            <img src="{{ asset('frontend/images/logo.png')}}" class="logo" style="width: 100px; height: 90px;">
           </a>
           <button class="navbar-toggler d-flex d-lg-none order-3 p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#bdNavbar" aria-controls="bdNavbar" aria-expanded="false" aria-label="Toggle navigation">
             <svg class="navbar-icon">
@@ -166,7 +167,7 @@
                 <li class="nav-item">
                   <a class="nav-link me-4" href="#latest-blog">Blog</a>
                 </li>
-                <li class="nav-item dropdown">
+                {{-- <li class="nav-item dropdown">
                   <a class="nav-link me-4 dropdown-toggle link-dark" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Pages</a>
                   <ul class="dropdown-menu">
                     <li>
@@ -194,6 +195,9 @@
                       <a href="contact.html" class="dropdown-item">Contact</a>
                     </li>
                   </ul>
+                </li> --}}
+                <li class="nav-item">
+                  <a class="nav-link me-4 active" href="{{ route('login.form') }}">Company Login</a>
                 </li>
                 <li class="nav-item">
                   <div class="user-items ps-5">
@@ -213,7 +217,7 @@
                         </a>
                       </li>
                       <li>
-                        <a href="cart.html">
+                        <a href="{{ route('view.cart') }}">
                           <svg class="cart">
                             <use xlink:href="#cart"></use>
                           </svg>
@@ -336,114 +340,46 @@
         </div>
       </div>
     </section>
-    <section id="mobile-products" class="product-store position-relative padding-large no-padding-top">
-      <div class="container">
-        <div class="row">
-          <div class="display-header d-flex justify-content-between pb-3">
-            <h2 class="display-7 text-dark text-uppercase">Mobile Products</h2>
-            <div class="btn-right">
-              <a href="shop.html" class="btn btn-medium btn-normal text-uppercase">Go to Shop</a>
+    @foreach ($categories as $category)
+      <section id="mobile-products" class="product-store position-relative padding-large no-padding-top">
+        <div class="container">
+          <div class="row">
+            <div class="display-header d-flex justify-content-between pb-3">
+              <h2 class="display-7 text-dark text-uppercase">{{ $category->name }}</h2>
+              <div class="btn-right">
+                <a href="shop.html" class="btn btn-medium btn-normal text-uppercase">Go to Shop</a>
+              </div>
             </div>
-          </div>
-          <div class="swiper product-swiper">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide">
-                <div class="product-card position-relative">
-                  <div class="image-holder">
-                    <img src="{{ asset('frontend/images/product-item1.jpg') }}" alt="product-item" class="img-fluid">
-                  </div>
-                  <div class="cart-concern position-absolute">
-                    <div class="cart-button d-flex">
-                      <a href="#" class="btn btn-medium btn-black">Add to Cart<svg class="cart-outline"><use xlink:href="#cart-outline"></use></svg></a>
+            <div class="swiper product-swiper">
+              <div class="swiper-wrapper">
+                @foreach($category->products as $product)
+                  <div class="swiper-slide">
+                    <div class="product-card position-relative">
+                      <div class="image-holder">
+                        <img src="{{ asset('storage/product/images').'/'.$product->image }}" alt="product-item" class="img-fluid">
+                      </div>
+                      <div class="cart-concern position-absolute">
+                        <div class="cart-button d-flex">
+                          <a href="{{ route('add.to.cart', ['id'=>$product->id]) }}" class="btn btn-medium btn-black">Add to Cart<svg class="cart-outline"><use xlink:href="#cart-outline"></use></svg></a>
+                        </div>
+                      </div>
+                      <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
+                        <h3 class="card-title text-uppercase">
+                          <a href="#">{{ $product->name }}</a>
+                        </h3>
+                        <span class="item-price text-primary">${{ $product->price }}</span>
+                      </div>
                     </div>
                   </div>
-                  <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
-                    <h3 class="card-title text-uppercase">
-                      <a href="#">Iphone 10</a>
-                    </h3>
-                    <span class="item-price text-primary">$980</span>
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="product-card position-relative">
-                  <div class="image-holder">
-                    <img src="{{ asset('frontend/images/product-item2.jpg') }}" alt="product-item" class="img-fluid">
-                  </div>
-                  <div class="cart-concern position-absolute">
-                    <div class="cart-button d-flex">
-                      <a href="#" class="btn btn-medium btn-black">Add to Cart<svg class="cart-outline"><use xlink:href="#cart-outline"></use></svg></a>
-                    </div>
-                  </div>
-                  <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
-                    <h3 class="card-title text-uppercase">
-                      <a href="#">Iphone 11</a>
-                    </h3>
-                    <span class="item-price text-primary">$1100</span>
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="product-card position-relative">
-                  <div class="image-holder">
-                    <img src="{{ asset('frontend/images/product-item3.jpg') }}" alt="product-item" class="img-fluid">
-                  </div>
-                  <div class="cart-concern position-absolute">
-                    <div class="cart-button d-flex">
-                      <a href="#" class="btn btn-medium btn-black">Add to Cart<svg class="cart-outline"><use xlink:href="#cart-outline"></use></svg></a>
-                    </div>
-                  </div>
-                  <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
-                    <h3 class="card-title text-uppercase">
-                      <a href="#">Iphone 8</a>
-                    </h3>
-                    <span class="item-price text-primary">$780</span>
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="product-card position-relative">
-                  <div class="image-holder">
-                    <img src="{{ asset('frontend/images/product-item4.jpg') }}" alt="product-item" class="img-fluid">
-                  </div>
-                  <div class="cart-concern position-absolute">
-                    <div class="cart-button d-flex">
-                      <a href="#" class="btn btn-medium btn-black">Add to Cart<svg class="cart-outline"><use xlink:href="#cart-outline"></use></svg></a>
-                    </div>
-                  </div>
-                  <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
-                    <h3 class="card-title text-uppercase">
-                      <a href="#">Iphone 13</a>
-                    </h3>
-                    <span class="item-price text-primary">$1500</span>
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="product-card position-relative">
-                  <div class="image-holder">
-                    <img src="{{ asset('frontend/images/product-item5.jpg') }}" alt="product-item" class="img-fluid">
-                  </div>
-                  <div class="cart-concern position-absolute">
-                    <div class="cart-button d-flex">
-                      <a href="#" class="btn btn-medium btn-black">Add to Cart<svg class="cart-outline"><use xlink:href="#cart-outline"></use></svg></a>
-                    </div>
-                  </div>
-                  <div class="card-detail d-flex justify-content-between align-items-baseline pt-3">
-                    <h3 class="card-title text-uppercase">
-                      <a href="#">Iphone 12</a>
-                    </h3>
-                    <span class="item-price text-primary">$1300</span>
-                  </div>
-                </div>
+                @endforeach
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="swiper-pagination position-absolute text-center"></div>
-    </section>
-    <section id="smart-watches" class="product-store padding-large position-relative">
+        <div class="swiper-pagination position-absolute text-center"></div>
+      </section>
+    @endforeach  
+    {{-- <section id="smart-watches" class="product-store padding-large position-relative">
       <div class="container">
         <div class="row">
           <div class="display-header d-flex justify-content-between pb-3">
@@ -549,7 +485,7 @@
         </div>
       </div>
       <div class="swiper-pagination position-absolute text-center"></div>
-    </section>
+    </section> --}}
     <section id="yearly-sale" class="bg-light-blue overflow-hidden mt-5 padding-xlarge" style="background-image: url('{{ asset('frontend/images/single-image1.png') }}');background-position: right; background-repeat: no-repeat;">
       <div class="row d-flex flex-wrap align-items-center">
         <div class="col-md-6 col-sm-12">
@@ -886,9 +822,9 @@
               <div class="col-lg-3 col-sm-6 pb-3">
                 <div class="footer-menu contact-item">
                   <h5 class="widget-title text-uppercase pb-2">Contact Us</h5>
-                  <p>Do you have any queries or suggestions? <a href="mailto:">yourinfo@gmail.com</a>
+                  <p>Do you have any queries or suggestions? <a href="mailto:">info@webfintech.in</a>
                   </p>
-                  <p>If you need support? Just give us a call. <a href="">+55 111 222 333 44</a>
+                  <p>If you need support? Just give us a call. <a href="">+91-8303812139</a>
                   </p>
                 </div>
               </div>
@@ -922,7 +858,7 @@
           </div>
           <div class="col-md-4 col-sm-6">
             <div class="copyright">
-              <p>© Copyright 2023 MiniStore. Design by <a href="https://templatesjungle.com/">TemplatesJungle</a> Distribution by <a href="https://themewagon.com">ThemeWagon</a>
+              <p>© Copyright 2023 WEBFINTECH DIGITAL PVT. LTD. Design by <a href="{{ env('APP_URL') }}">WEBFINTECH DIGITAL PVT. LTD</a>
               </p>
             </div>
           </div>
