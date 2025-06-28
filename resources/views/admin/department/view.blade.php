@@ -44,7 +44,7 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    <a href="{{ route('view.pages') }}" class="btn btn-sm btn-info">View</a>
+                                                    <a href="{{ route('view.pages', ['id'=>$item->id]) }}" class="btn btn-sm btn-info">View</a>
                                                 </td>
                                                 <td>
                                                     <a href="{{ route('edit.department', ['id'=>$item->id]) }}" class="btn btn-dark btn-icon-text">Edit

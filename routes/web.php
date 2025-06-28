@@ -19,14 +19,16 @@ use App\Http\Controllers\Admin\DiscountController;
 use App\Http\Controllers\Admin\CartSettingController;
 use App\Http\Controllers\RazorpayPaymentController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\HomeController;
 
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register.form');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login.form');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 
-Route::get("/", [EcommerceController::class, 'eCommerce'])->name("e.commerce");
+Route::get("/shop", [EcommerceController::class, 'eCommerce'])->name("e.commerce");
 Route::get("/add_to_cart/{id}", [EcommerceController::class, 'addToCart'])->name("add.to.cart");
 Route::get("/view_cart", [EcommerceController::class, 'viewCart'])->name("view.cart");
 Route::get("/remove_cart_item/{id}", [EcommerceController::class, 'removeCartItem'])->name("remove.cart.item");
@@ -48,7 +50,7 @@ Route::middleware("auth")->group(function () {
     Route::get('/edit_department/{id}', [DepartmentController::class, 'editDepartment'])->name('edit.department');
     Route::get('/delete_department/{id}', [DepartmentController::class, 'deleteDepartment'])->name('delete.department');
     Route::post('/save_department', [DepartmentController::class, 'saveDepartment'])->name('save.department');
-    Route::get('/view_pages', [DepartmentController::class, 'viewPages'])->name('view.pages');
+    Route::get('/view_pages/{id}', [DepartmentController::class, 'viewPages'])->name('view.pages');
 
 
     /* BRANCH */

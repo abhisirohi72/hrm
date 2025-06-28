@@ -23,17 +23,18 @@ class DepartmentController extends Controller
         ]);
     }
 
-    public function viewPages(Request $request){
+    public function viewPages($id, Request $request){
         $main_title= "Admin-View-Pages";
 
         $title =    "Department Pages";
 
-        $details= PageAccess::all();
+        $details= PageAccess::where("department_id", $id)->get();
 
         return view('admin.department.page_view', [
             'main_title'    =>  $main_title,
             'title'         =>  $title,
-            'details'       =>  $details
+            'details'       =>  $details,
+            "id"            =>  $id
         ]);
     }
 
@@ -68,33 +69,27 @@ class DepartmentController extends Controller
 
     public function addUpdateDepartment($request, $cond){
         $request->validate([
-            "name"      =>  "required|unique:departments,name,".$request->input('edit_id'),
-            "status"    =>  "required"
+            "page_name"      =>  "required|unique:departments,name,".$request->input('edit_id'),
+            "department_id"    =>  "required"
         ]);
-
-        if($request->input("edit_id")==""){
-            $insert= Department::create([
-                "name"  =>  $request->input("name"),
-                "status"  =>  $request->input("status"),
-            ]);
-
-            if($insert){
-                return redirect()->back()->with('success', 'Successfully Inserted!!!');
-            }else{
-                return redirect()->back()->with('error', 'There is some issue in inserted!!!');
-            }
-        }else{
-            $update= Department::where("id", $request->input("edit_id"))->update([
-                "name"      =>  $request->input("name"),
-                "status"    =>  $request->input("status"),
-            ]);
-
-            if($update){
-                return redirect()->back()->with('success', 'Successfully Updated!!!');
-            }else{
-                return redirect()->back()->with('error', 'There is some issue in updated!!!');
-            }
+        PageAccess::where("department_id", $request->input("department_id"))->delete();
+        foreach ($request->input("page_name") as $key => $value) {
+            // PageAccess::create([
+            //     "department_id" => $request->input("department_id"),
+            //     "page_name"     => $value,
+            //     "isaccess"      => 'yes'
+            // ]);
+            PageAccess::updateOrCreate(
+                [
+                    'department_id' => $request->input("department_id"),
+                    'page_name'     => $value
+                ],
+                [
+                    'isaccess'      => 'yes'
+                ]
+            );
         }
+        return redirect()->back()->with('success', 'Successfully Saved!!!');
     }
 
     public function deleteDepartment($del_id, Request $request){

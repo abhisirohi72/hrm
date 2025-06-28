@@ -111,6 +111,13 @@
                     </a>
                 </li>
 
+                <li class="nav-item @if((request()->segment(1)=='cart_setting')) active @endif">
+                    <a class="nav-link" href="{{ route('add.cart.setting') }}">
+                        <i class="mdi mdi-contacts menu-icon"></i>
+                        <span class="menu-title">Add Salary Account </span>
+                    </a>
+                </li>
+
                 {{-- <li class="nav-item @if((request()->segment(1)=='view_loans')) active @endif">
                     <a class="nav-link" href="{{ route('loans.view') }}">
                         <i class="mdi mdi-contacts menu-icon"></i>
