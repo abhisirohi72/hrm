@@ -20,8 +20,13 @@ use App\Http\Controllers\Admin\CartSettingController;
 use App\Http\Controllers\RazorpayPaymentController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Admin\SalaryController;
+use App\Http\Controllers\Admin\LeadController;
+use App\Http\Controllers\Admin\TaskController;
+use App\Http\Controllers\Admin\TodoController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::post('/contact_us_home', [HomeController::class, 'contactUs'])->name('contact.send');
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register.form');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 
@@ -106,7 +111,7 @@ Route::middleware("auth")->group(function () {
     Route::get('/advances/{id}/approve', [AdvanceSalaryController::class, 'approve'])->name('advances.approve');
     Route::get('/advances/{id}/reject', [AdvanceSalaryController::class, 'reject'])->name('advances.reject');
 
-     /* CATEGORY */
+    /* CATEGORY */
     Route::get('/category', [CategoryController::class, 'viewCategory'])->name('view.category');
     Route::get('/category/add', [CategoryController::class, 'addCategory'])->name('add.category');
     Route::get('/category/edit/{id}', [CategoryController::class, 'editCategory'])->name('edit.category');
@@ -133,7 +138,7 @@ Route::middleware("auth")->group(function () {
     Route::get('/discount/edit/{id}', [DiscountController::class, 'editDiscount'])->name('edit.discount');
     Route::get('/discount/delete/{id}', [DiscountController::class, 'deleteDiscount'])->name('delete.discount');
     Route::post('/save_discount', [DiscountController::class, 'saveDiscount'])->name('save.discount');
-    
+
     /*CART SETTING*/
     Route::get('/cart_setting', [CartSettingController::class, 'addCartSetting'])->name('add.cart.setting');
     Route::post('/save_cart_setting', [CartSettingController::class, 'saveCartSetting'])->name('save.cart.setting');
@@ -141,6 +146,27 @@ Route::middleware("auth")->group(function () {
     /*PROFILE*/
     Route::get('/add_profile', [ProfileController::class, 'viewProfile'])->name('add.profile');
     Route::post('/save_profile', [ProfileController::class, 'saveProfile'])->name('save.profile');
+
+    /*SALARY*/
+    Route::get('/salary', [SalaryController::class, 'viewSalary'])->name('view.salary');
+    Route::get('/salary/add', [SalaryController::class, 'addSalary'])->name('add.salary');
+    Route::get('/salary/edit/{id}', [SalaryController::class, 'editSalary'])->name('edit.salary');
+    Route::get('/salary/delete/{id}', [SalaryController::class, 'deleteSalary'])->name('delete.salary');
+    Route::post('/save_salary', [SalaryController::class, 'saveSalary'])->name('save.salary');
+
+    /*LEADS*/
+    Route::get('/leads', [LeadController::class, 'index'])->name('leads.index');
+    Route::get('/leads/create', [LeadController::class, 'create'])->name('add.leads');
+    Route::post('/leads', [LeadController::class, 'store'])->name('leads.store');
+    Route::get('/leads/{lead}/edit', [LeadController::class, 'edit'])->name('leads.edit');
+    Route::post('/leads/{lead}', [LeadController::class, 'update'])->name('leads.update');
+
+    /*TASK MANAGEMENT*/
+    Route::resource('tasks', TaskController::class);
+
+    /*TODO CONTROLLER */
+    Route::resource('todos', TodoController::class);
+
 });
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

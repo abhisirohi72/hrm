@@ -20,6 +20,7 @@
 
     <!-- Theme Style -->
     <link rel="stylesheet" href="{{ asset('web_frontend/css/style.css') }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
 </head>
 
@@ -80,7 +81,7 @@
                                 <li><a href="#portfolio-section" class="nav-link">Portfolio</a></li>
                                 <li><a href="#about-section" class="nav-link">About</a></li>
                                 <li><a href="#services-section" class="nav-link">Services</a></li>
-                                
+
                             </ul>
                         </div>
                         <div class="site-logo pos-absolute">
@@ -108,7 +109,8 @@
             </nav>
             <!-- END nav -->
 
-            <div class="cover-v1 jarallax" style="background-image: url({{ asset('web_frontend/images/cover_bg_2.jpg') }});" id="home-section">
+            {{-- <div class="cover-v1 jarallax" style="background-image: url({{ asset('web_frontend/images/cover_bg_2.jpg') }});" id="home-section"> --}}
+            <div class="cover-v1 jarallax" id="home-section">
                 <div class="container">
                     <div class="row align-items-center">
 
@@ -174,7 +176,8 @@
                                             <p>web, branding</p>
                                         </div>
                                     </div>
-                                    <img src="{{ asset('web_frontend/images/work_1_md.jpg') }}" class="lazyload  img-fluid" alt="Images" />
+                                    <img src="{{ asset('web_frontend/images/work_1_md.jpg') }}"
+                                        class="lazyload  img-fluid" alt="Images" />
                                 </a>
                             </div>
                             <div class="item branding packaging illustration col-sm-6 col-md-6 col-lg-4 isotope-mb-2 ">
@@ -188,7 +191,8 @@
                                             <p>branding, packaging, illustration</p>
                                         </div>
                                     </div>
-                                    <img src="{{ asset('web_frontend/images/work_2_md.jpg') }}" class="lazyload  img-fluid" alt="Images" />
+                                    <img src="{{ asset('web_frontend/images/work_2_md.jpg') }}"
+                                        class="lazyload  img-fluid" alt="Images" />
                                 </a>
                             </div>
 
@@ -202,14 +206,16 @@
                                             <p>branding, packaging</p>
                                         </div>
                                     </div>
-                                    <img src="{{ asset('web_frontend/images/work_3_md.jpg') }}" class="lazyload  img-fluid" alt="Images" />
+                                    <img src="{{ asset('web_frontend/images/work_3_md.jpg') }}"
+                                        class="lazyload  img-fluid" alt="Images" />
                                 </a>
                             </div>
 
                             <div class="item web packaging col-sm-6 col-md-6 col-lg-4 isotope-mb-2">
 
-                                <a href="{{ asset('web_frontend/images/work_4_full.jpg') }}" class="portfolio-item isotope-item gsap-reveal-img"
-                                    data-fancybox="gallery" data-caption="Watch">
+                                <a href="{{ asset('web_frontend/images/work_4_full.jpg') }}"
+                                    class="portfolio-item isotope-item gsap-reveal-img" data-fancybox="gallery"
+                                    data-caption="Watch">
                                     <div class="overlay">
                                         <span class="wrap-icon icon-photo2"></span>
                                         <div class="portfolio-item-content">
@@ -217,14 +223,16 @@
                                             <p>web, packaging</p>
                                         </div>
                                     </div>
-                                    <img src="{{ asset('web_frontend/images/work_4_full.jpg') }}" class="lazyload  img-fluid" alt="Images" />
+                                    <img src="{{ asset('web_frontend/images/work_4_full.jpg') }}"
+                                        class="lazyload  img-fluid" alt="Images" />
                                 </a>
 
                             </div>
 
                             <div class="item illustration packaging col-sm-6 col-md-6 col-lg-4 isotope-mb-2">
-                                <a href="{{ asset('web_frontend/images/work_5_md.jpg') }}" class="portfolio-item isotope-item gsap-reveal-img"
-                                    data-fancybox="gallery" data-caption="Shoe Rebranding">
+                                <a href="{{ asset('web_frontend/images/work_5_md.jpg') }}"
+                                    class="portfolio-item isotope-item gsap-reveal-img" data-fancybox="gallery"
+                                    data-caption="Shoe Rebranding">
                                     <div class="overlay">
                                         <span class="wrap-icon icon-photo2"></span>
                                         <div class="portfolio-item-content">
@@ -232,7 +240,8 @@
                                             <p>illustration, packaging</p>
                                         </div>
                                     </div>
-                                    <img src="{{ asset('web_frontend/images/work_5_md.jpg') }}" class="lazyload  img-fluid" alt="Images" />
+                                    <img src="{{ asset('web_frontend/images/work_5_md.jpg') }}"
+                                        class="lazyload  img-fluid" alt="Images" />
                                 </a>
                             </div>
 
@@ -247,7 +256,8 @@
                                             <p>web, branding</p>
                                         </div>
                                     </div>
-                                    <img src="{{ asset('web_frontend/images/work_6_md.jpg') }}" class="lazyload  img-fluid" alt="Images" />
+                                    <img src="{{ asset('web_frontend/images/work_6_md.jpg') }}"
+                                        class="lazyload  img-fluid" alt="Images" />
                                 </a>
                             </div>
 
@@ -262,7 +272,8 @@
                                             <p>branding, packaging</p>
                                         </div>
                                     </div>
-                                    <img src="{{ asset('web_frontend/images/work_7_a_md.jpg') }}" class="lazyload  img-fluid" alt="Images" />
+                                    <img src="{{ asset('web_frontend/images/work_7_a_md.jpg') }}"
+                                        class="lazyload  img-fluid" alt="Images" />
                                 </a>
                             </div>
 
@@ -277,13 +288,15 @@
                                             <p>web, branding</p>
                                         </div>
                                     </div>
-                                    <img src="{{ asset('web_frontend/images/work_8_md.jpg') }}" class="lazyload  img-fluid" alt="Images" />
+                                    <img src="{{ asset('web_frontend/images/work_8_md.jpg') }}"
+                                        class="lazyload  img-fluid" alt="Images" />
                                 </a>
                             </div>
 
                             <div class="item web illustration col-sm-6 col-md-6 col-lg-4 isotope-mb-2">
-                                <a href="{{ asset('web_frontend/images/work_9_a_md.jpg') }}" class="portfolio-item isotope-item gsap-reveal-img"
-                                    data-fancybox="gallery" data-caption="Render Packaging">
+                                <a href="{{ asset('web_frontend/images/work_9_a_md.jpg') }}"
+                                    class="portfolio-item isotope-item gsap-reveal-img" data-fancybox="gallery"
+                                    data-caption="Render Packaging">
                                     <div class="overlay">
                                         <span class="wrap-icon icon-photo2"></span>
                                         <div class="portfolio-item-content">
@@ -291,7 +304,8 @@
                                             <p>web, illustration</p>
                                         </div>
                                     </div>
-                                    <img src="{{ asset('web_frontend/images/work_9_a_md.jpg') }}" class="lazyload  img-fluid" alt="Images" />
+                                    <img src="{{ asset('web_frontend/images/work_9_a_md.jpg') }}"
+                                        class="lazyload  img-fluid" alt="Images" />
                                 </a>
                             </div>
 
@@ -308,16 +322,20 @@
                 <div class="container">
                     <div class="owl-carousel logo-slider">
                         <div class="logo-v1 gsap-reveal">
-                            <img src="{{ asset('web_frontend/images/logo-google.png') }}" alt="Image" class="img-fluid">
+                            <img src="{{ asset('web_frontend/images/logo-google.png') }}" alt="Image"
+                                class="img-fluid">
                         </div>
                         <div class="logo-v1 gsap-reveal">
-                            <img src="{{ asset('web_frontend/images/logo-puma.png') }}" alt="Image" class="img-fluid">
+                            <img src="{{ asset('web_frontend/images/logo-puma.png') }}" alt="Image"
+                                class="img-fluid">
                         </div>
                         <div class="logo-v1 gsap-reveal">
-                            <img src="{{ asset('web_frontend/images/logo-paypal.png') }}" alt="Image" class="img-fluid">
+                            <img src="{{ asset('web_frontend/images/logo-paypal.png') }}" alt="Image"
+                                class="img-fluid">
                         </div>
                         <div class="logo-v1 gsap-reveal">
-                            <img src="{{ asset('web_frontend/images/logo-adobe.png') }}" alt="Image" class="img-fluid">
+                            <img src="{{ asset('web_frontend/images/logo-adobe.png') }}" alt="Image"
+                                class="img-fluid">
                         </div>
                     </div>
                 </div>
@@ -328,7 +346,7 @@
                 <div class="container">
 
                     <div class="section-heading-wrap text-center mb-5">
-                        <h2 class="heading-h2 text-center divider"><span class="gsap-reveal">About Me</span></h2>
+                        <h2 class="heading-h2 text-center divider"><span class="gsap-reveal">About Us</span></h2>
                         <span class="gsap-reveal">
                             <img src="{{ asset('web_frontend/images/divider.png') }}" alt="divider" width="76">
                         </span>
@@ -338,7 +356,8 @@
                     <div class="row mt-5 justify-content-between">
                         <div class="col-lg-7 mb-5 mb-lg-0">
                             <figure class="dotted-bg gsap-reveal-img ">
-                                <img src="{{ asset('web_frontend/images/about_me_pic2.jpg') }}" alt="Image" class="img-fluid">
+                                <img src="{{ asset('web_frontend/images/logo.png') }}" alt="Image"
+                                    class="img-fluid">
                             </figure>
                         </div>
                         <div class="col-lg-4 pr-lg-5">
@@ -360,15 +379,16 @@
 
                     <div class="section-heading-wrap text-center mb-5">
                         <h2 class="heading-h2 text-center divider"><span class="gsap-reveal">My Services</span></h2>
-                        <span class="gsap-reveal"><img src="{{ asset('web_frontend/images/divider.png') }}" alt="divider"
-                                width="76"></span>
+                        <span class="gsap-reveal"><img src="{{ asset('web_frontend/images/divider.png') }}"
+                                alt="divider" width="76"></span>
                     </div>
 
                     <div class="row gutter-v3">
                         <div class="col-md-6 col-lg-4 mb-4">
                             <div class="feature-v1" data-aos="fade-up" data-aos-delay="0">
                                 <div class="wrap-icon mb-3">
-                                    <img src="{{ asset('web_frontend/images/svg/001-options.svg') }}" alt="Image" width="45">
+                                    <img src="{{ asset('web_frontend/images/svg/001-options.svg') }}" alt="Image"
+                                        width="45">
                                 </div>
                                 <h3>Digital <br> Strategy</h3>
                                 <p>A small river named Duden flows by their place and supplies it with the necessary
@@ -378,7 +398,8 @@
                         <div class="col-md-6 col-lg-4 mb-4">
                             <div class="feature-v1" data-aos="fade-up" data-aos-delay="100">
                                 <div class="wrap-icon mb-3">
-                                    <img src="{{ asset('web_frontend/images/svg/002-chat.svg') }}" alt="Icon" width="45">
+                                    <img src="{{ asset('web_frontend/images/svg/002-chat.svg') }}" alt="Icon"
+                                        width="45">
                                 </div>
                                 <h3>Web <br> Design</h3>
                                 <p>A small river named Duden flows by their place and supplies it with the necessary
@@ -388,8 +409,8 @@
                         <div class="col-md-6 col-lg-4 mb-4">
                             <div class="feature-v1" data-aos="fade-up" data-aos-delay="200">
                                 <div class="wrap-icon mb-3">
-                                    <img src="{{ asset('web_frontend/images/svg/003-contact-book.svg') }}" alt="Image" class="img-fluid"
-                                        width="45">
+                                    <img src="{{ asset('web_frontend/images/svg/003-contact-book.svg') }}"
+                                        alt="Image" class="img-fluid" width="45">
                                 </div>
                                 <h3>User <br> Experience</h3>
                                 <p>A small river named Duden flows by their place and supplies it with the necessary
@@ -400,7 +421,8 @@
                         <div class="col-md-6 col-lg-4 mb-4">
                             <div class="feature-v1" data-aos="fade-up" data-aos-delay="0">
                                 <div class="wrap-icon mb-3">
-                                    <img src="{{ asset('web_frontend/images/svg/004-percentage.svg') }}" alt="Image" width="45">
+                                    <img src="{{ asset('web_frontend/images/svg/004-percentage.svg') }}"
+                                        alt="Image" width="45">
                                 </div>
                                 <h3>Web <br> Development</h3>
                                 <p>A small river named Duden flows by their place and supplies it with the necessary
@@ -410,7 +432,8 @@
                         <div class="col-md-6 col-lg-4 mb-4">
                             <div class="feature-v1" data-aos="fade-up" data-aos-delay="100">
                                 <div class="wrap-icon mb-3">
-                                    <img src="{{ asset('web_frontend/images/svg/006-goal.svg') }}" alt="Image" width="45">
+                                    <img src="{{ asset('web_frontend/images/svg/006-goal.svg') }}" alt="Image"
+                                        width="45">
                                 </div>
                                 <h3>WordPress <br> Solutions</h3>
                                 <p>A small river named Duden flows by their place and supplies it with the necessary
@@ -420,7 +443,8 @@
                         <div class="col-md-6 col-lg-4 mb-4">
                             <div class="feature-v1" data-aos="fade-up" data-aos-delay="200">
                                 <div class="wrap-icon mb-3">
-                                    <img src="{{ asset('web_frontend/images/svg/005-line-chart.svg') }}" alt="Image" width="45">
+                                    <img src="{{ asset('web_frontend/images/svg/005-line-chart.svg') }}"
+                                        alt="Image" width="45">
                                 </div>
                                 <h3>Mobile <br> Applications</h3>
                                 <p>A small river named Duden flows by their place and supplies it with the necessary
@@ -436,8 +460,8 @@
                 <div class="container">
                     <div class="section-heading-wrap text-center mb-5">
                         <h2 class="heading-h2 text-center divider"><span class="gsap-reveal">My Skills</span></h2>
-                        <span class="gsap-reveal"><img src="{{ asset('web_frontend/images/divider.png') }}" alt="divider"
-                                width="76"></span>
+                        <span class="gsap-reveal"><img src="{{ asset('web_frontend/images/divider.png') }}"
+                                alt="divider" width="76"></span>
                     </div>
 
 
@@ -492,8 +516,8 @@
                     <div class="section-heading-wrap text-center mb-5">
                         <h2 class="heading-h2 text-center divider"><span class="gsap-reveal">My Happy Clients</span>
                         </h2>
-                        <span class="gsap-reveal"><img src="{{ asset('web_frontend/images/divider.png') }}" alt="divider"
-                                width="76"></span>
+                        <span class="gsap-reveal"><img src="{{ asset('web_frontend/images/divider.png') }}"
+                                alt="divider" width="76"></span>
                     </div>
                 </div>
 
@@ -570,8 +594,8 @@
                 <div class="container">
                     <div class="section-heading-wrap text-center mb-5">
                         <h2 class="heading-h2 text-center divider"><span class="gsap-reveal">My Journal</span></h2>
-                        <span class="gsap-reveal"><img src="{{ asset('web_frontend/images/divider.png') }}" alt="divider"
-                                width="76"></span>
+                        <span class="gsap-reveal"><img src="{{ asset('web_frontend/images/divider.png') }}"
+                                alt="divider" width="76"></span>
                     </div>
 
 
@@ -587,7 +611,8 @@
                                             read</p>
                                     </div>
                                 </div>
-                                <img src="{{ asset('web_frontend/images/post_1.jpg') }}" class="lazyload" alt="Image" />
+                                <img src="{{ asset('web_frontend/images/post_1.jpg') }}" class="lazyload"
+                                    alt="Image" />
                             </a>
 
 
@@ -602,7 +627,8 @@
                                             read</p>
                                     </div>
                                 </div>
-                                <img src="{{ asset('web_frontend/images/post_2.jpg') }}" class="lazyload" alt="Image" />
+                                <img src="{{ asset('web_frontend/images/post_2.jpg') }}" class="lazyload"
+                                    alt="Image" />
                             </a>
                         </div>
 
@@ -618,7 +644,8 @@
                                             read</p>
                                     </div>
                                 </div>
-                                <img src="{{ asset('web_frontend/images/post_3.jpg') }}" class="lazyload" alt="Image" />
+                                <img src="{{ asset('web_frontend/images/post_3.jpg') }}" class="lazyload"
+                                    alt="Image" />
                             </a>
 
 
@@ -633,7 +660,8 @@
                                             read</p>
                                     </div>
                                 </div>
-                                <img src="{{ asset('web_frontend/images/post_4.jpg') }}" class="lazyload" alt="Image" />
+                                <img src="{{ asset('web_frontend/images/post_4.jpg') }}" class="lazyload"
+                                    alt="Image" />
                             </a>
                         </div>
 
@@ -647,7 +675,8 @@
                                             read</p>
                                     </div>
                                 </div>
-                                <img src="{{ asset('web_frontend/images/post_5.jpg') }}" class="lazyload" alt="Image" />
+                                <img src="{{ asset('web_frontend/images/post_5.jpg') }}" class="lazyload"
+                                    alt="Image" />
                             </a>
                         </div>
 
@@ -663,8 +692,8 @@
                 <div class="container">
                     <div class="section-heading-wrap text-center mb-5">
                         <h2 class="heading-h2 text-center divider"><span class="gsap-reveal">Get In Touch</span></h2>
-                        <span class="gsap-reveal"><img src="{{ asset('web_frontend/images/divider.png') }}" alt="divider"
-                                width="76"></span>
+                        <span class="gsap-reveal"><img src="{{ asset('web_frontend/images/divider.png') }}"
+                                alt="divider" width="76"></span>
                     </div>
 
 
@@ -694,6 +723,8 @@
                                         <span class="submitting"></span>
                                     </div>
                                 </div>
+                                <input type="hidden" name="contact_url" id="contact_url"
+                                    value="{{ route('contact.send') }}">
                             </form>
                             <div id="form-message-warning" class="mt-4"></div>
                             <div id="form-message-success">
@@ -767,6 +798,14 @@
     </div>
 
     <script src="{{ asset('web_frontend/js/scripts-dist.js') }}"></script>
+    <script>
+        // Set CSRF token in all AJAX headers
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
     <script src="{{ asset('web_frontend/js/main.js') }}"></script>
 
 </body>

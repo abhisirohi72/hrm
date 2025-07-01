@@ -17,13 +17,13 @@
                         </div>
                         <div class="nav-profile-text d-flex flex-column pr-3">
                             <span class="font-weight-medium mb-2">{{ session('name') }}</span>
-                            <span class="font-weight-normal">$8,753.00</span>
+                            <span class="font-weight-normal">8,753.00</span>
                         </div>
                         <span class="badge badge-danger text-white ml-3 rounded">3</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="index.html">
+                    <a class="nav-link" href="{{ route('dashboard') }}">
                         <i class="mdi mdi-home menu-icon"></i>
                         <span class="menu-title">Dashboard</span>
                     </a>
@@ -111,10 +111,31 @@
                     </a>
                 </li>
 
-                <li class="nav-item @if((request()->segment(1)=='cart_setting')) active @endif">
-                    <a class="nav-link" href="{{ route('add.cart.setting') }}">
+                <li class="nav-item @if((request()->segment(1)=='salary')) active @endif">
+                    <a class="nav-link" href="{{ route('view.salary') }}">
                         <i class="mdi mdi-contacts menu-icon"></i>
                         <span class="menu-title">Add Salary Account </span>
+                    </a>
+                </li>
+
+                <li class="nav-item @if((request()->segment(1)=='leads')) active @endif">
+                    <a class="nav-link" href="{{ route('leads.index') }}">
+                        <i class="mdi mdi-contacts menu-icon"></i>
+                        <span class="menu-title">Lead Management</span>
+                    </a>
+                </li>
+
+                <li class="nav-item @if((request()->segment(1)=='tasks')) active @endif">
+                    <a class="nav-link" href="{{ route('tasks.index') }}">
+                        <i class="mdi mdi-contacts menu-icon"></i>
+                        <span class="menu-title">Task Management</span>
+                    </a>
+                </li>
+
+                <li class="nav-item @if((request()->segment(1)=='todo')) active @endif">
+                    <a class="nav-link" href="{{ route('todos.index') }}">
+                        <i class="mdi mdi-contacts menu-icon"></i>
+                        <span class="menu-title">TODO List</span>
                     </a>
                 </li>
 

@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('carts', function (Blueprint $table) {
-            $table->decimal('discount', 10, 2)->default(0)->change();
+        Schema::create('contact_us_homes', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('email');
+            $table->text('message');
+            $table->timestamps();
         });
     }
 
@@ -21,8 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('carts', function (Blueprint $table) {
-            $table->decimal('discount', 10, 2)->default(0)->change();
-        });
+        Schema::dropIfExists('contact_us_homes');
     }
 };

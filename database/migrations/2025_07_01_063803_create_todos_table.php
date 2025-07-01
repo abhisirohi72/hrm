@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('carts', function (Blueprint $table) {
-            $table->enum("payment_mode", ['0','1','2'])->default('0')->comment("0=>cash,1=COD,2=Online");
-            $table->string("transaction_id")->nullable();
+        Schema::create('todos', function (Blueprint $table) {
+            $table->id();
+            $table->string('title');
+            $table->boolean('is_completed')->default(false);
+            $table->timestamps();
         });
     }
 
@@ -22,8 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('carts', function (Blueprint $table) {
-            $table->dropColumn(["payment_mode",'transaction_id']);
-        });
+        Schema::dropIfExists('todos');
     }
 };

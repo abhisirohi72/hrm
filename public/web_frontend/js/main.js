@@ -557,17 +557,18 @@ var contactForm = function() {
 			submitHandler: function(form) {		
 				var $submit = $('.submitting'),
 					waitText = 'Submitting...';
-
-				$.ajax({   	
-			      type: "POST",
-			      url: "php/send-email.php",
-			      data: $(form).serialize(),
+				var send_url = $('#contact_url').val();
+				$.ajax({
+					type: "POST",
+					url: send_url,
+					data: $(form).serialize(),
 
 			      beforeSend: function() { 
 			      	$submit.css('display', 'block').text(waitText);
 			      },
 			      success: function(msg) {
-	               if (msg == 'OK') {
+					console.log(msg);
+	               if (msg.msg == 'OK') {
 	               	$('#form-message-warning').hide();
 			            setTimeout(function(){
 	               		$('#contactForm').fadeOut();
