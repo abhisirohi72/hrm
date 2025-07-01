@@ -85,7 +85,7 @@
                             </ul>
                         </div>
                         <div class="site-logo pos-absolute">
-                            <a href="index.html" class="unslate_co--site-logo">
+                            <a href="{{ route('home') }}" class="unslate_co--site-logo">
                                 <img src="{{ asset('web_frontend/images/logo.png') }}" alt="" style="width: 150px; height: auto;">
                             </a>
                         </div>
@@ -167,7 +167,7 @@
 
                         <div id="posts" class="row gutter-isotope-item">
                             <div class="item web branding col-sm-6 col-md-6 col-lg-4 isotope-mb-2">
-                                <a href="portfolio-single-1.html"
+                                <a href="#"
                                     class="portfolio-item ajax-load-page isotope-item gsap-reveal-img" data-id="1">
                                     <div class="overlay">
                                         <span class="wrap-icon icon-link2"></span>
@@ -181,7 +181,7 @@
                                 </a>
                             </div>
                             <div class="item branding packaging illustration col-sm-6 col-md-6 col-lg-4 isotope-mb-2 ">
-                                <a href="portfolio-single-3.html"
+                                <a href="#"
                                     class="portfolio-item ajax-load-page item-portrait isotope-item gsap-reveal-img"
                                     data-id="3">
                                     <div class="overlay">
@@ -197,7 +197,7 @@
                             </div>
 
                             <div class="item branding packaging col-sm-6 col-md-6 col-lg-4 isotope-mb-2">
-                                <a href="portfolio-single-4.html"
+                                <a href=""
                                     class="portfolio-item isotope-item gsap-reveal-img ajax-load-page" data-id="4">
                                     <div class="overlay">
                                         <span class="wrap-icon icon-link2"></span>
@@ -246,7 +246,7 @@
                             </div>
 
                             <div class="item web branding col-sm-6 col-md-6 col-lg-4 isotope-mb-2">
-                                <a href="portfolio-single-2.html"
+                                <a href=""
                                     class="portfolio-item ajax-load-page item-portrait isotope-item gsap-reveal-img"
                                     data-id="2">
                                     <div class="overlay">
@@ -603,7 +603,7 @@
                         <div class="col-sm-6 col-md-6 col-lg-8 blog-post-entry" data-aos="fade-up"
                             data-aos-delay="0">
 
-                            <a href="blog-single.html" class="grid-item blog-item w-100 h-100">
+                            <a href="#" class="grid-item blog-item w-100 h-100">
                                 <div class="overlay">
                                     <div class="portfolio-item-content">
                                         <h3>A Mounteering Guide For Beginners</h3>
@@ -619,7 +619,7 @@
                         </div>
                         <div class="col-sm-6 col-md-6 col-lg-4 blog-post-entry" data-aos="fade-up"
                             data-aos-delay="100">
-                            <a href="blog-single.html" class="grid-item blog-item w-100 h-100">
+                            <a href="" class="grid-item blog-item w-100 h-100">
                                 <div class="overlay">
                                     <div class="portfolio-item-content">
                                         <h3>A Mounteering Guide For Beginners</h3>
@@ -636,7 +636,7 @@
                         <div class="col-sm-6 col-md-6 col-lg-4 blog-post-entry" data-aos="fade-up"
                             data-aos-delay="0">
 
-                            <a href="blog-single.html" class="grid-item blog-item w-100 h-100">
+                            <a href="" class="grid-item blog-item w-100 h-100">
                                 <div class="overlay">
                                     <div class="portfolio-item-content">
                                         <h3>A Mounteering Guide For Beginners</h3>
@@ -652,7 +652,7 @@
                         </div>
                         <div class="col-sm-6 col-md-6 col-lg-4 blog-post-entry" data-aos="fade-up"
                             data-aos-delay="100">
-                            <a href="blog-single.html" class="grid-item blog-item w-100 h-100">
+                            <a href="" class="grid-item blog-item w-100 h-100">
                                 <div class="overlay">
                                     <div class="portfolio-item-content">
                                         <h3>A Mounteering Guide For Beginners</h3>
@@ -667,7 +667,7 @@
 
                         <div class="col-sm-6 col-md-6 col-lg-4 blog-post-entry" data-aos="fade-up"
                             data-aos-delay="200">
-                            <a href="blog-single.html" class="grid-item blog-item w-100 h-100">
+                            <a href="" class="grid-item blog-item w-100 h-100">
                                 <div class="overlay">
                                     <div class="portfolio-item-content">
                                         <h3>A Mounteering Guide For Beginners</h3>

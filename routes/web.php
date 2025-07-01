@@ -24,6 +24,9 @@ use App\Http\Controllers\Admin\SalaryController;
 use App\Http\Controllers\Admin\LeadController;
 use App\Http\Controllers\Admin\TaskController;
 use App\Http\Controllers\Admin\TodoController;
+use App\Http\Controllers\Admin\ContactUsController;
+use App\Http\Controllers\Admin\LeaveController;
+use App\Http\Controllers\Admin\HolidayController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::post('/contact_us_home', [HomeController::class, 'contactUs'])->name('contact.send');
@@ -167,6 +170,26 @@ Route::middleware("auth")->group(function () {
     /*TODO CONTROLLER */
     Route::resource('todos', TodoController::class);
 
+    /*HOME CONTACT US*/
+    Route::get('/contact_us', [ContactUsController::class, 'viewContactUs'])->name('contact.us.index');
+    // Route::get('/contact_us/create', [ContactUsController::class, 'addContactUs'])->name('add.contact.us');
+    Route::post('/contact_us', [ContactUsController::class, 'store'])->name('contact.us.store');
+    // Route::get('/contact_us/{contact}/edit', [ContactUsController::class, 'edit'])->name('contact.us.edit');
+    // Route::post('/contact_us/{contact}', [ContactUsController::class, 'update'])->name('contact.us.update');
+
+    /*LEAVES*/
+    Route::get('/leaves', [LeaveController::class, 'viewLeaves'])->name('view.leaves');
+    Route::get('/leaves/add', [LeaveController::class, 'addLeave'])->name('add.leaves');
+    Route::get('/leaves/edit/{id}', [LeaveController::class, 'editLeave'])->name('edit.leaves');
+    Route::get('/leaves/delete/{id}', [LeaveController::class, 'deleteLeave'])->name('delete.leaves');
+    Route::post('/save_leaves', [LeaveController::class, 'saveLeave'])->name('save.leaves');
+
+    /*HOLIDAY*/
+    Route::get('/holidays', [HolidayController::class, 'viewHolidays'])->name('view.holidays');
+    Route::get('/holidays/add', [HolidayController::class, 'addHoliday'])->name('add.holidays');
+    Route::post('/save_holidays', [HolidayController::class, 'saveHoliday'])->name('save.holidays');
+    Route::get('/holidays/edit/{id}', [HolidayController::class, 'editHoliday'])->name('edit.holidays');
+    Route::get('/holidays/delete/{id}', [HolidayController::class, 'deleteHoliday'])->name('delete.holidays');
 });
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

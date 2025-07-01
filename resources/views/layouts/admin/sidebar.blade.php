@@ -139,6 +139,27 @@
                     </a>
                 </li>
 
+                <li class="nav-item @if((request()->segment(1)=='contact_us')) active @endif">
+                    <a class="nav-link" href="{{ route('contact.us.index') }}">
+                        <i class="mdi mdi-contacts menu-icon"></i>
+                        <span class="menu-title">Contact Us Details</span>
+                    </a>
+                </li>
+
+                <li class="nav-item @if((request()->segment(1)=='leaves')) active @endif">
+                    <a class="nav-link" href="{{ route('view.leaves') }}">
+                        <i class="mdi mdi-contacts menu-icon"></i>
+                        <span class="menu-title">Leaves</span>
+                    </a>
+                </li>
+
+                <li class="nav-item @if((request()->segment(1)=='holidays')) active @endif">
+                    <a class="nav-link" href="{{ route('view.holidays') }}">
+                        <i class="mdi mdi-contacts menu-icon"></i>
+                        <span class="menu-title">Holidays</span>
+                    </a>
+                </li>
+
                 {{-- <li class="nav-item @if((request()->segment(1)=='view_loans')) active @endif">
                     <a class="nav-link" href="{{ route('loans.view') }}">
                         <i class="mdi mdi-contacts menu-icon"></i>
