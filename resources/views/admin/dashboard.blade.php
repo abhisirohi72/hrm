@@ -15,75 +15,76 @@
                         <i class="mdi mdi-email btn-icon-prepend"></i> Email </button>
                     <button type="button" class="btn btn-sm bg-white btn-icon-text border ml-3">
                         <i class="mdi mdi-printer btn-icon-prepend"></i> Print </button>
-                    <button type="button" class="btn btn-sm ml-3 btn-success"> Add User </button>
+                    <a href="{{ route('add.emp') }}" class="btn btn-sm ml-3 btn-success"> Add Employee </a>
                 </div>
             </div>
             <div class="row">
-                <div class="col-xl-3 col-lg-12 stretch-card grid-margin">
+                <div class="col-xl-12 col-lg-12 stretch-card grid-margin">
                     <div class="row">
-                        <div class="col-xl-12 col-md-6 stretch-card grid-margin grid-margin-sm-0 pb-sm-3">
+                        <div class="col-xl-6 col-md-6 stretch-card grid-margin grid-margin-sm-0 pb-sm-3">
                             <div class="card bg-warning">
                                 <div class="card-body px-3 py-4">
                                     <div class="d-flex justify-content-between align-items-start">
                                         <div class="color-card">
-                                            <p class="mb-0 color-card-head">Sales</p>
-                                            <h2 class="text-white"> 8,753.<span class="h5">00</span>
+                                            <p class="mb-0 color-card-head">Total Leads</p>
+                                            <h2 class="text-white"> {{ $t_leads }}
                                             </h2>
                                         </div>
                                         <i class="card-icon-indicator mdi mdi-basket bg-inverse-icon-warning"></i>
                                     </div>
-                                    <h6 class="text-white">18.33% Since last month</h6>
+                                    {{-- <h6 class="text-white">18.33% Since last month</h6> --}}
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-12 col-md-6 stretch-card grid-margin grid-margin-sm-0 pb-sm-3">
+                        <div class="col-xl-6 col-md-6 stretch-card grid-margin grid-margin-sm-0 pb-sm-3">
                             <div class="card bg-danger">
                                 <div class="card-body px-3 py-4">
                                     <div class="d-flex justify-content-between align-items-start">
                                         <div class="color-card">
-                                            <p class="mb-0 color-card-head">Margin</p>
-                                            <h2 class="text-white"> 5,300.<span class="h5">00</span>
+                                            <p class="mb-0 color-card-head">Total Telecaller Feedback's</p>
+                                            <h2 class="text-white"> {{ $t_feedback }}
+                                                {{-- <span class="h5">00</span> --}}
                                             </h2>
                                         </div>
                                         <i class="card-icon-indicator mdi mdi-cube-outline bg-inverse-icon-danger"></i>
                                     </div>
-                                    <h6 class="text-white">13.21% Since last month</h6>
+                                    {{-- <h6 class="text-white">13.21% Since last month</h6> --}}
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-12 col-md-6 stretch-card grid-margin grid-margin-sm-0 pb-sm-3 pb-lg-0 pb-xl-3">
+                        <div class="col-xl-6 col-md-6 stretch-card grid-margin grid-margin-sm-0 pb-sm-3 pb-lg-0 pb-xl-3">
                             <div class="card bg-primary">
                                 <div class="card-body px-3 py-4">
                                     <div class="d-flex justify-content-between align-items-start">
                                         <div class="color-card">
-                                            <p class="mb-0 color-card-head">Orders</p>
-                                            <h2 class="text-white"> 1,753.<span class="h5">00</span>
+                                            <p class="mb-0 color-card-head">Total Campaigns</p>
+                                            <h2 class="text-white"> {{ $t_campaign }}
+                                                {{-- <span class="h5">00</span> --}}
                                             </h2>
                                         </div>
-                                        <i
-                                            class="card-icon-indicator mdi mdi-briefcase-outline bg-inverse-icon-primary"></i>
+                                        <i class="card-icon-indicator mdi mdi-briefcase-outline bg-inverse-icon-primary"></i>
                                     </div>
-                                    <h6 class="text-white">67.98% Since last month</h6>
+                                    {{-- <h6 class="text-white">67.98% Since last month</h6> --}}
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-12 col-md-6 stretch-card pb-sm-3 pb-lg-0">
+                        <div class="col-xl-6 col-md-6 stretch-card grid-margin grid-margin-sm-0 pb-sm-3 pb-lg-0 pb-xl-3">
                             <div class="card bg-success">
                                 <div class="card-body px-3 py-4">
                                     <div class="d-flex justify-content-between align-items-start">
                                         <div class="color-card">
-                                            <p class="mb-0 color-card-head">Affiliate</p>
-                                            <h2 class="text-white">2368</h2>
+                                            <p class="mb-0 color-card-head">Total Employees</p>
+                                            <h2 class="text-white">{{ $t_emp }}</h2>
                                         </div>
                                         <i class="card-icon-indicator mdi mdi-account-circle bg-inverse-icon-success"></i>
                                     </div>
-                                    <h6 class="text-white">20.32% Since last month</h6>
+                                    {{-- <h6 class="text-white">20.32% Since last month</h6> --}}
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-9 stretch-card grid-margin">
+                {{-- <div class="col-xl-9 stretch-card grid-margin">
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
@@ -168,7 +169,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
             <div class="row">
                 <div class="col-xl-8 col-sm-6 grid-margin stretch-card">
