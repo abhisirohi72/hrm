@@ -114,8 +114,8 @@ class TargetController extends Controller
         }
     }
 
-    public function deleteSalary($del_id, Request $request){
-        $delete  = SalaryAccount::where("id", $del_id)->delete();
+    public function deleteTarget($del_id, Request $request){
+        $delete  = Target::where("id", $del_id)->delete();
 
         if($delete){
             return redirect()->back()->with('success', 'Successfully Deleted!!!');

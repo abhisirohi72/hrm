@@ -28,6 +28,8 @@ use App\Http\Controllers\Admin\ContactUsController;
 use App\Http\Controllers\Admin\LeaveController;
 use App\Http\Controllers\Admin\HolidayController;
 use App\Http\Controllers\Admin\TargetController;
+use App\Http\Controllers\Admin\SopController;
+use App\Http\Controllers\Admin\CampaignController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::post('/contact_us_home', [HomeController::class, 'contactUs'])->name('contact.send');
@@ -199,6 +201,19 @@ Route::middleware("auth")->group(function () {
     Route::get('/target/delete/{id}', [TargetController::class, 'deleteTarget'])->name('delete.target');
     Route::post('/save_target', [TargetController::class, 'saveTarget'])->name('save.target');
 
+    /*SOP*/
+    Route::get('/sop', [SopController::class, 'viewSop'])->name('view.sop');
+    Route::get('/sop/add', [SopController::class, 'addSop'])->name('add.sop');
+    Route::get('/sop/edit/{id}', [SopController::class, 'editSop'])->name('edit.sop');
+    Route::get('/sop/delete/{id}', [SopController::class, 'deleteSop'])->name('delete.sop');
+    Route::post('/save_sop', [SopController::class, 'saveSop'])->name('save.sop');
+
+    /*CAMPAIGN*/
+    Route::get('/campaign', [CampaignController::class, 'viewCampaign'])->name('view.campaign');
+    Route::get('/campaign/add', [CampaignController::class, 'addCampaign'])->name('add.campaign');
+    Route::get('/campaign/edit/{id}', [CampaignController::class, 'editCampaign'])->name('edit.campaign');
+    Route::get('/campaign/delete/{id}', [CampaignController::class, 'deleteCampaign'])->name('delete.campaign');
+    Route::post('/save_Campaign', [CampaignController::class, 'saveCampaign'])->name('save.campaign');
 });
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

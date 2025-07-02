@@ -761,7 +761,11 @@
                 <div class="row justify-content-center">
                     <div class="col-md-7">
 
-                        <div class="footer-site-logo"><a href="#">WEBFINTECH<span></span></a></div>
+                        <div class="footer-site-logo">
+                            <a href="{{ route('home') }}" class="d-block">
+                                    <img src="{{ asset('web_frontend/images/logo.png') }}" alt="" style="width: 200px;height: auto;"><span></span>
+                            </a>
+                        </div>
 
                         <ul class="footer-site-social">
                             <li><a href="#">Facebook</a></li>

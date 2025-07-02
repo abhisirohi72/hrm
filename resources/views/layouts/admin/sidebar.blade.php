@@ -165,7 +165,21 @@
                         <i class="mdi mdi-contacts menu-icon"></i>
                         <span class="menu-title">Target</span>
                     </a>
-                </li> 
+                </li>
+
+                <li class="nav-item @if((request()->segment(1)=='sop')) active @endif">
+                    <a class="nav-link" href="{{ route('view.sop') }}">
+                        <i class="mdi mdi-contacts menu-icon"></i>
+                        <span class="menu-title">SOP</span>
+                    </a>
+                </li>
+
+                <li class="nav-item @if((request()->segment(1)=='campaign')) active @endif">
+                    <a class="nav-link" href="{{ route('view.campaign') }}">
+                        <i class="mdi mdi-contacts menu-icon"></i>
+                        <span class="menu-title">Campaign</span>
+                    </a>
+                </li>
 
                 {{-- <li class="nav-item @if((request()->segment(1)=='view_loans')) active @endif">
                     <a class="nav-link" href="{{ route('loans.view') }}">
