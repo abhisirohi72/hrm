@@ -27,6 +27,7 @@ use App\Http\Controllers\Admin\TodoController;
 use App\Http\Controllers\Admin\ContactUsController;
 use App\Http\Controllers\Admin\LeaveController;
 use App\Http\Controllers\Admin\HolidayController;
+use App\Http\Controllers\Admin\TargetController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::post('/contact_us_home', [HomeController::class, 'contactUs'])->name('contact.send');
@@ -190,6 +191,14 @@ Route::middleware("auth")->group(function () {
     Route::post('/save_holidays', [HolidayController::class, 'saveHoliday'])->name('save.holidays');
     Route::get('/holidays/edit/{id}', [HolidayController::class, 'editHoliday'])->name('edit.holidays');
     Route::get('/holidays/delete/{id}', [HolidayController::class, 'deleteHoliday'])->name('delete.holidays');
+
+    /*TARGET*/
+    Route::get('/target', [TargetController::class, 'viewTarget'])->name('view.target');
+    Route::get('/target/add', [TargetController::class, 'addTarget'])->name('add.target');
+    Route::get('/target/edit/{id}', [TargetController::class, 'editTarget'])->name('edit.target');
+    Route::get('/target/delete/{id}', [TargetController::class, 'deleteTarget'])->name('delete.target');
+    Route::post('/save_target', [TargetController::class, 'saveTarget'])->name('save.target');
+
 });
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

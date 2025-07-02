@@ -160,6 +160,13 @@
                     </a>
                 </li>
 
+                <li class="nav-item @if((request()->segment(1)=='target')) active @endif">
+                    <a class="nav-link" href="{{ route('view.target') }}">
+                        <i class="mdi mdi-contacts menu-icon"></i>
+                        <span class="menu-title">Target</span>
+                    </a>
+                </li> 
+
                 {{-- <li class="nav-item @if((request()->segment(1)=='view_loans')) active @endif">
                     <a class="nav-link" href="{{ route('loans.view') }}">
                         <i class="mdi mdi-contacts menu-icon"></i>
