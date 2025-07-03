@@ -236,7 +236,16 @@
                             <span class="menu-title">Order Details</span>
                         </a>
                     </li>
-                @endif    
+                @endif
+                
+                @if(session('role')=="0" || in_array('order_details',session('page_access')->pluck("page_name")->toArray()))
+                    <li class="nav-item @if((request()->segment(1)=='materials')) active @endif">
+                        <a class="nav-link" href="{{ route('view.material') }}">
+                            <i class="mdi mdi-chart-line menu-icon"></i>
+                            <span class="menu-title">Materials</span>
+                        </a>
+                    </li>
+                @endif
 
                 {{-- <li class="nav-item @if((request()->segment(1)=='view_loans')) active @endif">
                     <a class="nav-link" href="{{ route('loans.view') }}">

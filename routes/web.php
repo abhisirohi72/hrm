@@ -30,6 +30,7 @@ use App\Http\Controllers\Admin\HolidayController;
 use App\Http\Controllers\Admin\TargetController;
 use App\Http\Controllers\Admin\SopController;
 use App\Http\Controllers\Admin\CampaignController;
+use App\Http\Controllers\Admin\MaterialController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::post('/contact_us_home', [HomeController::class, 'contactUs'])->name('contact.send');
@@ -214,6 +215,13 @@ Route::middleware("auth")->group(function () {
     Route::get('/campaign/edit/{id}', [CampaignController::class, 'editCampaign'])->name('edit.campaign');
     Route::get('/campaign/delete/{id}', [CampaignController::class, 'deleteCampaign'])->name('delete.campaign');
     Route::post('/save_Campaign', [CampaignController::class, 'saveCampaign'])->name('save.campaign');
+
+    /*MATERIALS*/
+    Route::get('/material', [MaterialController::class, 'viewMaterial'])->name('view.material');
+    Route::get('/material/add', [MaterialController::class, 'addMaterial'])->name('add.material');
+    Route::get('/material/edit/{id}', [MaterialController::class, 'editMaterial'])->name('edit.material');
+    Route::get('/material/delete/{id}', [MaterialController::class, 'deleteMaterial'])->name('delete.material');
+    Route::post('/save_Material', [MaterialController::class, 'saveMaterial'])->name('save.material');
 });
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
