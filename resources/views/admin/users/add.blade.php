@@ -32,8 +32,8 @@
                             </div>
                         @endif
 
-                        <h4 class="card-title">Add Branch Details</h4>
-                        <form class="forms-sample" method="POST" action="{{ route('save.profile') }}" enctype="multipart/form-data">
+                        <h4 class="card-title">{{ $title }} Details</h4>
+                        <form class="forms-sample" method="POST" action="{{ route('save.user.details') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <label class="form-label">Full Name</label>
@@ -42,8 +42,14 @@
 
                             <div class="form-group">
                                 <label class="form-label">Email address</label>
-                                <input type="email" class="form-control" name="email" readonly
+                                <input type="email" class="form-control" name="email"
                                     value="{{ $details->email ?? ''}}" placeholder="Enter your email" >
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Password</label>
+                                <input type="password" class="form-control" name="password"
+                                    value="{{ $details->password ?? ''}}" placeholder="Enter your Password" >
                             </div>
 
                             <div class="form-group">
@@ -59,11 +65,18 @@
                             @endif
 
                             <div class="form-group">
+                                <label class="form-label">Wallet Balance</label>
+                                <input type="text" class="form-control" name="wallet_balance"
+                                    value="{{ $details->wallet_balance ?? ''}}" placeholder="Enter your wallet balance" >
+                            </div>
+
+                            <div class="form-group">
                                 <label for="">Stripe ID</label>
                                 <textarea class="form-control" id="stripe_id" name="stripe_id" placeholder="Enter your Stripe ID">{{ $details->stripe_id ?? ''}}</textarea>
                             </div>
 
                             <input type="hidden" name="old_image" id="old_image" value="{{ $details->image ?? ''}}">
+                            <input type="hidden" name="edit_id" id="edit_id" value="{{ $details->id ?? ''}}">
                             <button type="submit" class="btn btn-primary mr-2"> Submit </button>
                             <button class="btn btn-light">Cancel</button>
                         </form>

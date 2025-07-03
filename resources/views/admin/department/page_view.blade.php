@@ -155,6 +155,16 @@
                                 <input type="checkbox" class="form-check-input" name="page_name[]" value="order_details" @if(in_array("order_details", $details->pluck("page_name")->toArray())) checked @endif/> Order Details</label>
                             </div>
 
+                            <div class="form-check">
+                              <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input" name="page_name[]" value="material" @if(in_array("material", $details->pluck("page_name")->toArray())) checked @endif/> Materials</label>
+                            </div>
+
+                            <div class="form-check">
+                              <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input" name="page_name[]" value="users" @if(in_array("users", $details->pluck("page_name")->toArray())) checked @endif/> Users</label>
+                            </div>
+
                             <input type="hidden" name="department_id" value="{{ $id }}">
                             <button type="submit" class="btn btn-primary mr-2"> Submit </button>
                             <button class="btn btn-light">Cancel</button>

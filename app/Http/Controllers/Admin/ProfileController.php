@@ -43,7 +43,7 @@ class ProfileController extends Controller
 
         $filename  = $request->input("old_image");
         // echo $request->file("image")->isValid(); exit;
-        if ($request->file("image")->isValid()) {
+        if ($request->file("image") && $request->file("image")->isValid()) {
             $file = $request->file('image');
 
             // Generate encrypted (random) filename with original extension

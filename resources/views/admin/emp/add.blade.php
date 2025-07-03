@@ -57,6 +57,11 @@
                             </div>
 
                             <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" />
+                            </div>
+
+                            <div class="form-group">
                                 <label for="mobile">Mobile</label>
                                 <input type="text" class="form-control" id="mobile" name="mobile" placeholder="Enter Full Name" value="{{ $details->mobile ?? '' }}"/>
                             </div>

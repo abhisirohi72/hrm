@@ -424,9 +424,9 @@
                         <div class="col-lg-3 col-sm-6 pb-3">
                             <div class="footer-menu contact-item">
                                 <h5 class="widget-title text-uppercase pb-2">Contact Us</h5>
-                                <p>Do you have any queries or suggestions? <a href="mailto:">yourinfo@gmail.com</a>
+                                <p>Do you have any queries or suggestions? <a href="mailto:">info@webfintech.in</a>
                                 </p>
-                                <p>If you need support? Just give us a call. <a href="">+55 111 222 333 44</a>
+                                <p>If you need support? Just give us a call. <a href="">+91-8303812139</a>
                                 </p>
                             </div>
                         </div>
@@ -460,9 +460,8 @@
                 </div>
                 <div class="col-md-4 col-sm-6">
                     <div class="copyright">
-                        <p>© Copyright 2023 MiniStore. Design by <a
-                                href="https://templatesjungle.com/">TemplatesJungle</a> Distribution by <a
-                                href="https://themewagon.com">ThemeWagon</a>
+                        <p>© Copyright @php echo date('Y'); @endphp WEBFINTECH DIGITAL PVT LTD. Design by <a
+                                href="{{ route('home') }}">WEBFINTECH DIGITAL PVT LTD</a>
                         </p>
                     </div>
                 </div>
@@ -607,6 +606,12 @@
             });
         }
 
+        function numberFormat(num, decimals = 2, dec_point = '.', thousands_sep = ',') {
+            let parts = parseFloat(num).toFixed(decimals).split('.');
+            parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, thousands_sep);
+            return parts.join(dec_point);
+        }
+
         function updateCart(input_id, product_id, counter, order_id) {
             console.log(counter);
             var get_data = $("#" + input_id).val();
@@ -620,12 +625,14 @@
                         $("#" + input_id).val(get_data - 1);
                     } else {
                         $("#price_" + counter).html("$" + data.price);
-                        $("#h_price_" + counter).html(data.price);
+                        $("#h_price_" + counter).html(data.normal_price);
                         var total = 0;
                         $(".price").each(function() {
+                            console.log($(this).text());
                             total += parseFloat($(this).text());
                         });
-                        $("#t_price").html(total.toFixed(2));
+                        console.log(total);
+                        $("#t_price").html(numberFormat(total));
                     }
                 }
             });

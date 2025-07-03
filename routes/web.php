@@ -31,6 +31,8 @@ use App\Http\Controllers\Admin\TargetController;
 use App\Http\Controllers\Admin\SopController;
 use App\Http\Controllers\Admin\CampaignController;
 use App\Http\Controllers\Admin\MaterialController;
+use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\UserController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::post('/contact_us_home', [HomeController::class, 'contactUs'])->name('contact.send');
@@ -222,6 +224,20 @@ Route::middleware("auth")->group(function () {
     Route::get('/material/edit/{id}', [MaterialController::class, 'editMaterial'])->name('edit.material');
     Route::get('/material/delete/{id}', [MaterialController::class, 'deleteMaterial'])->name('delete.material');
     Route::post('/save_Material', [MaterialController::class, 'saveMaterial'])->name('save.material');
+
+    /*ORDER HISTORY*/
+    Route::get('/order_details', [OrderController::class, 'viewOrderDetails'])->name('view.order_details');
+    Route::get('/order_details/add', [OrderController::class, 'addMaterial'])->name('add.order_details');
+    Route::get('/order_details/edit/{id}', [OrderController::class, 'editMaterial'])->name('edit.order_details');
+    Route::get('/order_details/delete/{unique_id}', [OrderController::class, 'deleteOrderDetails'])->name('delete.order_details');
+    Route::post('/save_Material', [OrderController::class, 'saveMaterial'])->name('save.order_details');
+
+    /*USERS*/
+    Route::get('/users', [UserController::class, 'viewUserDetails'])->name('view.user.details');
+    Route::get('/users/add', [UserController::class, 'addUserDetails'])->name('add.user.details');
+    Route::get('/users/edit/{id}', [UserController::class, 'editUserDetails'])->name('edit.user.details');
+    Route::get('/users/delete/{id}', [UserController::class, 'deleteOrderDetails'])->name('delete.user.details');
+    Route::post('/save_Material', [UserController::class, 'saveUserDetails'])->name('save.user.details');
 });
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

@@ -3,21 +3,22 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Material;
+use App\Models\OrderHistory;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 
-class MaterialController extends Controller
+class OrderController extends Controller
 {
-    public function viewMaterial(Request $request){
-        $main_title= "Admin-Materials-View";
+    public function viewOrderDetails(Request $request){
+        $main_title= "Admin-Order-History-View";
 
-        $title =    "Materials View";
+        $title =    "Order History View";
 
-        $details= Material::all();
+        $details= OrderHistory::with('products')->get();
+        // echo "<pre>";
+        // print_r($details);
+        // exit;
 
-        return view('admin.material.view', [
+        return view('admin.order_history.view', [
             'main_title'    =>  $main_title,
             'title'         =>  $title,
             'details'       =>  $details
@@ -153,8 +154,8 @@ class MaterialController extends Controller
         }
     }
 
-    public function deleteLeave($del_id){
-        $delete  = Material::where("id", $del_id)->delete();
+    public function OrderDetails($del_id){
+        $delete  = OrderHistory::where("order_unique_id", $del_id)->delete();
 
         if($delete){
             return redirect()->back()->with('success', 'Successfully Deleted!!!');

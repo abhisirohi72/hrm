@@ -17,46 +17,40 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body" style="overflow: auto;">
-                        <h4 class="card-title">Branch Details</h4>
-                        <a href="{{ route('add.branch') }}" class="btn btn-primary btn-icon-text mb-2" style="float: right;">
+                        <h4 class="card-title">Users Details</h4>
+                        <a href="{{ route('add.user.details') }}" class="btn btn-primary btn-icon-text mb-2" style="float: right;">
                             Add
                         </a>
                         <div class="table-responsive">
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
-                                        <th>Dept. Name</th>
                                         <th>Name</th>
-                                        <th>Status</th>
-                                        <th>Company Logo</th>
-                                        <th>Company Email</th>
-                                        <th>Company Website</th>
-                                        <th>Action</th>
+                                        <th>Email</th>
+                                        <th>Image</th>
+                                        <th>Wallet</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @if (count($details) > 0)
-                                        @foreach ($details as $item)
+                                        @foreach ($details as $detail)
                                             <tr>
-                                                <td>{{ $item->departments->name ?? '' }}</td>
-                                                <td>{{ $item->name }}</td>
+                                                <td>{{ $detail->name }}</td>
+                                                <td>{{ $detail->email }}</td>
                                                 <td>
-                                                    @if($item->status=="0")
-                                                        <label class="badge badge-danger">Pending</label>
-                                                    @else
-                                                        <label class="badge badge-success">Active</label>
+                                                    @if(isset($detail->image) && !empty($detail->image))
+                                                        <img class="nav-profile-img mr-2" alt="" src="{{ asset('storage/users').'/'.$detail->image }}" />
                                                     @endif
                                                 </td>
+                                                <td>{{ $detail->wallet_balance }}</td>
                                                 <td>
-                                                    <img src="{{ asset('storage/company').'/'.$item->c_logo }}" alt="" style="width: 100px;height:100px;">
-                                                </td>
-                                                <td>{{ $item->c_email }}</td>
-                                                <td>{{ $item->c_website }}</td>
-                                                <td>
-                                                    <a href="{{ route('edit.branch', ['id'=>$item->id]) }}" class="btn btn-dark btn-icon-text">Edit
+                                                    <a href="{{ route('edit.user.details', ['id' => $detail->id]) }}"
+                                                        class="btn btn-dark btn-icon-text">Edit
                                                         <i class="mdi mdi-file-check btn-icon-append"></i>
                                                     </a>
-                                                    <a href="{{ route('delete.branch', ['id'=>$item->id]) }}" class="btn btn-danger">Delete
+                                                    <a href="{{ route('delete.user.details', ['id' => $detail->id]) }}"
+                                                        class="btn btn-danger">Delete
                                                         <i class="mdi mdi-delete btn-icon-append"></i>
                                                     </a>
                                                 </td>
@@ -64,7 +58,7 @@
                                         @endforeach
                                     @else
                                         <tr>
-                                            <td colspan="2">
+                                            <td colspan="8 text-center">
                                                 <p>No Records Found..</p>
                                             </td>
                                         </tr>
@@ -77,4 +71,5 @@
             </div>
         </div>
     </div>
+
 @endsection

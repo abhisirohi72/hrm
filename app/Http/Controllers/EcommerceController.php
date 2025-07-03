@@ -132,10 +132,11 @@ class EcommerceController extends Controller
                 "t_price"   =>  $details->price * $get_data,
             ]);
             return response()->json([
-                "status"    =>  "success",
-                "message"   =>  "Stock is available",
-                "quantity"  =>  $details->quantity,
-                "price"     =>  number_format($details->price*$get_data, 2)
+                "status"        =>  "success",
+                "message"       =>  "Stock is available",
+                "quantity"      =>  $details->quantity,
+                "price"         =>  number_format($details->price*$get_data, 2),
+                "normal_price"  =>  ($details->price*$get_data)
             ]);
         } else {
             return response()->json([

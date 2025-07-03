@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Hash;
 
 class EmployeeController extends Controller
 {
@@ -81,6 +82,7 @@ class EmployeeController extends Controller
             "dept_id"   =>  "required",
             "branch_id" =>  "required",
             "status"    =>  "required",
+            "password"  =>  "required",
         ]);
 
         $directory = "emp/images";
@@ -88,7 +90,7 @@ class EmployeeController extends Controller
 
         if($request->input("edit_id")==""){
             $filename="";
-            if($request->file("image")->isValid()){
+            if($request->file("image") && $request->file("image")->isValid()){
                 $file = $request->file('image');
 
                 // Generate encrypted (random) filename with original extension
@@ -110,6 +112,7 @@ class EmployeeController extends Controller
                 "joinning_date" =>  $request->input("joinning_date"),
                 "salary"        =>  $request->input("salary"),
                 "status"        =>  $request->input("status"),
+                'password'      => Hash::make($request->password),
             ]);
 
             if($insert){
@@ -120,7 +123,7 @@ class EmployeeController extends Controller
         }else{
             $filename  = $request->input("old_image");
             // echo $request->file("image")->isValid(); exit;
-            if($request->file("image")->isValid()){
+            if($request->file("image") && $request->file("image")->isValid()){
                 $file = $request->file('image');
 
                 // Generate encrypted (random) filename with original extension
@@ -144,6 +147,7 @@ class EmployeeController extends Controller
                 "joinning_date" =>  $request->input("joinning_date"),
                 "salary"        =>  $request->input("salary"),
                 "status"        =>  $request->input("status"),
+                'password'      => Hash::make($request->password),
             ]);
 
             if($update){
