@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PageAccess;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -23,9 +24,10 @@ class AuthController extends Controller
         ]);
 
         $user = User::create([
-            'name'     => $request->name,
-            'email'    => $request->email,
-            'password' => Hash::make($request->password),
+            'name'      => $request->name,
+            'email'     => $request->email,
+            'password'  => Hash::make($request->password),
+            'role'      =>  '1',
         ]);
 
         Auth::login($user);
@@ -47,13 +49,15 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
+            $page_access_details = PageAccess::where("department_id", Auth::user()->role)->get();
             session([
                 'user'  =>  Auth::id(),
                 'name'  =>  Auth::user()->name,
                 'email' =>  Auth::user()->email,
                 'image' =>  Auth::user()->image,
                 'role'  =>  Auth::user()->role,
-                'stripe_id' => Auth::user()->stripe_id, 
+                'stripe_id' => Auth::user()->stripe_id,
+                'page_access'=>$page_access_details,
             ]);
             return redirect()->route('dashboard');
         }

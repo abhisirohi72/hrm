@@ -33,7 +33,7 @@
                         @endif
 
                         <h4 class="card-title">Add Departments Pages</h4>
-                        <form class="forms-sample" method="POST" action="{{ route('save.department') }}">
+                        <form class="forms-sample" method="POST" action="{{ route('save.page.access') }}">
                             @csrf
                             <div class="form-check">
                               <label class="form-check-label">
@@ -98,6 +98,61 @@
                             <div class="form-check">
                               <label class="form-check-label">
                                 <input type="checkbox" class="form-check-input" name="page_name[]" value="cart_setting" @if(in_array("cart_setting", $details->pluck("page_name")->toArray())) checked @endif/> Cart Setting </label>
+                            </div>
+
+                            <div class="form-check">
+                              <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input" name="page_name[]" value="salary_account" @if(in_array("salary_account", $details->pluck("page_name")->toArray())) checked @endif/> Add Salary Account </label>
+                            </div>
+
+                            <div class="form-check">
+                              <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input" name="page_name[]" value="lead_management" @if(in_array("lead_management", $details->pluck("page_name")->toArray())) checked @endif/> Lead Management </label>
+                            </div>
+
+                            <div class="form-check">
+                              <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input" name="page_name[]" value="task_management" @if(in_array("task_management", $details->pluck("page_name")->toArray())) checked @endif/> Task Management </label>
+                            </div>
+
+                            <div class="form-check">
+                              <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input" name="page_name[]" value="todo" @if(in_array("todo", $details->pluck("page_name")->toArray())) checked @endif/> Todo List</label>
+                            </div>
+
+                            <div class="form-check">
+                              <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input" name="page_name[]" value="contact_us" @if(in_array("contact_us", $details->pluck("page_name")->toArray())) checked @endif/> Contact Us Details</label>
+                            </div>
+
+                            <div class="form-check">
+                              <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input" name="page_name[]" value="leaves" @if(in_array("leaves", $details->pluck("page_name")->toArray())) checked @endif/> Leaves</label>
+                            </div>
+
+                            <div class="form-check">
+                              <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input" name="page_name[]" value="holidays" @if(in_array("holidays", $details->pluck("page_name")->toArray())) checked @endif/> Holidays</label>
+                            </div>
+
+                            <div class="form-check">
+                              <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input" name="page_name[]" value="target" @if(in_array("target", $details->pluck("page_name")->toArray())) checked @endif/> Target</label>
+                            </div>
+
+                            <div class="form-check">
+                              <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input" name="page_name[]" value="sop" @if(in_array("sop", $details->pluck("page_name")->toArray())) checked @endif/> SOP</label>
+                            </div>
+
+                            <div class="form-check">
+                              <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input" name="page_name[]" value="campaign" @if(in_array("campaign", $details->pluck("page_name")->toArray())) checked @endif/> Campaign</label>
+                            </div>
+
+                            <div class="form-check">
+                              <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input" name="page_name[]" value="order_details" @if(in_array("order_details", $details->pluck("page_name")->toArray())) checked @endif/> Order Details</label>
                             </div>
 
                             <input type="hidden" name="department_id" value="{{ $id }}">

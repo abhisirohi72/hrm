@@ -76,7 +76,8 @@
                 </div>
 
                 <div class="text-center mt-3">
-                    <a href="#">Forgot Password</a>
+                    <a href="#">Forgot Password</a><br>
+                    <a href="{{ route('register.form') }}">Register</a>
                 </div>
             </form>
         </div>

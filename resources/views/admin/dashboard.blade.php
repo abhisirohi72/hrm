@@ -21,7 +21,7 @@
             <div class="row">
                 <div class="col-xl-12 col-lg-12 stretch-card grid-margin">
                     <div class="row">
-                        <div class="col-xl-6 col-md-6 stretch-card grid-margin grid-margin-sm-0 pb-sm-3">
+                        <div class="col-xl-4 col-md-6 stretch-card grid-margin grid-margin-sm-0 pb-sm-3">
                             <div class="card bg-warning">
                                 <div class="card-body px-3 py-4">
                                     <div class="d-flex justify-content-between align-items-start">
@@ -30,13 +30,13 @@
                                             <h2 class="text-white"> {{ $t_leads }}
                                             </h2>
                                         </div>
-                                        <i class="card-icon-indicator mdi mdi-basket bg-inverse-icon-warning"></i>
+                                        <i class="card-icon-indicator mdi mdi-account-multiple"></i>
                                     </div>
                                     {{-- <h6 class="text-white">18.33% Since last month</h6> --}}
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-6 col-md-6 stretch-card grid-margin grid-margin-sm-0 pb-sm-3">
+                        <div class="col-xl-4 col-md-6 stretch-card grid-margin grid-margin-sm-0 pb-sm-3">
                             <div class="card bg-danger">
                                 <div class="card-body px-3 py-4">
                                     <div class="d-flex justify-content-between align-items-start">
@@ -46,13 +46,13 @@
                                                 {{-- <span class="h5">00</span> --}}
                                             </h2>
                                         </div>
-                                        <i class="card-icon-indicator mdi mdi-cube-outline bg-inverse-icon-danger"></i>
+                                        <i class="card-icon-indicator mdi mdi-message-alert-outline"></i>
                                     </div>
                                     {{-- <h6 class="text-white">13.21% Since last month</h6> --}}
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-6 col-md-6 stretch-card grid-margin grid-margin-sm-0 pb-sm-3 pb-lg-0 pb-xl-3">
+                        <div class="col-xl-4 col-md-6 stretch-card grid-margin grid-margin-sm-0 pb-sm-3 pb-lg-0 pb-xl-3">
                             <div class="card bg-primary">
                                 <div class="card-body px-3 py-4">
                                     <div class="d-flex justify-content-between align-items-start">
@@ -62,13 +62,13 @@
                                                 {{-- <span class="h5">00</span> --}}
                                             </h2>
                                         </div>
-                                        <i class="card-icon-indicator mdi mdi-briefcase-outline bg-inverse-icon-primary"></i>
+                                        <i class="card-icon-indicator mdi mdi-bullhorn"></i>
                                     </div>
                                     {{-- <h6 class="text-white">67.98% Since last month</h6> --}}
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-6 col-md-6 stretch-card grid-margin grid-margin-sm-0 pb-sm-3 pb-lg-0 pb-xl-3">
+                        <div class="col-xl-4 col-md-6 stretch-card grid-margin grid-margin-sm-0 pb-sm-3 pb-lg-0 pb-xl-3">
                             <div class="card bg-success">
                                 <div class="card-body px-3 py-4">
                                     <div class="d-flex justify-content-between align-items-start">
@@ -76,7 +76,7 @@
                                             <p class="mb-0 color-card-head">Total Employees</p>
                                             <h2 class="text-white">{{ $t_emp }}</h2>
                                         </div>
-                                        <i class="card-icon-indicator mdi mdi-account-circle bg-inverse-icon-success"></i>
+                                        <i class="card-icon-indicator mdi mdi-account-group"></i>
                                     </div>
                                     {{-- <h6 class="text-white">20.32% Since last month</h6> --}}
                                 </div>

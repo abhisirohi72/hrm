@@ -62,7 +62,7 @@ Route::middleware("auth")->group(function () {
     Route::get('/delete_department/{id}', [DepartmentController::class, 'deleteDepartment'])->name('delete.department');
     Route::post('/save_department', [DepartmentController::class, 'saveDepartment'])->name('save.department');
     Route::get('/view_pages/{id}', [DepartmentController::class, 'viewPages'])->name('view.pages');
-
+    Route::post("/save_page_access", [DepartmentController::class, 'savePageAccess'])->name('save.page.access');
 
     /* BRANCH */
     Route::get('/view_branch', [BranchController::class, 'viewBranch'])->name('view.branch');

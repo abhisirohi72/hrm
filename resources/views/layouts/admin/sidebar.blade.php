@@ -22,171 +22,228 @@
                         <span class="badge badge-danger text-white ml-3 rounded">3</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('dashboard') }}">
-                        <i class="mdi mdi-home menu-icon"></i>
-                        <span class="menu-title">Dashboard</span>
-                    </a>
-                </li>
-                <li class="nav-item @if((request()->segment(1)=='view_department') || (request()->segment(1)=='add_department')) active @endif">
-                    <a class="nav-link" href="{{ route('view.department') }}">
-                        <i class="mdi mdi-contacts menu-icon"></i>
-                        <span class="menu-title">Departments</span>
-                    </a>
-                </li>
-                <li class="nav-item @if((request()->segment(1)=='view_branch') || (request()->segment(1)=='add_branch')) active @endif">
-                    <a class="nav-link" href="{{ route('view.branch') }}">
-                        <i class="mdi mdi-contacts menu-icon"></i>
-                        <span class="menu-title">Branch</span>
-                    </a>
-                </li>
+                @if(session('role')=="0" || in_array('dashboard',session('page_access')->pluck("page_name")->toArray()))
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('dashboard') }}">
+                            <i class="mdi mdi-home menu-icon"></i>
+                            <span class="menu-title">Dashboard</span>
+                        </a>
+                    </li>
+                @endif
 
-                <li class="nav-item @if((request()->segment(1)=='view_employee') || (request()->segment(1)=='add_employee') || (request()->segment(1)=='edit_employee')) active @endif">
-                    <a class="nav-link" href="{{ route('view.emp') }}">
-                        <i class="mdi mdi-contacts menu-icon"></i>
-                        <span class="menu-title">Employee</span>
-                    </a>
-                </li>
+                @if(session('role')=="0" || in_array('departments',session('page_access')->pluck("page_name")->toArray()))
+                    <li class="nav-item @if((request()->segment(1)=='view_department') || (request()->segment(1)=='add_department')) active @endif">
+                        <a class="nav-link" href="{{ route('view.department') }}">
+                            <i class="mdi mdi-office-building menu-icon"></i>
+                            <span class="menu-title">Departments</span>
+                        </a>
+                    </li>
+                @endif
 
-                <li class="nav-item @if((request()->segment(1)=='telecaller-feedback')) active @endif">
-                    <a class="nav-link" href="{{ route('view.t_feedback') }}">
-                        <i class="mdi mdi-contacts menu-icon"></i>
-                        <span class="menu-title">View Telecaler Feedback</span>
-                    </a>
-                </li>
+                @if(session('role')=="0" || in_array('branch',session('page_access')->pluck("page_name")->toArray()))
+                    <li class="nav-item @if((request()->segment(1)=='view_branch') || (request()->segment(1)=='add_branch')) active @endif">
+                        <a class="nav-link" href="{{ route('view.branch') }}">
+                            <i class="mdi mdi-store menu-icon"></i>
+                            <span class="menu-title">Branch</span>
+                        </a>
+                    </li>
+                @endif    
 
-                <li class="nav-item @if((request()->segment(1)=='show_attendance')) active @endif">
-                    <a class="nav-link" href="{{ route('view.attendance') }}">
-                        <i class="mdi mdi-contacts menu-icon"></i>
-                        <span class="menu-title">View Attendance</span>
-                    </a>
-                </li>
+                @if(session('role')=="0" || in_array('employee',session('page_access')->pluck("page_name")->toArray()))
+                    <li class="nav-item @if((request()->segment(1)=='view_employee') || (request()->segment(1)=='add_employee') || (request()->segment(1)=='edit_employee')) active @endif">
+                        <a class="nav-link" href="{{ route('view.emp') }}">
+                            <i class="mdi mdi-account menu-icon"></i>
+                            <span class="menu-title">Employee</span>
+                        </a>
+                    </li>
+                @endif    
 
-                <li class="nav-item @if((request()->segment(1)=='loans')) active @endif">
-                    <a class="nav-link" href="{{ route('loans.index') }}">
-                        <i class="mdi mdi-contacts menu-icon"></i>
-                        <span class="menu-title">Loans</span>
-                    </a>
-                </li>
+                @if(session('role')=="0" || in_array('telecaler',session('page_access')->pluck("page_name")->toArray()))
+                    <li class="nav-item @if((request()->segment(1)=='telecaller-feedback')) active @endif">
+                        <a class="nav-link" href="{{ route('view.t_feedback') }}">
+                            <i class="mdi mdi-phone-message menu-icon"></i>
+                            <span class="menu-title">View Telecaler Feedback</span>
+                        </a>
+                    </li>
+                @endif
+                
+                @if(session('role')=="0" || in_array('attendance',session('page_access')->pluck("page_name")->toArray()))
+                    <li class="nav-item @if((request()->segment(1)=='show_attendance')) active @endif">
+                        <a class="nav-link" href="{{ route('view.attendance') }}">
+                            <i class="mdi mdi-account-check menu-icon"></i>
+                            <span class="menu-title">View Attendance</span>
+                        </a>
+                    </li>
+                @endif
 
-                <li class="nav-item @if((request()->segment(1)=='advances')) active @endif">
-                    <a class="nav-link" href="{{ route('advances.index') }}">
-                        <i class="mdi mdi-contacts menu-icon"></i>
-                        <span class="menu-title">Advance Salary</span>
-                    </a>
-                </li>
+                @if(session('role')=="0" || in_array('loans',session('page_access')->pluck("page_name")->toArray()))
+                    <li class="nav-item @if((request()->segment(1)=='loans')) active @endif">
+                        <a class="nav-link" href="{{ route('loans.index') }}">
+                            <i class="mdi mdi-cash-multiple menu-icon"></i>
+                            <span class="menu-title">Loans</span>
+                        </a>
+                    </li>
+                @endif    
+                
+                @if(session('role')=="0" || in_array('salary',session('page_access')->pluck("page_name")->toArray()))
+                    <li class="nav-item @if((request()->segment(1)=='advances')) active @endif">
+                        <a class="nav-link" href="{{ route('advances.index') }}">
+                            <i class="mdi mdi-cash-refund menu-icon"></i>
+                            <span class="menu-title">Advance Salary</span>
+                        </a>
+                    </li>
+                @endif    
 
-                <li class="nav-item @if((request()->segment(1)=='category')) active @endif">
-                    <a class="nav-link" href="{{ route('view.category') }}">
-                        <i class="mdi mdi-contacts menu-icon"></i>
-                        <span class="menu-title">Category</span>
-                    </a>
-                </li>
+                @if(session('role')=="0" || in_array('category',session('page_access')->pluck("page_name")->toArray()))
+                    <li class="nav-item @if((request()->segment(1)=='category')) active @endif">
+                        <a class="nav-link" href="{{ route('view.category') }}">
+                            <i class="mdi mdi-folder menu-icon"></i>
+                            <span class="menu-title">Category</span>
+                        </a>
+                    </li>
+                @endif    
 
-                <li class="nav-item @if((request()->segment(1)=='product')) active @endif">
-                    <a class="nav-link" href="{{ route('view.product') }}">
-                        <i class="mdi mdi-contacts menu-icon"></i>
-                        <span class="menu-title">Products</span>
-                    </a>
-                </li>
+                @if(session('role')=="0" || in_array('products',session('page_access')->pluck("page_name")->toArray()))
+                    <li class="nav-item @if((request()->segment(1)=='product')) active @endif">
+                        <a class="nav-link" href="{{ route('view.product') }}">
+                            <i class="mdi mdi-package-variant menu-icon"></i>
+                            <span class="menu-title">Products</span>
+                        </a>
+                    </li>
+                @endif    
 
-                <li class="nav-item @if((request()->segment(1)=='shop_footer_details')) active @endif">
-                    <a class="nav-link" href="{{ route('view.footer.details') }}">
-                        <i class="mdi mdi-contacts menu-icon"></i>
-                        <span class="menu-title">Shop Footer Details</span>
-                    </a>
-                </li>
+                @if(session('role')=="0" || in_array('footer_shop',session('page_access')->pluck("page_name")->toArray()))
+                    <li class="nav-item @if((request()->segment(1)=='shop_footer_details')) active @endif">
+                        <a class="nav-link" href="{{ route('view.footer.details') }}">
+                            <i class="mdi mdi-store menu-icon"></i>
+                            <span class="menu-title">Shop Footer Details</span>
+                        </a>
+                    </li>
+                @endif    
 
-                <li class="nav-item @if((request()->segment(1)=='discount')) active @endif">
-                    <a class="nav-link" href="{{ route('view.discount') }}">
-                        <i class="mdi mdi-contacts menu-icon"></i>
-                        <span class="menu-title">Discount</span>
-                    </a>
-                </li>
+                @if(session('role')=="0" || in_array('discount',session('page_access')->pluck("page_name")->toArray()))
+                    <li class="nav-item @if((request()->segment(1)=='discount')) active @endif">
+                        <a class="nav-link" href="{{ route('view.discount') }}">
+                            <i class="mdi mdi-tag-outline menu-icon"></i>
+                            <span class="menu-title">Discount</span>
+                        </a>
+                    </li>
+                @endif    
 
-                <li class="nav-item @if((request()->segment(1)=='cart_setting')) active @endif">
-                    <a class="nav-link" href="{{ route('add.cart.setting') }}">
-                        <i class="mdi mdi-contacts menu-icon"></i>
-                        <span class="menu-title">Cart Setting</span>
-                    </a>
-                </li>
+                @if(session('role')=="0" || in_array('cart_setting',session('page_access')->pluck("page_name")->toArray()))
+                    <li class="nav-item @if((request()->segment(1)=='cart_setting')) active @endif">
+                        <a class="nav-link" href="{{ route('add.cart.setting') }}">
+                            <i class="mdi mdi-cart menu-icon"></i>
+                            <span class="menu-title">Cart Setting</span>
+                        </a>
+                    </li>
+                @endif    
 
-                <li class="nav-item @if((request()->segment(1)=='salary')) active @endif">
-                    <a class="nav-link" href="{{ route('view.salary') }}">
-                        <i class="mdi mdi-contacts menu-icon"></i>
-                        <span class="menu-title">Add Salary Account </span>
-                    </a>
-                </li>
+                @if(session('role')=="0" || in_array('salary_account',session('page_access')->pluck("page_name")->toArray()))
+                    <li class="nav-item @if((request()->segment(1)=='salary')) active @endif">
+                        <a class="nav-link" href="{{ route('view.salary') }}">
+                            <i class="mdi mdi-credit-card menu-icon"></i>
+                            <span class="menu-title">Add Salary Account </span>
+                        </a>
+                    </li>
+                @endif    
 
-                <li class="nav-item @if((request()->segment(1)=='leads')) active @endif">
-                    <a class="nav-link" href="{{ route('leads.index') }}">
-                        <i class="mdi mdi-contacts menu-icon"></i>
-                        <span class="menu-title">Lead Management</span>
-                    </a>
-                </li>
+                @if(session('role')=="0" || in_array('lead_management',session('page_access')->pluck("page_name")->toArray()))
+                    <li class="nav-item @if((request()->segment(1)=='leads')) active @endif">
+                        <a class="nav-link" href="{{ route('leads.index') }}">
+                            <i class="mdi mdi-account-multiple menu-icon"></i>
+                            <span class="menu-title">Lead Management</span>
+                        </a>
+                    </li>
+                @endif    
 
-                <li class="nav-item @if((request()->segment(1)=='tasks')) active @endif">
-                    <a class="nav-link" href="{{ route('tasks.index') }}">
-                        <i class="mdi mdi-contacts menu-icon"></i>
-                        <span class="menu-title">Task Management</span>
-                    </a>
-                </li>
+                @if(session('role')=="0" || in_array('task_management',session('page_access')->pluck("page_name")->toArray()))
+                    <li class="nav-item @if((request()->segment(1)=='tasks')) active @endif">
+                        <a class="nav-link" href="{{ route('tasks.index') }}">
+                            <i class="mdi mdi-timer-sand menu-icon"></i>
+                            <span class="menu-title">Task Management</span>
+                        </a>
+                    </li>
+                @endif
 
-                <li class="nav-item @if((request()->segment(1)=='todo')) active @endif">
-                    <a class="nav-link" href="{{ route('todos.index') }}">
-                        <i class="mdi mdi-contacts menu-icon"></i>
-                        <span class="menu-title">TODO List</span>
-                    </a>
-                </li>
+                @if(session('role')=="0" || in_array('todo',session('page_access')->pluck("page_name")->toArray()))
+                    <li class="nav-item @if((request()->segment(1)=='todo')) active @endif">
+                        <a class="nav-link" href="{{ route('todos.index') }}">
+                            <i class="mdi mdi-checkbox-marked-outline menu-icon"></i>
+                            <span class="menu-title">TODO List</span>
+                        </a>
+                    </li>
+                @endif    
 
-                <li class="nav-item @if((request()->segment(1)=='contact_us')) active @endif">
-                    <a class="nav-link" href="{{ route('contact.us.index') }}">
-                        <i class="mdi mdi-contacts menu-icon"></i>
-                        <span class="menu-title">Contact Us Details</span>
-                    </a>
-                </li>
+                @if(session('role')=="0" || in_array('contact_us',session('page_access')->pluck("page_name")->toArray()))
+                    <li class="nav-item @if((request()->segment(1)=='contact_us')) active @endif">
+                        <a class="nav-link" href="{{ route('contact.us.index') }}">
+                            <i class="mdi mdi-email menu-icon"></i>
+                            <span class="menu-title">Contact Us Details</span>
+                        </a>
+                    </li>
+                @endif    
+                
+                @if(session('role')=="0" || in_array('leaves',session('page_access')->pluck("page_name")->toArray()))
+                    <li class="nav-item @if((request()->segment(1)=='leaves')) active @endif">
+                        <a class="nav-link" href="{{ route('view.leaves') }}">
+                            <i class="mdi mdi-account-clock-outline menu-icon"></i>
+                            <span class="menu-title">Leaves</span>
+                        </a>
+                    </li>
+                @endif
 
-                <li class="nav-item @if((request()->segment(1)=='leaves')) active @endif">
-                    <a class="nav-link" href="{{ route('view.leaves') }}">
-                        <i class="mdi mdi-contacts menu-icon"></i>
-                        <span class="menu-title">Leaves</span>
-                    </a>
-                </li>
+                @if(session('role')=="0" || in_array('holidays',session('page_access')->pluck("page_name")->toArray()))
+                    <li class="nav-item @if((request()->segment(1)=='holidays')) active @endif">
+                        <a class="nav-link" href="{{ route('view.holidays') }}">
+                            <i class="mdi mdi-calendar-account-outline menu-icon"></i>
+                            <span class="menu-title">Holidays</span>
+                        </a>
+                    </li>
+                @endif    
 
-                <li class="nav-item @if((request()->segment(1)=='holidays')) active @endif">
-                    <a class="nav-link" href="{{ route('view.holidays') }}">
-                        <i class="mdi mdi-contacts menu-icon"></i>
-                        <span class="menu-title">Holidays</span>
-                    </a>
-                </li>
+                @if(session('role')=="0" || in_array('target',session('page_access')->pluck("page_name")->toArray()))
+                    <li class="nav-item @if((request()->segment(1)=='target')) active @endif">
+                        <a class="nav-link" href="{{ route('view.target') }}">
+                            <i class="mdi mdi-target menu-icon"></i>
+                            <span class="menu-title">Target</span>
+                        </a>
+                    </li>
+                @endif
+                
+                @if(session('role')=="0" || in_array('sop',session('page_access')->pluck("page_name")->toArray()))
+                    <li class="nav-item @if((request()->segment(1)=='sop')) active @endif">
+                        <a class="nav-link" href="{{ route('view.sop') }}">
+                            <i class="mdi mdi-clipboard-text-outline     menu-icon"></i>
+                            <span class="menu-title">SOP</span>
+                        </a>
+                    </li>
+                @endif    
 
-                <li class="nav-item @if((request()->segment(1)=='target')) active @endif">
-                    <a class="nav-link" href="{{ route('view.target') }}">
-                        <i class="mdi mdi-contacts menu-icon"></i>
-                        <span class="menu-title">Target</span>
-                    </a>
-                </li>
+                @if(session('role')=="0" || in_array('campaign',session('page_access')->pluck("page_name")->toArray()))
+                    <li class="nav-item @if((request()->segment(1)=='campaign')) active @endif">
+                        <a class="nav-link" href="{{ route('view.campaign') }}">
+                            <i class="mdi mdi-chart-line menu-icon"></i>
+                            <span class="menu-title">Campaign</span>
+                        </a>
+                    </li>
+                @endif    
 
-                <li class="nav-item @if((request()->segment(1)=='sop')) active @endif">
-                    <a class="nav-link" href="{{ route('view.sop') }}">
-                        <i class="mdi mdi-contacts menu-icon"></i>
-                        <span class="menu-title">SOP</span>
-                    </a>
-                </li>
-
-                <li class="nav-item @if((request()->segment(1)=='campaign')) active @endif">
-                    <a class="nav-link" href="{{ route('view.campaign') }}">
-                        <i class="mdi mdi-contacts menu-icon"></i>
-                        <span class="menu-title">Campaign</span>
-                    </a>
-                </li>
+                @if(session('role')=="0" || in_array('order_details',session('page_access')->pluck("page_name")->toArray()))
+                    <li class="nav-item @if((request()->segment(1)=='campaign')) active @endif">
+                        <a class="nav-link" href="{{ route('view.campaign') }}">
+                            <i class="mdi mdi-chart-line menu-icon"></i>
+                            <span class="menu-title">Order Details</span>
+                        </a>
+                    </li>
+                @endif    
 
                 {{-- <li class="nav-item @if((request()->segment(1)=='view_loans')) active @endif">
                     <a class="nav-link" href="{{ route('loans.view') }}">
                         <i class="mdi mdi-contacts menu-icon"></i>
                         <span class="menu-title">View Loans</span>
                     </a>
-                </li> --}}
+                </li>
 
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false"
@@ -239,7 +296,7 @@
                         <i class="mdi mdi-file-document-box menu-icon"></i>
                         <span class="menu-title">Documentation</span>
                     </a>
-                </li>
+                </li> --}}
                 <li class="nav-item sidebar-actions">
                     <div class="nav-link">
                         <div class="mt-4">
@@ -247,7 +304,7 @@
                                 <p class="text-black">Notification</p>
                             </div>
                             <ul class="mt-4 pl-0">
-                                <li>Sign Out</li>
+                                <li><a href="{{ route('p.logout') }}">Sign Out</a></li>
                             </ul>
                         </div>
                     </div>

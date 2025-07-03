@@ -38,6 +38,28 @@ class DepartmentController extends Controller
         ]);
     }
 
+    public function savePageAccess(Request $request){
+        try {
+           $request->validate([
+                "department_id" =>  "required",
+                "page_name"     =>  "required"
+           ]);
+           $delete_old_data = PageAccess::where("department_id", $request->department_id)->delete();
+        //    if($delete_old_data){
+                foreach ($request->page_name as $key => $value) {
+                    PageAccess::create([
+                        "department_id" =>  $request->department_id,
+                        "page_name"     =>  $value,
+                        "is_access"     =>  'yes'
+                    ]);
+                }
+            // }
+            return redirect()->back()->with("success", "Successfully insert data");
+            } catch (\Throwable $th) {
+                return redirect()->back()->with("error", $th->getMessage());        
+            }
+    }
+
     public function addDepartment(Request $request){
         $main_title= "Admin-Add-Department";
 
