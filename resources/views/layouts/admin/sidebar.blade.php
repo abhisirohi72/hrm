@@ -223,7 +223,7 @@
                 @if(session('role')=="0" || in_array('campaign',session('page_access')->pluck("page_name")->toArray()))
                     <li class="nav-item @if((request()->segment(1)=='campaign')) active @endif">
                         <a class="nav-link" href="{{ route('view.campaign') }}">
-                            <i class="mdi mdi-chart-line menu-icon"></i>
+                            <i class="mdi mdi-alpha-c-box menu-icon"></i>
                             <span class="menu-title">Campaign</span>
                         </a>
                     </li>
@@ -232,7 +232,7 @@
                 @if(session('role')=="0" || in_array('order_details',session('page_access')->pluck("page_name")->toArray()))
                     <li class="nav-item @if((request()->segment(1)=='order_details')) active @endif">
                         <a class="nav-link" href="{{ route('view.order_details') }}">
-                            <i class="mdi mdi-chart-line menu-icon"></i>
+                            <i class="mdi mdi-file-account-outline menu-icon"></i>
                             <span class="menu-title">Order Details</span>
                         </a>
                     </li>
@@ -241,7 +241,7 @@
                 @if(session('role')=="0" || in_array('material',session('page_access')->pluck("page_name")->toArray()))
                     <li class="nav-item @if((request()->segment(1)=='materials')) active @endif">
                         <a class="nav-link" href="{{ route('view.material') }}">
-                            <i class="mdi mdi-chart-line menu-icon"></i>
+                            <i class="mdi mdi-alpha-m-box menu-icon"></i>
                             <span class="menu-title">Materials</span>
                         </a>
                     </li>
@@ -250,7 +250,7 @@
                 @if(session('role')=="0" || in_array('users',session('page_access')->pluck("page_name")->toArray()))
                     <li class="nav-item @if((request()->segment(1)=='users')) active @endif">
                         <a class="nav-link" href="{{ route('view.user.details') }}">
-                            <i class="mdi mdi-chart-line menu-icon"></i>
+                            <i class="mdi mdi-account-group menu-icon"></i>
                             <span class="menu-title">Users</span>
                         </a>
                     </li>
