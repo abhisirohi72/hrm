@@ -12,9 +12,9 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     public function viewUserDetails(Request $request){
-        $main_title= "Admin-Users-View";
+        $main_title= "Admin-Customers-View";
 
-        $title =    "Users View";
+        $title =    "Customers View";
 
         $details= User::where("role", "1")->get();
 
@@ -26,9 +26,9 @@ class UserController extends Controller
     }
 
     public function addUserDetails(Request $request){
-        $main_title= "Admin-Add-Users";
+        $main_title= "Admin-Add-Customers";
 
-        $title =    "Add Users";
+        $title =    "Add Customers";
 
         return view('admin.users.add', [
             'main_title'    =>  $main_title,
@@ -37,9 +37,9 @@ class UserController extends Controller
     }
 
     public function editUserDetails($edit_id, Request $request){
-        $main_title= "Admin-Edit-Users";
+        $main_title= "Admin-Edit-Customers";
 
-        $title =    "Edit Users";
+        $title =    "Edit Customers";
 
         $details = User::where("id", $edit_id)->first();
 

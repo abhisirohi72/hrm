@@ -33,6 +33,8 @@ use App\Http\Controllers\Admin\CampaignController;
 use App\Http\Controllers\Admin\MaterialController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\MeetingController;
+use App\Http\Controllers\Admin\TemplateController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::post('/contact_us_home', [HomeController::class, 'contactUs'])->name('contact.send');
@@ -232,12 +234,26 @@ Route::middleware("auth")->group(function () {
     Route::get('/order_details/delete/{unique_id}', [OrderController::class, 'deleteOrderDetails'])->name('delete.order_details');
     Route::post('/save_Material', [OrderController::class, 'saveMaterial'])->name('save.order_details');
 
-    /*USERS*/
+    /*CUSTOMERS*/
     Route::get('/users', [UserController::class, 'viewUserDetails'])->name('view.user.details');
     Route::get('/users/add', [UserController::class, 'addUserDetails'])->name('add.user.details');
     Route::get('/users/edit/{id}', [UserController::class, 'editUserDetails'])->name('edit.user.details');
     Route::get('/users/delete/{id}', [UserController::class, 'deleteOrderDetails'])->name('delete.user.details');
     Route::post('/save_Material', [UserController::class, 'saveUserDetails'])->name('save.user.details');
+
+    /*MEETINGS*/
+    Route::get('/meeting', [MeetingController::class, 'viewMeeting'])->name('view.meeting');
+    Route::get('/meeting/add', [MeetingController::class, 'addMeeting'])->name('add.meeting');
+    Route::get('/meeting/edit/{id}', [MeetingController::class, 'editMeeting'])->name('edit.meeting');
+    Route::get('/meeting/delete/{id}', [MeetingController::class, 'deleteMeeting'])->name('delete.meeting');
+    Route::post('/save_Meeting', [MeetingController::class, 'saveMeeting'])->name('save.meeting');
+
+    /*TEMPLATE*/
+    Route::get('/template', [TemplateController::class, 'viewTemplate'])->name('view.template');
+    Route::get('/template/add', [TemplateController::class, 'addTemplate'])->name('add.template');
+    Route::get('/template/edit/{id}', [TemplateController::class, 'editTemplate'])->name('edit.template');
+    Route::get('/template/delete/{id}', [TemplateController::class, 'deleteTemplate'])->name('delete.template');
+    Route::post('/save_Material', [TemplateController::class, 'saveTemplate'])->name('save.template');
 });
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

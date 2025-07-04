@@ -251,7 +251,25 @@
                     <li class="nav-item @if((request()->segment(1)=='users')) active @endif">
                         <a class="nav-link" href="{{ route('view.user.details') }}">
                             <i class="mdi mdi-account-group menu-icon"></i>
-                            <span class="menu-title">Users</span>
+                            <span class="menu-title">Customers</span>
+                        </a>
+                    </li>
+                @endif
+
+                @if(session('role')=="0" || in_array('meeting',session('page_access')->pluck("page_name")->toArray()))
+                    <li class="nav-item @if((request()->segment(1)=='meeting')) active @endif">
+                        <a class="nav-link" href="{{ route('view.meeting') }}">
+                            <i class="mdi mdi-briefcase menu-icon"></i>
+                            <span class="menu-title">Meetings</span>
+                        </a>
+                    </li>
+                @endif
+
+                @if(session('role')=="0" || in_array('template',session('page_access')->pluck("page_name")->toArray()))
+                    <li class="nav-item @if((request()->segment(1)=='template')) active @endif">
+                        <a class="nav-link" href="{{ route('view.template') }}">
+                            <i class="mdi mdi-alpha-t-box menu-icon"></i>
+                            <span class="menu-title">Template</span>
                         </a>
                     </li>
                 @endif

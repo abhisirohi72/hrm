@@ -17,48 +17,54 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body" style="overflow: auto;">
-                        <h4 class="card-title">Customers Details</h4>
-                        <a href="{{ route('add.user.details') }}" class="btn btn-primary btn-icon-text mb-2" style="float: right;">
+                        <h4 class="card-title">Meetings Details</h4>
+                        <a href="{{ route('add.meeting') }}" class="btn btn-primary btn-icon-text mb-2" style="float:right;">
                             Add
                         </a>
                         <div class="table-responsive">
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Image</th>
-                                        <th>Wallet</th>
-                                        <th>Actions</th>
+                                        <th>Assign To</th>
+                                        <th>Date</th>
+                                        <th>Template Title</th>
+                                        <th>Title</th>
+                                        <th>Message</th>
+                                        <th>Customer Name</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @if (count($details) > 0)
                                         @foreach ($details as $detail)
                                             <tr>
-                                                <td>{{ $detail->name }}</td>
-                                                <td>{{ $detail->email }}</td>
+                                                <td>{{ $detail->users->email }}</td>
+                                                <td>{{ $detail->date }}</td>
+                                                <td>{{ $detail->templates->title }}</td>
+                                                <td>{{ $detail->title }}</td>
+                                                <td>{{ $detail->message }}</td>
+                                                <td>{{ $detail->customer_name }}</td>
                                                 <td>
-                                                    @if(isset($detail->image) && !empty($detail->image))
-                                                        <img class="nav-profile-img mr-2" alt="" src="{{ asset('storage/users').'/'.$detail->image }}" />
-                                                    @endif
+                                                    @if($detail->status=="0")
+                                                        <p class="text-danger">Pending</p>
+                                                    @elseif($detail->status=="1")
+                                                        <p class="text-success">Completed</p>
+                                                    @else
+                                                        <p class="text-secondary">Missing</p>
+                                                    @endif    
                                                 </td>
-                                                <td>{{ $detail->wallet_balance }}</td>
                                                 <td>
-                                                    <a href="{{ route('edit.user.details', ['id' => $detail->id]) }}"
-                                                        class="btn btn-dark btn-icon-text">Edit
-                                                        <i class="mdi mdi-file-check btn-icon-append"></i>
+                                                    <a href="{{ route('edit.meeting', ['id' => $detail->id]) }}" class="btn btn-dark btn-icon-text">Edit<i class="mdi mdi-file-check btn-icon-append"></i>
                                                     </a>
-                                                    <a href="{{ route('delete.user.details', ['id' => $detail->id]) }}"
-                                                        class="btn btn-danger">Delete
-                                                        <i class="mdi mdi-delete btn-icon-append"></i>
+                                                    <a href="{{ route('delete.meeting', ['id' => $detail->id]) }}" class="btn btn-danger">Delete <i class="mdi mdi-delete btn-icon-append"></i>
                                                     </a>
                                                 </td>
                                             </tr>
                                         @endforeach
                                     @else
                                         <tr>
-                                            <td colspan="8 text-center">
+                                            <td colspan="4 text-center">
                                                 <p>No Records Found..</p>
                                             </td>
                                         </tr>
@@ -71,5 +77,4 @@
             </div>
         </div>
     </div>
-
 @endsection
