@@ -175,6 +175,11 @@
                                 <input type="checkbox" class="form-check-input" name="page_name[]" value="template" @if(in_array("template", $details->pluck("page_name")->toArray())) checked @endif/> Template</label>
                             </div>
 
+                            <div class="form-check">
+                              <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input" name="page_name[]" value="whats_app" @if(in_array("whats_app", $details->pluck("page_name")->toArray())) checked @endif/> Whats App Setting</label>
+                            </div>
+
                             <input type="hidden" name="department_id" value="{{ $id }}">
                             <button type="submit" class="btn btn-primary mr-2"> Submit </button>
                             <button class="btn btn-light">Cancel</button>

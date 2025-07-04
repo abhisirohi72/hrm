@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Setting;
 
 class EmployeeController extends Controller
 {
@@ -137,9 +138,45 @@ class EmployeeController extends Controller
                 "image"     =>  $filename,
                 "password"  =>  $encrypt_pass,
                 "role"      =>  $request->input("dept_id"),
+                "phone"     =>  $request->input("mobile"),
             ]);
 
             if ($insert) {
+                $setting_details = Setting::where("id", 1)->first();
+                $params = array(
+                    'token' => '{{ $setting_details->whats_app_token }}',
+                    'to' => $request->input("mobile"),
+                    'image' => env('APP_URL') . '/frontend/images/logo.png',
+                    'caption' => "Hello " . $request->input("full_name") . " 👋,  \n\nWelcome to Webfintech! 🎉  \nWe're excited to have you on board. If you have any questions, feel free to ask.  \n\nHappy exploring!"
+                );
+                $curl = curl_init();
+                // echo "https://api.ultramsg.com/instance$setting_details->whats_app_instance/messages/image";
+                curl_setopt_array($curl, array(
+                    CURLOPT_URL => "https://api.ultramsg.com/instance$setting_details->whats_app_instance/messages/image",
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_ENCODING => "",
+                    CURLOPT_MAXREDIRS => 10,
+                    CURLOPT_TIMEOUT => 30,
+                    CURLOPT_SSL_VERIFYHOST => 0,
+                    CURLOPT_SSL_VERIFYPEER => 0,
+                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                    CURLOPT_CUSTOMREQUEST => "POST",
+                    CURLOPT_POSTFIELDS => http_build_query($params),
+                    CURLOPT_HTTPHEADER => array(
+                        "content-type: application/x-www-form-urlencoded"
+                    ),
+                ));
+
+                $response = curl_exec($curl);
+                $err = curl_error($curl);
+
+                curl_close($curl);
+
+                if ($err) {
+                    echo "cURL Error #:" . $err;
+                } else {
+                    // echo $response;
+                }
                 return redirect()->back()->with('success', 'Successfully Inserted!!!');
             } else {
                 return redirect()->back()->with('error', 'There is some issue in inserted!!!');
@@ -195,6 +232,7 @@ class EmployeeController extends Controller
                         "image"     =>  $filename,
                         "password"  => ($request->password != "") ? Hash::make($request->password) : $old_data->password,
                         "role"      =>  $request->input("dept_id"),
+                        "phone"     =>  $request->input("mobile"),
                     ]);
                 }
                 return redirect()->back()->with('success', 'Successfully Updated!!!');

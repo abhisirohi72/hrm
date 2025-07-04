@@ -274,6 +274,15 @@
                     </li>
                 @endif
 
+                @if(session('role')=="0" || in_array('whats_app',session('page_access')->pluck("page_name")->toArray()))
+                    <li class="nav-item @if((request()->segment(1)=='whats_app')) active @endif">
+                        <a class="nav-link" href="{{ route('view.whats_app') }}">
+                            <i class="mdi mdi-whatsapp menu-icon"></i>
+                            <span class="menu-title">Whats App Setting</span>
+                        </a>
+                    </li>
+                @endif
+
                 {{-- <li class="nav-item @if((request()->segment(1)=='view_loans')) active @endif">
                     <a class="nav-link" href="{{ route('loans.view') }}">
                         <i class="mdi mdi-contacts menu-icon"></i>

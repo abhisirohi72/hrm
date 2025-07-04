@@ -35,6 +35,7 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\MeetingController;
 use App\Http\Controllers\Admin\TemplateController;
+use App\Http\Controllers\Admin\SettingController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::post('/contact_us_home', [HomeController::class, 'contactUs'])->name('contact.send');
@@ -254,6 +255,13 @@ Route::middleware("auth")->group(function () {
     Route::get('/template/edit/{id}', [TemplateController::class, 'editTemplate'])->name('edit.template');
     Route::get('/template/delete/{id}', [TemplateController::class, 'deleteTemplate'])->name('delete.template');
     Route::post('/save_Template', [TemplateController::class, 'saveTemplate'])->name('save.template');
+
+    /*Whats App*/
+    Route::get('/whats_app', [SettingController::class, 'viewWhatsApp'])->name('view.whats_app');
+    Route::get('/whats_app/add', [SettingController::class, 'addWhatsApp'])->name('add.whats.app');
+    Route::get('/whats_app/edit/{id}', [SettingController::class, 'editWhatsApp'])->name('edit.whats.app');
+    Route::get('/whats_app/delete/{id}', [SettingController::class, 'deleteWhatsApp'])->name('delete.whats.app');
+    Route::post('/save_whats_app', [SettingController::class, 'saveWhatsApp'])->name('save.whats.app');
 });
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

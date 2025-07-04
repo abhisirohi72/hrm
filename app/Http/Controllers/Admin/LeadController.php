@@ -5,12 +5,13 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Lead;
+use App\Models\Setting;
 
 class LeadController extends Controller
 {
     public function index()
     {
-        $main_title= "Admin-Leads-View";
+        $main_title = "Admin-Leads-View";
 
         $title =    "Leads View";
 
@@ -21,7 +22,7 @@ class LeadController extends Controller
 
     public function create()
     {
-        $main_title= "Admin-Add-Leads";
+        $main_title = "Admin-Add-Leads";
 
         $title =    "Leads Create";
 
@@ -42,12 +43,48 @@ class LeadController extends Controller
         ]);
 
         Lead::create($data);
+        $setting_details = Setting::where("id", 1)->first();
+        $params = array(
+            'token' => '{{ $setting_details->whats_app_token }}',
+            'to' => $request->input("phone"),
+            'image' => env('APP_URL') . '/frontend/images/logo.png',
+            'caption' => "Hello " . $request->input("name") . " 👋,  \n\nWelcome to Webfintech! 🎉  \nWe're excited to have you on board. If you have any questions, feel free to ask. 
+            \nNew Lead has been generated, \n\nHappy exploring!"
+        );
+        $curl = curl_init();
+        // echo "https://api.ultramsg.com/instance$setting_details->whats_app_instance/messages/image";
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://api.ultramsg.com/instance$setting_details->whats_app_instance/messages/image",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_SSL_VERIFYHOST => 0,
+            CURLOPT_SSL_VERIFYPEER => 0,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS => http_build_query($params),
+            CURLOPT_HTTPHEADER => array(
+                "content-type: application/x-www-form-urlencoded"
+            ),
+        ));
+
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
+
+        if ($err) {
+            echo "cURL Error #:" . $err;
+        } else {
+            // echo $response;
+        }
         return redirect()->back()->with('success', 'Lead added.');
     }
 
     public function edit(Lead $lead)
     {
-        $main_title= "Admin-Edit-Leads";
+        $main_title = "Admin-Edit-Leads";
 
         $title =    "Leads Edit";
         // Ensure the lead exists
