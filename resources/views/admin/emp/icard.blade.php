@@ -17,7 +17,7 @@
                     {{-- <img src="{{ asset('/storage/emp/images') . '/' . $employee->image }}" class="card-img-top"
                         alt="Card Image"> --}}
                         <div style="text-align: center;">
-                            <img src="{{ 'file://' . public_path('storage/emp/images/' . $employee->image) }}" style="width: 100px;" class="card-img-top"
+                            <img src="{{ 'file://' . public_path('storage/users/' . $employee->image) }}" style="width: 100px;" class="card-img-top"
                         alt="Card Image">
                         </div>
                     <div class="card-body">

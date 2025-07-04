@@ -48,7 +48,7 @@
                                             <tr>
                                                 <td>
                                                     @if(!empty($item->image))
-                                                    <img src="{{ asset('storage/emp/images').'/'.$item->image }}" alt="">
+                                                    <img src="{{ asset('storage/users').'/'.$item->image }}" alt="">
                                                     @else
                                                         N/A
                                                     @endif

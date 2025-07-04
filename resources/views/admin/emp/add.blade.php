@@ -43,7 +43,7 @@
                                 <input type="file" class="form-control" id="image" name="image" />
                             </div>
                             @if(isset($details))
-                                <img src="{{ asset('storage/emp/images').'/'.$details->image }}" alt="" style="width:100px;height:100px;" class="mb-2">
+                                <img src="{{ asset('storage/users').'/'.$details->image }}" alt="" style="width:100px;height:100px;" class="mb-2">
                             @endif
 
                             <div class="form-group">
