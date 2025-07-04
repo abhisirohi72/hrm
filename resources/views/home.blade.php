@@ -125,8 +125,11 @@
                                 display: none;
                             }
 
-                            img {
+                            .slideshow-container img {
                                 vertical-align: middle;
+                                width:1000px;
+                                height: 400px;
+                                overflow:hidden;
                             }
 
                             /* Slideshow container */
@@ -198,19 +201,20 @@
 
                             <div class="mySlides fade">
                                 <div class="numbertext">1 / 3</div>
-                                <img src="https://www.powderkegwebdesign.com/wp-content/uploads/2023/02/CustomWebsiteDesign-1.jpg" style="width:100%;overflow:hidden;">
+                                {{-- <img src="https://www.powderkegwebdesign.com/wp-content/uploads/2023/02/CustomWebsiteDesign-1.jpg" style="width:100%;overflow:hidden;"> --}}
+                                <img src="https://www.powderkegwebdesign.com/wp-content/uploads/2023/02/CustomWebsiteDesign-1.jpg" style="">
                                 <div class="text">Caption Text</div>
                             </div>
 
                             <div class="mySlides fade">
                                 <div class="numbertext">2 / 3</div>
-                                <img src="https://jspinfotech.com/wp-content/uploads/2021/05/web-design-jsp.jpg.webp" style="width:100%;overflow:hidden;">
+                                <img src="https://jspinfotech.com/wp-content/uploads/2021/05/web-design-jsp.jpg.webp" >
                                 <div class="text">Caption Two</div>
                             </div>
 
                             <div class="mySlides fade">
                                 <div class="numbertext">3 / 3</div>
-                                <img src="https://www.w3schools.com/howto/img_nature_wide.jpg" style="width:100%;overflow:hidden;">
+                                <img src="https://www.w3schools.com/howto/img_nature_wide.jpg" >
                                 <div class="text">Caption Three</div>
                             </div>
 

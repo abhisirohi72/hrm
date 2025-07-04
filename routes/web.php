@@ -232,14 +232,14 @@ Route::middleware("auth")->group(function () {
     Route::get('/order_details/add', [OrderController::class, 'addMaterial'])->name('add.order_details');
     Route::get('/order_details/edit/{id}', [OrderController::class, 'editMaterial'])->name('edit.order_details');
     Route::get('/order_details/delete/{unique_id}', [OrderController::class, 'deleteOrderDetails'])->name('delete.order_details');
-    Route::post('/save_Material', [OrderController::class, 'saveMaterial'])->name('save.order_details');
+    // Route::post('/save_Material', [OrderController::class, 'saveMaterial'])->name('save.order_details');
 
     /*CUSTOMERS*/
     Route::get('/users', [UserController::class, 'viewUserDetails'])->name('view.user.details');
     Route::get('/users/add', [UserController::class, 'addUserDetails'])->name('add.user.details');
     Route::get('/users/edit/{id}', [UserController::class, 'editUserDetails'])->name('edit.user.details');
     Route::get('/users/delete/{id}', [UserController::class, 'deleteOrderDetails'])->name('delete.user.details');
-    Route::post('/save_Material', [UserController::class, 'saveUserDetails'])->name('save.user.details');
+    Route::post('/save_User', [UserController::class, 'saveUserDetails'])->name('save.user.details');
 
     /*MEETINGS*/
     Route::get('/meeting', [MeetingController::class, 'viewMeeting'])->name('view.meeting');
@@ -253,7 +253,7 @@ Route::middleware("auth")->group(function () {
     Route::get('/template/add', [TemplateController::class, 'addTemplate'])->name('add.template');
     Route::get('/template/edit/{id}', [TemplateController::class, 'editTemplate'])->name('edit.template');
     Route::get('/template/delete/{id}', [TemplateController::class, 'deleteTemplate'])->name('delete.template');
-    Route::post('/save_Material', [TemplateController::class, 'saveTemplate'])->name('save.template');
+    Route::post('/save_Template', [TemplateController::class, 'saveTemplate'])->name('save.template');
 });
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
