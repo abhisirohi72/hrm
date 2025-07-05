@@ -36,6 +36,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\MeetingController;
 use App\Http\Controllers\Admin\TemplateController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\WebhookController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::post('/contact_us_home', [HomeController::class, 'contactUs'])->name('contact.send');
@@ -53,10 +54,13 @@ Route::post("/check_stock", [EcommerceController::class, 'checkStock'])->name("c
 Route::post('/apply_coupon', [EcommerceController::class, 'applyCoupon'])->name('apply.coupon');
 Route::post('/proceed_to_pay', [EcommerceController::class, 'proceedToPay'])->name('proceed.to.pay');
 
+/*RAZORPAY*/
 Route::get('/razorpay/{order_id}/{total_price}/{final_price}/{coupon_id?}', [RazorpayPaymentController::class, 'index'])->name('razorpay.index');
 Route::post('/razorpay-payment', [RazorpayPaymentController::class, 'payment'])->name('razorpay.payment');
 Route::post('/razorpay_data', [RazorpayPaymentController::class, 'razorpayDetails'])->name('razorpay.index');
 
+/*WEBHOOKS*/
+Route::get('/webhook/receive', [WebhookController::class, 'handle'])->name('webhook.recieve');
 
 Route::middleware("auth")->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'view'])->name("dashboard");
