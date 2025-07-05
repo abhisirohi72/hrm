@@ -39,7 +39,11 @@
                         <form class="forms-sample" method="POST" action="{{ route('save.emp') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
-                                <label for="full_name">Image</label>
+                                <label for="emp_id">Employee ID</label>
+                                <input type="text" class="form-control" id="emp_id" name="emp_id" placeholder="Enter Employee ID" value="{{ $details->emp_id ?? '' }}"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="image">Image</label>
                                 <input type="file" class="form-control" id="image" name="image" />
                             </div>
                             @if(isset($details))

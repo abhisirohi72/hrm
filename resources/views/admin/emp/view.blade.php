@@ -25,6 +25,7 @@
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
+                                        <th>Emp ID</th>
                                         <th>Image</th>
                                         <th>Full Name</th>
                                         <th>Email</th>
@@ -46,6 +47,9 @@
                                     @if (count($details) > 0)
                                         @foreach ($details as $item)
                                             <tr>
+                                                <td>
+                                                    {{ $item->emp_id ?? '' }}
+                                                </td>
                                                 <td>
                                                     @if(!empty($item->image))
                                                     <img src="{{ asset('storage/users').'/'.$item->image }}" alt="">

@@ -25,15 +25,50 @@ class AuthController extends Controller
         ]);
 
         $user = User::create([
-            'name'      => $request->name,
-            'email'     => $request->email,
-            'password'  => Hash::make($request->password),
+            'name'      =>  $request->name,
+            'email'     =>  $request->email,
+            'password'  =>  Hash::make($request->password),
             'role'      =>  '1',
+            'phone'     =>  $request->phone,
         ]);
+        $setting_details = Setting::where("id", 1)->first();
+        $params = array(
+            'token' => '{{ $setting_details->whats_app_token }}',
+            'to' => $request->phone,
+            'image' => env('APP_URL') . '/frontend/images/logo.png',
+            'caption' => "Hello " . $request->name . " 👋,  \n\nWelcome to Webfintech! 🎉  \nWe're excited to have you on board. If you have any questions, feel free to ask.  \n\nHappy exploring!"
+        );
+        $curl = curl_init();
+        // echo "https://api.ultramsg.com/instance$setting_details->whats_app_instance/messages/image";
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://api.ultramsg.com/instance$setting_details->whats_app_instance/messages/image",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_SSL_VERIFYHOST => 0,
+            CURLOPT_SSL_VERIFYPEER => 0,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS => http_build_query($params),
+            CURLOPT_HTTPHEADER => array(
+                "content-type: application/x-www-form-urlencoded"
+            ),
+        ));
 
-        Auth::login($user);
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
 
-        return redirect()->route('dashboard');
+        curl_close($curl);
+
+        if ($err) {
+            echo "cURL Error #:" . $err;
+        } else {
+            // echo $response;
+        }
+        
+
+        return redirect()->back()->with("success", "Record has been inserted!!!");
     }
 
     public function showLoginForm()
@@ -65,7 +100,7 @@ class AuthController extends Controller
             $params = array(
                 'token' => '{{ $setting_details->whats_app_token }}',
                 'to' => Auth::user()->phone,
-                'image' => env('APP_URL').'/frontend/images/logo.png',
+                'image' => env('APP_URL') . '/frontend/images/logo.png',
                 'caption' => "Hello " . Auth::user()->name . " 👋,  \n\nWelcome to Webfintech! 🎉  \nWe're excited to have you on board. If you have any questions, feel free to ask.  \n\nHappy exploring!"
             );
             $curl = curl_init();

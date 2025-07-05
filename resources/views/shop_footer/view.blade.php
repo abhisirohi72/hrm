@@ -18,9 +18,11 @@
                 <div class="card">
                     <div class="card-body" style="overflow: auto;">
                         <h4 class="card-title">Shop Footer Details</h4>
-                        <a href="{{ route('add.footer.details') }}" class="btn btn-primary btn-icon-text mb-2" style="float: right;">
-                            Add
-                        </a>
+                        @if (empty($details) && count($details) == 0)
+                            <a href="{{ route('add.footer.details') }}" class="btn btn-primary btn-icon-text mb-2" style="float: right;">
+                                Add
+                            </a>
+                        @endif
                         <div class="table-responsive">
                             <table class="table table-hover">
                                 <thead>

@@ -37,9 +37,9 @@
                                                 <td>{{ $item->name ?? '' }}</td>
                                                 <td>
                                                     @if($item->type=="0")
-                                                        <label class="badge badge-primary">Pending</label>
+                                                        <label class="badge badge-primary">Physical</label>
                                                     @else    
-                                                        <label class="badge badge-info">Pending</label>
+                                                        <label class="badge badge-info">Digital</label>
                                                     @endif    
                                                 </td>
                                                 <td>

@@ -14,6 +14,9 @@ use Illuminate\Support\Str;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Setting;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
 
 class EmployeeController extends Controller
 {
@@ -78,11 +81,22 @@ class EmployeeController extends Controller
 
     public function addUpdateEmp($request, $cond)
     {
+        $edit_id= $request->input('edit_id');
         $request->validate([
             // "name"      =>  "required|unique:departments,name,".$request->input('edit_id'),
             'image'     => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             "full_name" =>  "required",
-            "email"     =>  "required|unique:employees,email," . $request->input('edit_id'),
+            'email' => [
+                'required',
+                Rule::unique('employees', 'email')->ignore($edit_id), // ignore for current employee
+                function ($attribute, $value, $fail) use ($edit_id) {
+                    $existsInUsers = DB::table('users')->where('email', $value)->exists();
+                    if ($existsInUsers) {
+                        $fail('The email has already been taken in the users table.');
+                    }
+                }
+            ],
+            "emp_id"     =>  "required|unique:employees,emp_id," . $request->input('edit_id'),
             "mobile"    =>  "required",
             "dob"       =>  "required",
             "address"   =>  "required",
@@ -121,6 +135,7 @@ class EmployeeController extends Controller
                 "salary"        =>  $request->input("salary"),
                 "status"        =>  $request->input("status"),
                 'password'      =>  $encrypt_pass,
+                "emp_id"        =>  $request->emp_id
             ]);
             // echo "<pre>";
             // print_r([
@@ -147,7 +162,7 @@ class EmployeeController extends Controller
                     'token' => '{{ $setting_details->whats_app_token }}',
                     'to' => $request->input("mobile"),
                     'image' => env('APP_URL') . '/frontend/images/logo.png',
-                    'caption' => "Hello " . $request->input("full_name") . " 👋,  \n\nWelcome to Webfintech! 🎉  \nWe're excited to have you on board. If you have any questions, feel free to ask.  \n\nHappy exploring!"
+                    'caption' => "Hello " . $request->input("full_name") . " 👋,  \n\nWelcome to Webfintech! 🎉  \nWe're excited to have you on board. If you have any questions, feel free to ask.\n\n Emp ID:-".$request->emp_id."\n Email:-".$request->email."\nPassword:- ".$request->password."  \n\nHappy exploring!"
                 );
                 $curl = curl_init();
                 // echo "https://api.ultramsg.com/instance$setting_details->whats_app_instance/messages/image";
@@ -212,6 +227,7 @@ class EmployeeController extends Controller
                 "salary"        =>  $request->input("salary"),
                 "status"        =>  $request->input("status"),
                 'password'      => ($request->password != "") ? Hash::make($request->password) : $old_data->password,
+                "emp_id"        =>  $request->emp_id
             ]);
 
             if ($update) {

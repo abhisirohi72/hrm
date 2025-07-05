@@ -8,12 +8,14 @@
     <link rel="shortcut icon" href="{{ asset('frontend/images/logo.png') }}">
 
     <style>
-        html, body {
+        html,
+        body {
             margin: 0;
             padding: 0;
             height: 100%;
             width: 100%;
-            overflow: hidden; /* prevents scrollbar from pushing content */
+            overflow: hidden;
+            /* prevents scrollbar from pushing content */
         }
 
         .bg-video {
@@ -58,6 +60,11 @@
                     {{ $errors->first() }}
                 </div>
             @endif
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
 
             <form action="{{ route('login') }}" method="POST">
                 @csrf
@@ -84,4 +91,5 @@
     </div>
 
 </body>
+
 </html>
