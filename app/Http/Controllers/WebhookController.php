@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Models\Setting;
+use App\Models\WhatsAppFlow;
 
 class WebhookController extends Controller
 {
@@ -53,27 +54,29 @@ class WebhookController extends Controller
             } else {
                 $responseArray = json_decode($response, true); // ← decode to array
                 if (($responseArray['messages'][0]['body'] == "hi") || ($responseArray['messages'][0]['body'] == "Hi")) {
-                    $this->sentReply($responseArray['messages'][0]['to']);
+                    //check reply for this
+                    $reply =    WhatsAppFlow::where("searching_words", $responseArray['messages'][0]['body'])->first();
+                    $this->sentReply($responseArray['messages'][0]['to'], $reply);
                 }
             }
         } catch (\Throwable $th) {
-            //throw $th;
+            Log::info('Webhook received:', $th->getMessage());
         }
     }
 
-    private function sentReply($number)
+    private function sentReply($number, $reply)
     {
         try {
             $setting_details = Setting::where("id", 1)->first();
 
             $params = array(
-                'token' => 'ns8bngzed0d9somi',
+                'token' => $setting_details->whats_app_token,
                 'to' => $number,
-                'body' => 'works good'
+                'body' => $reply ?? ''
             );
             $curl = curl_init();
             curl_setopt_array($curl, array(
-                CURLOPT_URL => "https://api.ultramsg.com/instance130267/messages/chat",
+                CURLOPT_URL => "https://api.ultramsg.com/instance$setting_details->whats_app_instance/messages/chat",
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => "",
                 CURLOPT_MAXREDIRS => 10,
@@ -99,7 +102,7 @@ class WebhookController extends Controller
                 echo $response;
             }
         } catch (\Throwable $th) {
-            //throw $th;
+            Log::info('Webhook received:', $th->getMessage());
         }
     }
 }

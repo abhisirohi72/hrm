@@ -283,6 +283,15 @@
                     </li>
                 @endif
 
+                @if(session('role')=="0" || in_array('whats_app_flow',session('page_access')->pluck("page_name")->toArray()))
+                    <li class="nav-item @if((request()->segment(1)=='whats_app_flow')) active @endif">
+                        <a class="nav-link" href="{{ route('view.whats_app.flow') }}">
+                            <i class="mdi mdi-whatsapp menu-icon"></i>
+                            <span class="menu-title">Whats App Flow</span>
+                        </a>
+                    </li>
+                @endif
+
                 {{-- <li class="nav-item @if((request()->segment(1)=='view_loans')) active @endif">
                     <a class="nav-link" href="{{ route('loans.view') }}">
                         <i class="mdi mdi-contacts menu-icon"></i>

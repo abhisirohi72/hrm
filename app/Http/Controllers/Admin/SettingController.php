@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Setting;
+use App\Models\WhatsAppFlow;
 use Illuminate\Http\Request;
 
 class SettingController extends Controller
@@ -23,6 +24,21 @@ class SettingController extends Controller
         ]);
     }
 
+    public function viewWhatsAppFlow(Request $request)
+    {
+        $main_title = "Admin-Whats-App-Flow";
+
+        $title =    "Whats App Flow View";
+
+        $details = WhatsAppFlow::all();
+
+        return view('admin.setting.flow_view', [
+            'main_title'    =>  $main_title,
+            'title'         =>  $title,
+            'details'       =>  $details
+        ]);
+    }
+
     public function addWhatsApp(Request $request)
     {
         $main_title = "Admin-Add-Setting";
@@ -30,6 +46,18 @@ class SettingController extends Controller
         $title =    "Add Setting";
 
         return view('admin.setting.add', [
+            'main_title'    =>  $main_title,
+            'title'         =>  $title,
+        ]);
+    }
+
+    public function addWhatsAppFlow(Request $request)
+    {
+        $main_title = "Admin-Add-Whats-App-Flow";
+
+        $title =    "Add Whats-App-Flow";
+
+        return view('admin.setting.flow_add', [
             'main_title'    =>  $main_title,
             'title'         =>  $title,
         ]);
@@ -54,6 +82,38 @@ class SettingController extends Controller
     public function saveWhatsApp(Request $request)
     {
         return $this->addUpdateWhatsApp($request);
+    }
+
+    public function saveWhatsAppFlow(Request $request){
+        $request->validate([
+            // "name"      =>  "required|unique:departments,name,".$request->input('edit_id'),
+            'searching_words'     => 'required',
+            "reply" =>  "required",
+        ]);
+        
+        if ($request->input("edit_id") == "") {
+            // echo 
+            $insert = WhatsAppFlow::create([
+                "searching_words"     =>  $request->input("searching_words"),
+                "reply"               =>  $request->input("reply"),
+            ]);
+            if ($insert) {
+                return redirect()->back()->with('success', 'Successfully Inserted!!!');
+            } else {
+                return redirect()->back()->with('error', 'There is some issue in inserted!!!');
+            }
+        } else {
+            $update = WhatsAppFlow::where("id", $request->input("edit_id"))->update([
+                "searching_words"     =>  $request->input("searching_words"),
+                "reply"               =>  $request->input("reply"),
+            ]);
+
+            if ($update) {
+                return redirect()->back()->with('success', 'Successfully Updated!!!');
+            } else {
+                return redirect()->back()->with('error', 'There is some issue in updated!!!');
+            }
+        }
     }
 
     public function addUpdateWhatsApp($request)

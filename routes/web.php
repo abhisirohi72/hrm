@@ -266,6 +266,13 @@ Route::middleware("auth")->group(function () {
     Route::get('/whats_app/edit/{id}', [SettingController::class, 'editWhatsApp'])->name('edit.whats.app');
     Route::get('/whats_app/delete/{id}', [SettingController::class, 'deleteWhatsApp'])->name('delete.whats.app');
     Route::post('/save_whats_app', [SettingController::class, 'saveWhatsApp'])->name('save.whats.app');
+
+    /*WHATS APP FLOW*/
+    Route::get('/whats_app_flow', [SettingController::class, 'viewWhatsAppFlow'])->name('view.whats_app.flow');
+    Route::get('/whats_app_flow/add', [SettingController::class, 'addWhatsAppFlow'])->name('add.whats_app.flow');
+    Route::get('/whats_app_flow/edit/{id}', [SettingController::class, 'editWhatsAppFlow'])->name('edit.whats_app.flow');
+    Route::get('/whats_app_flow/delete/{id}', [SettingController::class, 'deleteWhatsAppFlow'])->name('delete.whats_app.flow');
+    Route::post('/save_whats_app', [SettingController::class, 'saveWhatsAppFlow'])->name('save.whats_app.flow');
 });
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
