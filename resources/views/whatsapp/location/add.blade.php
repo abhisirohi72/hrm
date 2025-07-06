@@ -3,7 +3,6 @@
 @section('title', $main_title)
 
 @section('content')
-    
     <div class="main-panel">
         <div class="content-wrapper">
             <div class="page-header">
@@ -34,7 +33,7 @@
                         @endif
 
                         <h4 class="card-title">{{ $title }} Details</h4>
-                        <form id="myForm" method="POST" action="{{ route('save.whats_app.document') }}">
+                        <form id="myForm" method="POST" action="{{ route('save.whats_app.location') }}">
                             @csrf
                             <div class="form-group">
                                 <label for="to">To</label>
@@ -43,18 +42,20 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="filename">Filename</label>
-                                <input type="text" name="filename" id="filename" class="form-control" value="@if (isset($details) && $details->filename != '') {{ $details->filename }} @endif" placeholder="File name, for example 1.jpg or Hello.pdf filename Max length : 255 char .">
+                                <label for="address">Address</label>
+                                <input type="text" name="address" id="address" class="form-control"
+                                    placeholder="Text under the location. Supports two lines. To use two lines, use the \n symbol. Max length : 300 char">
                             </div>
 
                             <div class="form-group">
-                                <label for="document">Document</label>
-                                <input type="text" name="document" id="document" class="form-control"   value="@if (isset($details) && $details->document != '') {{ $details->document }} @endif" placeholder="HTTP link image or base64-encoded file, Supported most extensions like ( zip , xlsx , csv , txt , pptx , docx ....etc ) .">
+                                <label for="lat">Latitude</label>
+                                <input type="text" name="lat" id="lat" class="form-control"
+                                    placeholder="Latitude Example : 25.197197">
                             </div>
 
                             <div class="form-group">
-                                <label for="msg">Captions</label>
-                                <input type="text" name="msg" id="msg" class="form-control" value="@if (isset($details) && $details->msg != '') {{ $details->msg }} @endif" placeholder="The text under the file . Data type : text, UTF-8 or UTF-16 string with emoji .">
+                                <label for="lng">Longitude</label>
+                                <input type="text" name="lng" id="lng" class="form-control" placeholder="Longitude Example : 25.197197">
                             </div>
                             <button type="submit" class="btn btn-primary mr-2"> Submit </button>
                             <button class="btn btn-light">Cancel</button>

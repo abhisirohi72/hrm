@@ -292,13 +292,13 @@
                     </li>
                 @endif
 
-                <li class="nav-item @if((request()->segment(1)=='whats_app_chat') || (request()->segment(1)=='whats_app_image') || (request()->segment(1)=='whats_app_sticker') || (request()->segment(1)=='whats_app_document') || (request()->segment(1)=='whats_app_audio') || (request()->segment(1)=='whats_app_video') || (request()->segment(1)=='whats_app_contact')) active @endif">
-                    <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="@if((request()->segment(1)=='whats_app_chat') || (request()->segment(1)=='whats_app_image') || (request()->segment(1)=='whats_app_sticker') || (request()->segment(1)=='whats_app_document') || (request()->segment(1)=='whats_app_audio') || (request()->segment(1)=='whats_app_video') || (request()->segment(1)=='whats_app_contact')) true @else false @endif" aria-controls="ui-basic">
+                <li class="nav-item @if((request()->segment(1)=='whats_app_chat') || (request()->segment(1)=='whats_app_image') || (request()->segment(1)=='whats_app_sticker') || (request()->segment(1)=='whats_app_document') || (request()->segment(1)=='whats_app_audio') || (request()->segment(1)=='whats_app_video') || (request()->segment(1)=='whats_app_contact') || (request()->segment(1)=='whats_app_location') || (request()->segment(1)=='whats_app_vcard') || (request()->segment(1)=='whats_app_reaction') || (request()->segment(1)=='whats_app_resend')) active @endif">
+                    <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="@if((request()->segment(1)=='whats_app_chat') || (request()->segment(1)=='whats_app_image') || (request()->segment(1)=='whats_app_sticker') || (request()->segment(1)=='whats_app_document') || (request()->segment(1)=='whats_app_audio') || (request()->segment(1)=='whats_app_video') || (request()->segment(1)=='whats_app_contact') || (request()->segment(1)=='whats_app_location') || (request()->segment(1)=='whats_app_vcard') || (request()->segment(1)=='whats_app_reaction') || (request()->segment(1)=='whats_app_resend')) true @else false @endif" aria-controls="ui-basic">
                         <i class="mdi mdi-whatsapp menu-icon"></i>
                             <span class="menu-title">Whats App Messages</span>
                         <i class="menu-arrow"></i>
                     </a>
-                    <div class="collapse @if((request()->segment(1)=='whats_app_chat') || (request()->segment(1)=='whats_app_image') || (request()->segment(1)=='whats_app_sticker') || (request()->segment(1)=='whats_app_document') || (request()->segment(1)=='whats_app_audio') || (request()->segment(1)=='whats_app_video') || (request()->segment(1)=='whats_app_contact')) show @endif" id="ui-basic">
+                    <div class="collapse @if((request()->segment(1)=='whats_app_chat') || (request()->segment(1)=='whats_app_image') || (request()->segment(1)=='whats_app_sticker') || (request()->segment(1)=='whats_app_document') || (request()->segment(1)=='whats_app_audio') || (request()->segment(1)=='whats_app_video') || (request()->segment(1)=='whats_app_contact') || (request()->segment(1)=='whats_app_location') || (request()->segment(1)=='whats_app_vcard') || (request()->segment(1)=='whats_app_reaction') || (request()->segment(1)=='whats_app_resend')) show @endif" id="ui-basic">
                         <ul class="nav flex-column sub-menu">
                             <li class="nav-item">
                                 <a class="nav-link @if((request()->segment(1)=='whats_app_chat')) active @endif" href="{{ route('view.whats_app.chat') }}">Chat</a>
@@ -320,6 +320,18 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link @if((request()->segment(1)=='whats_app_contact')) active @endif" href="{{ route('view.whats_app.contact') }}">Contact</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @if((request()->segment(1)=='whats_app_location')) active @endif" href="{{ route('view.whats_app.location') }}">Location</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @if((request()->segment(1)=='whats_app_vcard')) active @endif" href="{{ route('view.whats_app.vcard') }}">VCard</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @if((request()->segment(1)=='whats_app_reaction')) active @endif" href="{{ route('view.whats_app.reaction') }}">Reaction</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @if((request()->segment(1)=='whats_app_resend')) active @endif" href="{{ route('view.whats_app.resend') }}">Resend By Status</a>
                             </li>
                         </ul>
                     </div>

@@ -596,4 +596,286 @@ class WhatsappController extends Controller
             }
         }
     }
+
+    public function viewWhatsAppLocation(Request $request)
+    {
+        $main_title = "Admin-Whatsapp-Location-View";
+
+        $title =    "Whatsapp Location View";
+
+        $details = WhatsappChat::where('type', 'location')->get();
+
+        return view('whatsapp.location.view', [
+            'main_title'    =>  $main_title,
+            'title'         =>  $title,
+            'details'       =>  $details
+        ]);
+    }
+
+    public function addWhatsAppLocation(Request $request)
+    {
+        $main_title = "Admin-Add-Whats App Location";
+
+        $title =    "Add Whats App Location";
+
+        return view('whatsapp.location.add', [
+            'main_title'    =>  $main_title,
+            'title'         =>  $title,
+        ]);
+    }
+
+    public function saveWhatsAppLocation(Request $request)
+    {
+        return $this->addUpdateWhatsAppLocation($request, "add", $this->curlService);
+    }
+
+    public function addUpdateWhatsAppLocation($request, $cond, $curlService)
+    {
+        $request->validate([
+            "to"        =>  "required",
+            "address"   =>  "required",
+            "lat"       =>  "required",
+            "lng"       =>  "required",
+        ]);
+
+        if ($request->input("edit_id") == "") {
+            //send messages
+            $url = "https://api.ultramsg.com/instance" . $this->setting->whats_app_instance . "/messages/location";
+            $params = [
+                'token'     => $this->setting->whats_app_token,
+                'to'        => $request->to,
+                'address'   => $request->address,
+                'lat'       => $request->lat,
+                'lng'       => $request->lng,
+            ];
+
+            $result = $curlService->callCurl($params, $url);
+            $convert_result = json_decode($result, true);
+            if ($convert_result && $convert_result['sent'] == true) {
+                $insert = WhatsappChat::create([
+                    'user_id'   =>  session('user'),
+                    'token'     =>  $this->setting->whats_app_token,
+                    'to'        =>  $request->to,
+                    'msg'       =>  $request->address."~||~".$request->lat."~||~".$request->lng,
+                    'type'      =>  'location',
+                    'response'  =>  $result,
+                ]);
+                if ($insert) {
+                    return redirect()->back()->with('success', 'Successfully Inserted!!!');
+                } else {
+                    return redirect()->back()->with('error', 'There is some issue in inserted!!!');
+                }
+            } else {
+                return redirect()->back()->with('error', 'There is some issue in sending for Whats App!!!');
+            }
+        }
+    }
+
+    public function viewWhatsAppVcard(Request $request)
+    {
+        $main_title = "Admin-Whatsapp-Vcard-View";
+
+        $title =    "Whatsapp Vcard View";
+
+        $details = WhatsappChat::where('type', 'vcard')->get();
+
+        return view('whatsapp.vcard.view', [
+            'main_title'    =>  $main_title,
+            'title'         =>  $title,
+            'details'       =>  $details
+        ]);
+    }
+
+    public function addWhatsAppVcard(Request $request)
+    {
+        $main_title = "Admin-Add-Whats App Vcard";
+
+        $title =    "Add Whats App Vcard";
+
+        return view('whatsapp.vcard.add', [
+            'main_title'    =>  $main_title,
+            'title'         =>  $title,
+        ]);
+    }
+
+    public function saveWhatsAppVcard(Request $request)
+    {
+        return $this->addUpdateWhatsAppVcard($request, "add", $this->curlService);
+    }
+
+    public function addUpdateWhatsAppVcard($request, $cond, $curlService)
+    {
+        $request->validate([
+            "to"        =>  "required",
+            "vcard"     =>  "required",
+        ]);
+
+        if ($request->input("edit_id") == "") {
+            //send messages
+            $url = "https://api.ultramsg.com/instance" . $this->setting->whats_app_instance . "/messages/vcard";
+            $params = [
+                'token'     => $this->setting->whats_app_token,
+                'to'        => $request->to,
+                'vcard'     => $request->vcard,
+            ];
+
+            $result = $curlService->callCurl($params, $url);
+            $convert_result = json_decode($result, true);
+            if ($convert_result && $convert_result['sent'] == true) {
+                $insert = WhatsappChat::create([
+                    'user_id'   =>  session('user'),
+                    'token'     =>  $this->setting->whats_app_token,
+                    'to'        =>  $request->to,
+                    'msg'       =>  $request->vcard,
+                    'type'      =>  'vcard',
+                    'response'  =>  $result,
+                ]);
+                if ($insert) {
+                    return redirect()->back()->with('success', 'Successfully Inserted!!!');
+                } else {
+                    return redirect()->back()->with('error', 'There is some issue in inserted!!!');
+                }
+            } else {
+                return redirect()->back()->with('error', 'There is some issue in sending for Whats App!!!');
+            }
+        }
+    }
+
+    public function viewWhatsAppReaction(Request $request)
+    {
+        $main_title = "Admin-Whatsapp-Reaction-View";
+
+        $title =    "Whatsapp Reaction View";
+
+        $details = WhatsappChat::where('type', 'reaction')->get();
+
+        return view('whatsapp.reaction.view', [
+            'main_title'    =>  $main_title,
+            'title'         =>  $title,
+            'details'       =>  $details
+        ]);
+    }
+
+    public function addWhatsAppReaction(Request $request)
+    {
+        $main_title = "Admin-Add-Whats-App-Reaction";
+
+        $title =    "Add Whats App Reaction";
+
+        return view('whatsapp.reaction.add', [
+            'main_title'    =>  $main_title,
+            'title'         =>  $title,
+        ]);
+    }
+
+    public function saveWhatsAppReaction(Request $request)
+    {
+        return $this->addUpdateWhatsAppReaction($request, "add", $this->curlService);
+    }
+
+    public function addUpdateWhatsAppReaction($request, $cond, $curlService)
+    {
+        $request->validate([
+            "to"        =>  "required",
+            "vcard"     =>  "required",
+        ]);
+
+        if ($request->input("edit_id") == "") {
+            //send messages
+            $url = "https://api.ultramsg.com/instance" . $this->setting->whats_app_instance . "/messages/vcard";
+            $params = [
+                'token'     => $this->setting->whats_app_token,
+                'to'        => $request->to,
+                'vcard'     => $request->vcard,
+            ];
+
+            $result = $curlService->callCurl($params, $url);
+            $convert_result = json_decode($result, true);
+            if ($convert_result && $convert_result['sent'] == true) {
+                $insert = WhatsappChat::create([
+                    'user_id'   =>  session('user'),
+                    'token'     =>  $this->setting->whats_app_token,
+                    'to'        =>  $request->to,
+                    'msg'       =>  $request->vcard,
+                    'type'      =>  'vcard',
+                    'response'  =>  $result,
+                ]);
+                if ($insert) {
+                    return redirect()->back()->with('success', 'Successfully Inserted!!!');
+                } else {
+                    return redirect()->back()->with('error', 'There is some issue in inserted!!!');
+                }
+            } else {
+                return redirect()->back()->with('error', 'There is some issue in sending for Whats App!!!');
+            }
+        }
+    }
+
+    public function viewWhatsAppResend(Request $request)
+    {
+        $main_title = "Admin-Whatsapp-Resend-View";
+
+        $title =    "Whatsapp Resend View";
+
+        $details = WhatsappChat::where('type', 'resend')->get();
+
+        return view('whatsapp.resend.view', [
+            'main_title'    =>  $main_title,
+            'title'         =>  $title,
+            'details'       =>  $details
+        ]);
+    }
+
+    public function addWhatsAppResend(Request $request)
+    {
+        $main_title = "Admin-Add-Whats-App-Resend";
+
+        $title =    "Add Whats App Resend";
+
+        return view('whatsapp.resend.add', [
+            'main_title'    =>  $main_title,
+            'title'         =>  $title,
+        ]);
+    }
+
+    public function saveWhatsAppResend(Request $request)
+    {
+        return $this->addUpdateWhatsAppResend($request, "add", $this->curlService);
+    }
+
+    public function addUpdateWhatsAppResend($request, $cond, $curlService)
+    {
+        $request->validate([
+            "status"        =>  "required",
+        ]);
+
+        if ($request->input("edit_id") == "") {
+            //send messages
+            $url = "https://api.ultramsg.com/instance" . $this->setting->whats_app_instance . "/messages/resendByStatus";
+            $params = [
+                'token'     => $this->setting->whats_app_token,
+                'status'        => $request->status,
+            ];
+
+            $result = $curlService->callCurl($params, $url);
+            $convert_result = json_decode($result, true);
+            if ($convert_result && $convert_result['success'] == 'done') {
+                $insert = WhatsappChat::create([
+                    'user_id'   =>  session('user'),
+                    'token'     =>  $this->setting->whats_app_token,
+                    'to'        =>  $request->to ?? session('phone'),
+                    'msg'       =>  $request->status,
+                    'type'      =>  'resend',
+                    'response'  =>  $result,
+                ]);
+                if ($insert) {
+                    return redirect()->back()->with('success', 'Successfully Inserted!!!');
+                } else {
+                    return redirect()->back()->with('error', 'There is some issue in inserted!!!');
+                }
+            } else {
+                return redirect()->back()->with('error', 'There is some issue in sending for Whats App!!!');
+            }
+        }
+    }
 }
