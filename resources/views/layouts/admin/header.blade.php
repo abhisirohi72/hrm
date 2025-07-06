@@ -17,7 +17,7 @@
                     <h6 class="p-3 mb-0">Notifications</h6>
                     <a class="dropdown-item preview-item">
                         <div class="preview-thumbnail">
-                            <img src="assets/images/faces/face4.jpg" alt="" class="profile-pic" />
+                            <img src="{{ asset('assets/images/faces/face4.jpg') }}" alt="" class="profile-pic" />
                         </div>
                         <div class="preview-item-content">
                             <p class="mb-0"> Dany Miles <span class="text-small text-muted">commented on your
@@ -27,7 +27,7 @@
                     </a>
                     <a class="dropdown-item preview-item">
                         <div class="preview-thumbnail">
-                            <img src="assets/images/faces/face3.jpg" alt="" class="profile-pic" />
+                            <img src="{{ asset('assets/images/faces/face3.jpg') }}" alt="" class="profile-pic" />
                         </div>
                         <div class="preview-item-content">
                             <p class="mb-0"> James <span class="text-small text-muted">posted a
@@ -37,7 +37,7 @@
                     </a>
                     <a class="dropdown-item preview-item">
                         <div class="preview-thumbnail">
-                            <img src="assets/images/faces/face2.jpg" alt="" class="profile-pic" />
+                            <img src="{{ asset('assets/images/faces/face2.jpg') }}" alt="" class="profile-pic" />
                         </div>
                         <div class="preview-item-content">
                             <p class="mb-0"> Alex <span class="text-small text-muted">just mentioned

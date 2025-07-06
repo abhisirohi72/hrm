@@ -292,6 +292,39 @@
                     </li>
                 @endif
 
+                <li class="nav-item @if((request()->segment(1)=='whats_app_chat') || (request()->segment(1)=='whats_app_image') || (request()->segment(1)=='whats_app_sticker') || (request()->segment(1)=='whats_app_document') || (request()->segment(1)=='whats_app_audio') || (request()->segment(1)=='whats_app_video') || (request()->segment(1)=='whats_app_contact')) active @endif">
+                    <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="@if((request()->segment(1)=='whats_app_chat') || (request()->segment(1)=='whats_app_image') || (request()->segment(1)=='whats_app_sticker') || (request()->segment(1)=='whats_app_document') || (request()->segment(1)=='whats_app_audio') || (request()->segment(1)=='whats_app_video') || (request()->segment(1)=='whats_app_contact')) true @else false @endif" aria-controls="ui-basic">
+                        <i class="mdi mdi-whatsapp menu-icon"></i>
+                            <span class="menu-title">Whats App Messages</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse @if((request()->segment(1)=='whats_app_chat') || (request()->segment(1)=='whats_app_image') || (request()->segment(1)=='whats_app_sticker') || (request()->segment(1)=='whats_app_document') || (request()->segment(1)=='whats_app_audio') || (request()->segment(1)=='whats_app_video') || (request()->segment(1)=='whats_app_contact')) show @endif" id="ui-basic">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item">
+                                <a class="nav-link @if((request()->segment(1)=='whats_app_chat')) active @endif" href="{{ route('view.whats_app.chat') }}">Chat</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @if((request()->segment(1)=='whats_app_image')) active @endif" href="{{ route('view.whats_app.image') }}">Image</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @if((request()->segment(1)=='whats_app_sticker')) active @endif" href="{{ route('view.whats_app.sticker') }}">Sticker</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @if((request()->segment(1)=='whats_app_document')) active @endif" href="{{ route('view.whats_app.document') }}">Document</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @if((request()->segment(1)=='whats_app_audio')) active @endif" href="{{ route('view.whats_app.audio') }}">Audio/Voice</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @if((request()->segment(1)=='whats_app_video')) active @endif" href="{{ route('view.whats_app.video') }}">Video</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @if((request()->segment(1)=='whats_app_contact')) active @endif" href="{{ route('view.whats_app.contact') }}">Contact</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
                 {{-- <li class="nav-item @if((request()->segment(1)=='view_loans')) active @endif">
                     <a class="nav-link" href="{{ route('loans.view') }}">
                         <i class="mdi mdi-contacts menu-icon"></i>

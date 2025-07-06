@@ -36,7 +36,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\MeetingController;
 use App\Http\Controllers\Admin\TemplateController;
 use App\Http\Controllers\Admin\SettingController;
-use App\Http\Controllers\WebhookController;
+use App\Http\Controllers\Admin\WhatsappController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::post('/contact_us_home', [HomeController::class, 'contactUs'])->name('contact.send');
@@ -59,8 +59,7 @@ Route::get('/razorpay/{order_id}/{total_price}/{final_price}/{coupon_id?}', [Raz
 Route::post('/razorpay-payment', [RazorpayPaymentController::class, 'payment'])->name('razorpay.payment');
 Route::post('/razorpay_data', [RazorpayPaymentController::class, 'razorpayDetails'])->name('razorpay.index');
 
-/*WEBHOOKS*/
-Route::get('/webhook/receive', [WebhookController::class, 'handle'])->name('webhook.recieve');
+
 
 Route::middleware("auth")->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'view'])->name("dashboard");
@@ -273,6 +272,42 @@ Route::middleware("auth")->group(function () {
     Route::get('/whats_app_flow/edit/{id}', [SettingController::class, 'editWhatsAppFlow'])->name('edit.whats_app.flow');
     Route::get('/whats_app_flow/delete/{id}', [SettingController::class, 'deleteWhatsAppFlow'])->name('delete.whats_app.flow');
     Route::post('/save_whats_app', [SettingController::class, 'saveWhatsAppFlow'])->name('save.whats_app.flow');
+
+    /*WHATSAPP MESSAGES*/
+    //FOR CHAT
+    Route::get('/whats_app_chat', [WhatsappController::class, 'viewWhatsAppChat'])->name('view.whats_app.chat');
+    Route::get('/whats_app_chat/add', [WhatsappController::class, 'addWhatsAppChat'])->name('add.whats_app.chat');
+    Route::post('/save_whats_app', [WhatsappController::class, 'saveWhatsAppChat'])->name('save.whats_app.chat');
+
+    //FOR IMAGE
+    Route::get('/whats_app_image', [WhatsappController::class, 'viewWhatsAppImage'])->name('view.whats_app.image');
+    Route::get('/whats_app_image/add', [WhatsappController::class, 'addWhatsAppImage'])->name('add.whats_app.image');
+    Route::post('/save_whats_app', [WhatsappController::class, 'saveWhatsAppImage'])->name('save.whats_app.image');
+
+    //FOR STICKER
+    Route::get('/whats_app_sticker', [WhatsappController::class, 'viewWhatsAppSticker'])->name('view.whats_app.sticker');
+    Route::get('/whats_app_sticker/add', [WhatsappController::class, 'addWhatsAppSticker'])->name('add.whats_app.sticker');
+    Route::post('/save_whats_app', [WhatsappController::class, 'saveWhatsAppSticker'])->name('save.whats_app.sticker');
+
+    //FOR DOCUMENT
+    Route::get('/whats_app_document', [WhatsappController::class, 'viewWhatsAppDocument'])->name('view.whats_app.document');
+    Route::get('/whats_app_document/add', [WhatsappController::class, 'addWhatsAppDocument'])->name('add.whats_app.document');
+    Route::post('/save_whats_app', [WhatsappController::class, 'saveWhatsAppDocument'])->name('save.whats_app.document');
+
+    //FOR AUDIO
+    Route::get('/whats_app_audio', [WhatsappController::class, 'viewWhatsAppAudio'])->name('view.whats_app.audio');
+    Route::get('/whats_app_audio/add', [WhatsappController::class, 'addWhatsAppAudio'])->name('add.whats_app.audio');
+    Route::post('/save_whats_app', [WhatsappController::class, 'saveWhatsAppAudio'])->name('save.whats_app.audio');
+
+    //FOR VIDEO
+    Route::get('/whats_app_video', [WhatsappController::class, 'viewWhatsAppVideo'])->name('view.whats_app.video');
+    Route::get('/whats_app_video/add', [WhatsappController::class, 'addWhatsAppVideo'])->name('add.whats_app.video');
+    Route::post('/save_whats_app', [WhatsappController::class, 'saveWhatsAppVideo'])->name('save.whats_app.video');
+
+    //FOR CONTACT
+    Route::get('/whats_app_contact', [WhatsappController::class, 'viewWhatsAppContact'])->name('view.whats_app.contact');
+    Route::get('/whats_app_contact/add', [WhatsappController::class, 'addWhatsAppContact'])->name('add.whats_app.contact');
+    Route::post('/save_whats_app', [WhatsappController::class, 'saveWhatsAppContact'])->name('save.whats_app.contact');
 });
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

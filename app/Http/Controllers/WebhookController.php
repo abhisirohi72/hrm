@@ -11,10 +11,27 @@ class WebhookController extends Controller
 {
     public function handle(Request $request)
     {
-        Log::info('Webhook received:', $request->all());
+        Log::info('Event run:');
+        // Get raw POST data (like php://input)
+        $data = $request->getContent();
 
-        // Optionally validate signature here
-        $this->getLastMessage($request);
+        // Decode JSON to array
+        $event = json_decode($data, true);
+
+        if ($event) {
+            // Log to a custom file (like log.txt)
+            $logData = json_encode($event) . "\n";
+            file_put_contents(storage_path('logs/webhook-log.txt'), $logData, FILE_APPEND | LOCK_EX);
+
+            // Optionally call another function (your existing logic)
+            $this->getLastMessage($request);
+
+            // Log in Laravel log as well (optional)
+            Log::info('Webhook event:', $event);
+        } else {
+            Log::warning('Webhook received with invalid JSON.', ['raw' => $data]);
+        }
+
         return response()->json(['status' => 'success']);
     }
 
