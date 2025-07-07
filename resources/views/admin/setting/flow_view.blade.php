@@ -18,11 +18,11 @@
                 <div class="card">
                     <div class="card-body" style="overflow: auto;">
                         <h4 class="card-title">Whats App Flow</h4>
-                        @if (count($details) == 0)
+                        {{-- @if (count($details) == 0) --}}
                         <a href="{{ route('add.whats_app.flow') }}" class="btn btn-primary btn-icon-text mb-2" style="float: right;">
                             Add
                         </a>
-                        @endif
+                        {{-- @endif --}}
                         <div class="table-responsive">
                             <table class="table table-hover">
                                 <thead>

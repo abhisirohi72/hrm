@@ -39,18 +39,6 @@ class SettingController extends Controller
         ]);
     }
 
-    public function addWhatsApp(Request $request)
-    {
-        $main_title = "Admin-Add-Setting";
-
-        $title =    "Add Setting";
-
-        return view('admin.setting.add', [
-            'main_title'    =>  $main_title,
-            'title'         =>  $title,
-        ]);
-    }
-
     public function addWhatsAppFlow(Request $request)
     {
         $main_title = "Admin-Add-Whats-App-Flow";
@@ -63,15 +51,15 @@ class SettingController extends Controller
         ]);
     }
 
-    public function editWhatsApp($edit_id, Request $request)
+    public function editWhatsAppFlow($edit_id, Request $request)
     {
-        $main_title = "Admin-Edit-Setting";
+        $main_title = "Admin-Edit-Whats-App-Flow";
 
-        $title =    "Edit Setting";
+        $title =    "Edit Whats-App-Flow";
 
-        $details = Setting::where("id", $edit_id)->first();
+        $details = WhatsAppFlow::where("id", $edit_id)->first();
 
-        return view('admin.setting.add', [
+        return view('admin.setting.flow_add', [
             'main_title'    =>  $main_title,
             'title'         =>  $title,
             'edit_id'       =>  $edit_id,
