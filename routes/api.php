@@ -1,7 +1,12 @@
 <?php
+
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WebhookController;
 
-/*WEBHOOKS*/
-Route::get('webhook/receive', [WebhookController::class, 'handle'])->name('webhook.recieve');
-?>
+Route::get('/user', function (Request $request) {
+    return $request->user();
+})->middleware('auth:sanctum');
+
+Route::post('webhook/receive', [WebhookController::class, 'handle'])->name('webhook.recieve');
+
