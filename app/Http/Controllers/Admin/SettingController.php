@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Setting;
 use App\Models\WhatsAppFlow;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class SettingController extends Controller
 {
@@ -72,18 +74,86 @@ class SettingController extends Controller
         return $this->addUpdateWhatsApp($request);
     }
 
-    public function saveWhatsAppFlow(Request $request){
+    public function saveWhatsAppFlow(Request $request)
+    {
         $request->validate([
             // "name"      =>  "required|unique:departments,name,".$request->input('edit_id'),
-            'searching_words'     => 'required',
-            "reply" =>  "required",
+            'searching_words'   =>  'required',
+            'image'             =>  'file|image|mimes:jpg,jpeg,gif,png,webp,bmp|max:16384', // 16MB = 16384 KB
+            'document'          =>  'file|mimes:zip,xlsx,csv,txt,pptx,docx,doc,ppt,pdf,rar,7z,xls|max:30720', //30MB = 30×1024 = 30720 KB
+            'filename'          =>  "string|max:255",
+            'audio'             =>  "file|mimes:mp3,aac,ogg|max:16384", //16 mb
+            'video'             =>  'file|mimes:mp4,3gp,mov|max:16384',
+            "reply"             =>  "required",
         ]);
-        
+
+        $directory = "whatsapp";
+        Storage::disk('public')->makeDirectory($directory);
+
         if ($request->input("edit_id") == "") {
-            // echo 
+            $image_name     = "";
+            $document_name  = "";
+            $audio_name     = "";
+            $video_name     = "";
+
+            //FOR IMAGE
+            if ($request->file("image") && $request->file("image")->isValid()) {
+                $file = $request->file('image');
+
+                // Generate encrypted (random) filename with original extension
+                $image_name = Str::random(40) . '.' . $file->getClientOriginalExtension();
+
+                // Store in public/images folder
+                $path = $file->storeAs($directory, $image_name, 'public');
+            }
+
+            //FOR DOCUMENT
+            if ($request->file("document") && $request->file("document")->isValid()) {
+                $file = $request->file('document');
+
+                // Generate encrypted (random) filename with original extension
+                $document_name = Str::random(40) . '.' . $file->getClientOriginalExtension();
+
+                // Store in public/documents folder
+                $path = $file->storeAs($directory, $document_name, 'public');
+                // echo "<pre>";
+                // print_r($path);
+            }
+
+            //FOR Audio
+            if ($request->file("audio") && $request->file("audio")->isValid()) {
+                $file = $request->file('audio');
+
+                // Generate encrypted (random) filename with original extension
+                $audio_name = Str::random(40) . '.' . $file->getClientOriginalExtension();
+
+                // Store in public/audios folder
+                $path = $file->storeAs($directory, $audio_name, 'public');
+                // echo "<pre>";
+                // print_r($path);
+            }
+
+            //FOR Video
+            if ($request->file("video") && $request->file("video")->isValid()) {
+                $file = $request->file('video');
+
+                // Generate encrypted (random) filename with original extension
+                $video_name = Str::random(40) . '.' . $file->getClientOriginalExtension();
+
+                // Store in public/videos folder
+                $path = $file->storeAs($directory, $video_name, 'public');
+                // echo "<pre>";
+                // print_r($path);
+            }
+
             $insert = WhatsAppFlow::create([
-                "searching_words"     =>  $request->input("searching_words"),
-                "reply"               =>  $request->input("reply"),
+                "searching_words"   =>  $request->input("searching_words"),
+                "reply"             =>  $request->input("reply"),
+                "image"             =>  $image_name,
+                "document"          =>  $document_name,
+                "filename"          =>  $request->filename,
+                "audio"             =>  $audio_name,
+                "video"             =>  $video_name
             ]);
             if ($insert) {
                 return redirect()->back()->with('success', 'Successfully Inserted!!!');
@@ -91,9 +161,71 @@ class SettingController extends Controller
                 return redirect()->back()->with('error', 'There is some issue in inserted!!!');
             }
         } else {
+            $old_data = WhatsAppFlow::where("id", $request->input("edit_id"))->first();
+
+            $image_name     = $old_data->image;
+            $document_name  = $old_data->document;
+            $audio_name     = $old_data->audio;
+            $video_name     = $old_data->video;
+
+            //FOR IMAGE
+            if ($request->file("image") && $request->file("image")->isValid()) {
+                $file = $request->file('image');
+
+                // Generate encrypted (random) filename with original extension
+                $image_name = Str::random(40) . '.' . $file->getClientOriginalExtension();
+
+                // Store in public/images folder
+                $path = $file->storeAs($directory, $image_name, 'public');
+            }
+
+            //FOR DOCUMENT
+            if ($request->file("document") && $request->file("document")->isValid()) {
+                $file = $request->file('document');
+
+                // Generate encrypted (random) filename with original extension
+                $document_name = Str::random(40) . '.' . $file->getClientOriginalExtension();
+
+                // Store in public/documents folder
+                $path = $file->storeAs($directory, $document_name, 'public');
+                // echo "<pre>";
+                // print_r($path);
+            }
+
+            //FOR Audio
+            if ($request->file("audio") && $request->file("audio")->isValid()) {
+                $file = $request->file('audio');
+
+                // Generate encrypted (random) filename with original extension
+                $audio_name = Str::random(40) . '.' . $file->getClientOriginalExtension();
+
+                // Store in public/audios folder
+                $path = $file->storeAs($directory, $audio_name, 'public');
+                // echo "<pre>";
+                // print_r($path);
+            }
+
+            //FOR Video
+            if ($request->file("video") && $request->file("video")->isValid()) {
+                $file = $request->file('video');
+
+                // Generate encrypted (random) filename with original extension
+                $video_name = Str::random(40) . '.' . $file->getClientOriginalExtension();
+
+                // Store in public/videos folder
+                $path = $file->storeAs($directory, $video_name, 'public');
+                // echo "<pre>";
+                // print_r($path);
+            }
+
             $update = WhatsAppFlow::where("id", $request->input("edit_id"))->update([
                 "searching_words"     =>  $request->input("searching_words"),
                 "reply"               =>  $request->input("reply"),
+                "image"             =>  $image_name,
+                "document"          =>  $document_name,
+                "filename"          =>  $request->filename,
+                "audio"             =>  $audio_name,
+                "video"             =>  $video_name
             ]);
 
             if ($update) {
@@ -110,7 +242,7 @@ class SettingController extends Controller
             'whats_app_token'       =>  'required',
             'whats_app_instance'    =>  'required',
         ]);
-        
+
         Setting::updateOrCreate(
             ['id' => 1],
             [
