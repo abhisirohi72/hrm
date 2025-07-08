@@ -78,12 +78,12 @@ class SettingController extends Controller
     {
         $request->validate([
             // "name"      =>  "required|unique:departments,name,".$request->input('edit_id'),
-            'searching_words'   =>  'required',
-            'image'             =>  'file|image|mimes:jpg,jpeg,gif,png,webp,bmp|max:16384', // 16MB = 16384 KB
-            'document'          =>  'file|mimes:zip,xlsx,csv,txt,pptx,docx,doc,ppt,pdf,rar,7z,xls|max:30720', //30MB = 30×1024 = 30720 KB
-            'filename'          =>  "string|max:255",
-            'audio'             =>  "file|mimes:mp3,aac,ogg|max:16384", //16 mb
-            'video'             =>  'file|mimes:mp4,3gp,mov|max:16384',
+            'searching_words'   =>  "required|unique:whats_app_flows,searching_words,".$request->input('edit_id'),
+            'image'             =>  'nullable|file|image|mimes:jpg,jpeg,gif,png,webp,bmp|max:16384', // 16MB = 16384 KB
+            'document'          =>  'nullable|file|mimes:zip,xlsx,csv,txt,pptx,docx,doc,ppt,pdf,rar,7z,xls|max:30720', //30MB = 30×1024 = 30720 KB
+            'filename'          =>  "nullable|string|max:255",
+            'audio'             =>  "nullable|file|mimes:mp3,aac,ogg|max:16384", //16 mb
+            'video'             =>  'nullable|file|mimes:mp4,3gp,mov|max:16384',
             "reply"             =>  "required",
         ]);
 
@@ -254,9 +254,9 @@ class SettingController extends Controller
         return redirect()->back()->with("success", "Record has been successfully saved!!!");
     }
 
-    public function deleteEmp($del_id, Request $request)
+    public function deleteWhatsAppFlow($del_id, Request $request)
     {
-        $delete  = Setting::where("id", $del_id)->delete();
+        $delete  = WhatsAppFlow::where("id", $del_id)->delete();
 
         if ($delete) {
             return redirect()->back()->with('success', 'Successfully Deleted!!!');
