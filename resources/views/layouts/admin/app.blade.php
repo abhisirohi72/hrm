@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="{{ asset('assets/vendors/bootstrap-datepicker/bootstrap-datepic') }}ker.min.css" />
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
     <link rel="shortcut icon" href="{{ asset('frontend/images/logo.png')}}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
 </head>
 
 <body>

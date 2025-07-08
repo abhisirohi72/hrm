@@ -17,8 +17,8 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body" style="overflow: auto;">
-                        <h4 class="card-title">Tasks Details</h4>
-                        <a href="{{ route('tasks.create') }}" class="btn btn-primary btn-icon-text mb-2"
+                        <h4 class="card-title">{{ $title }} Details</h4>
+                        <a href="{{ route('todos.create') }}" class="btn btn-primary btn-icon-text mb-2"
                             style="float: right;">
                             Add
                         </a>

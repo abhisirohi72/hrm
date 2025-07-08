@@ -53,6 +53,18 @@ class SettingController extends Controller
         ]);
     }
 
+    public function addWhatsApp(Request $request)
+    {
+        $main_title = "Admin-Add-Whats-App";
+
+        $title =    "Add Whats-App";
+
+        return view('admin.setting.add', [
+            'main_title'    =>  $main_title,
+            'title'         =>  $title,
+        ]);
+    }
+
     public function editWhatsAppFlow($edit_id, Request $request)
     {
         $main_title = "Admin-Edit-Whats-App-Flow";
@@ -257,6 +269,17 @@ class SettingController extends Controller
     public function deleteWhatsAppFlow($del_id, Request $request)
     {
         $delete  = WhatsAppFlow::where("id", $del_id)->delete();
+
+        if ($delete) {
+            return redirect()->back()->with('success', 'Successfully Deleted!!!');
+        } else {
+            return redirect()->back()->with('error', 'There is some issue in deleted!!!');
+        }
+    }
+
+    public function deleteWhatsApp($del_id, Request $request)
+    {
+        $delete  = Setting::truncate();
 
         if ($delete) {
             return redirect()->back()->with('success', 'Successfully Deleted!!!');

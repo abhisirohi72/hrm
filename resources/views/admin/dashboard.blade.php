@@ -182,100 +182,45 @@
                                         <tr>
                                             <th>Customer</th>
                                             <th>Project</th>
-                                            <th>Invoice</th>
+                                            {{-- <th>Price</th> --}}
                                             <th>Amount</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <img src="assets/images/faces/face1.jpg" alt="image" />
-                                                    <div class="table-user-name ml-3">
-                                                        <p class="mb-0 font-weight-medium"> Cecelia Cooper
-                                                        </p>
-                                                        <small> Payment on hold</small>
+                                        @foreach ($o_history as $data)
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        @if (empty($data->users->image))
+                                                            <img src="assets/images/faces/face1.jpg" alt="image" />
+                                                        @else
+                                                            <img src="{{ asset('storage/users/' . $data->users->image) }}"
+                                                                alt="image" />
+                                                        @endif
+                                                        <div class="table-user-name ml-3">
+                                                            <p class="mb-0 font-weight-medium"> {{ $data->users->email }}
+                                                            </p>
+                                                            <small>
+                                                                Is placed? @if ($data->is_placed == '0')
+                                                                    No
+                                                                @else
+                                                                    Yes
+                                                                @endif
+                                                            </small>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </td>
-                                            <td>Angular Admin</td>
-                                            <td>
-                                                <div class="badge badge-inverse-success"> Completed </div>
-                                            </td>
-                                            <td> 77.99</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <img src="assets/images/faces/face10.jpg" alt="image" />
-                                                    <div class="table-user-name ml-3">
-                                                        <p class="mb-0 font-weight-medium"> Victor Watkins
-                                                        </p>
-                                                        <small>Email verified</small>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>Angular Admin</td>
-                                            <td>
-                                                <div class="badge badge-inverse-success"> Completed </div>
-                                            </td>
-                                            <td>245.30</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <img src="assets/images/faces/face11.jpg" alt="image" />
-                                                    <div class="table-user-name ml-3">
-                                                        <p class="mb-0 font-weight-medium"> Ada Burgess
-                                                        </p>
-                                                        <small>Email verified</small>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>One page html</td>
-                                            <td>
-                                                <div class="badge badge-inverse-danger"> Completed </div>
-                                            </td>
-                                            <td> 160.25</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <img src="assets/images/faces/face13.jpg" alt="image" />
-                                                    <div class="table-user-name ml-3">
-                                                        <p class="mb-0 font-weight-medium"> Dollie Lynch
-                                                        </p>
-                                                        <small>Email verified</small>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>Wordpress</td>
-                                            <td>
-                                                <div class="badge badge-inverse-success"> Declined </div>
-                                            </td>
-                                            <td> 123.21</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <img src="assets/images/faces/face16.jpg" alt="image" />
-                                                    <div class="table-user-name ml-3">
-                                                        <p class="mb-0 font-weight-medium"> Harry Holloway
-                                                        </p>
-                                                        <small>Payment on process</small>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>VueJs Application</td>
-                                            <td>
-                                                <div class="badge badge-inverse-danger"> Declined </div>
-                                            </td>
-                                            <td> 150.00</td>
-                                        </tr>
+                                                </td>
+                                                <td>{{ $data->single_products->name }}</td>
+                                                <td>
+                                                    <div class="badge badge-inverse-success"> {{ $data->t_price }} </div>
+                                                </td>
+                                                {{-- <td> 77.99</td> --}}
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
-                            <a class="text-black mt-3 d-block pl-4" href="#">
+                            <a class="text-black mt-3 d-block pl-4" href="{{ route('view.order_details') }}">
                                 <span class="font-weight-medium h6">View all order history</span>
                                 <i class="mdi mdi-chevron-right"></i></a>
                         </div>
@@ -325,45 +270,23 @@
                             <p class="text-muted">Created by anonymous</p>
                             <div class="list-wrapper">
                                 <ul class="d-flex flex-column-reverse todo-list todo-list-custom">
-                                    <li>
-                                        <div class="form-check">
-                                            <label class="form-check-label">
-                                                <input class="checkbox" type="checkbox" /> Meeting with
-                                                Alisa </label>
-                                            <span class="list-time">4 Hours Ago</span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="form-check">
-                                            <label class="form-check-label">
-                                                <input class="checkbox" type="checkbox" /> Create invoice
-                                            </label>
-                                            <span class="list-time">6 Hours Ago</span>
-                                        </div>
-                                    </li>
-                                    <li class="completed">
-                                        <div class="form-check">
-                                            <label class="form-check-label">
-                                                <input class="checkbox" type="checkbox" checked /> Prepare
-                                                for presentation </label>
-                                            <span class="list-time">2 Hours Ago</span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="form-check">
-                                            <label class="form-check-label">
-                                                <input class="checkbox" type="checkbox" /> Pick up kids
-                                                from school </label>
-                                            <span class="list-time">8 Hours Ago</span>
-                                        </div>
-                                    </li>
+                                    @foreach ($todos as $data)
+                                        <li>
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input class="checkbox" type="checkbox" />
+                                                    {{ $data->title }}</label>
+                                                <span class="list-time">{{ $data->created_at }}</span>
+                                            </div>
+                                        </li>
+                                    @endforeach
                                 </ul>
                             </div>
                             <div class="add-items d-flex flex-wrap flex-sm-nowrap">
                                 <input type="text" class="form-control todo-list-input flex-grow"
-                                    placeholder="Add task name" />
-                                <button class="add btn btn-primary font-weight-regular text-nowrap" id="add-task"> Add
-                                    Task </button>
+                                    placeholder="Add task name" name="title" id="todo_title" />
+                                <button class="add btn btn-primary font-weight-regular text-nowrap" id="add-task"
+                                    onclick="addTask()"> Add Task </button>
                             </div>
                         </div>
                     </div>
@@ -373,91 +296,28 @@
                         <div class="card-body">
                             <h4 class="card-title text-black">Recent Customers</h4>
                             <p class="text-muted">All contacts</p>
-                            <div class="row pt-2 pb-1">
-                                <div class="col-12 col-sm-7">
-                                    <div class="row">
-                                        <div class="col-4 col-md-4">
-                                            <img class="customer-img" src="assets/images/faces/face22.jpg"
-                                                alt="" />
-                                        </div>
-                                        <div class="col-8 col-md-8 p-sm-0">
-                                            <h6 class="mb-0">Cecelia Cooper</h6>
-                                            <p class="text-muted font-12">05:58AM</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-5 pl-0">
-                                    <canvas id="areaChart1"></canvas>
-                                </div>
-                            </div>
-                            <div class="row py-1">
-                                <div class="col-sm-7">
-                                    <div class="row">
-                                        <div class="col-4 col-sm-4">
-                                            <img class="customer-img" src="assets/images/faces/face25.jpg"
-                                                alt="" />
-                                        </div>
-                                        <div class="col-8 col-sm-8 p-sm-0">
-                                            <h6 class="mb-0">Victor Watkins</h6>
-                                            <p class="text-muted font-12">05:28AM</p>
+                            @foreach($r_customers as $key=>$data)
+                                <div class="row pt-2 pb-1">
+                                    <div class="col-12 col-sm-7">
+                                        <div class="row">
+                                            <div class="col-4 col-md-4">
+                                                @if($data->image=="")
+                                                    <img class="customer-img" src="assets/images/faces/face22.jpg" alt="" />
+                                                    @else
+                                                    <img class="customer-img" src="{{ asset('storage/users/'.$data->image) }}" alt="" />
+                                                @endif
+                                            </div>
+                                            <div class="col-8 col-md-8 p-sm-0">
+                                                <h6 class="mb-0">{{ $data->email }}</h6>
+                                                <p class="text-muted font-12">{{ $data->created_at }}</p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-sm-5 pl-0">
-                                    <canvas id="areaChart2"></canvas>
-                                </div>
-                            </div>
-                            <div class="row py-1">
-                                <div class="col-sm-7">
-                                    <div class="row">
-                                        <div class="col-4 col-sm-4">
-                                            <img class="customer-img" src="assets/images/faces/face15.jpg"
-                                                alt="" />
-                                        </div>
-                                        <div class="col-8 col-sm-8 p-sm-0">
-                                            <h6 class="mb-0">Ada Burgess</h6>
-                                            <p class="text-muted font-12">05:57AM</p>
-                                        </div>
+                                    <div class="col-sm-5 pl-0">
+                                        <canvas id="areaChart{{ $key+1   }}"></canvas>
                                     </div>
                                 </div>
-                                <div class="col-sm-5 pl-0">
-                                    <canvas id="areaChart3"></canvas>
-                                </div>
-                            </div>
-                            <div class="row py-1">
-                                <div class="col-sm-7">
-                                    <div class="row">
-                                        <div class="col-4 col-sm-4">
-                                            <img class="customer-img" src="assets/images/faces/face5.jpg"
-                                                alt="" />
-                                        </div>
-                                        <div class="col-8 col-sm-8 p-sm-0">
-                                            <h6 class="mb-0">Dollie Lynch</h6>
-                                            <p class="text-muted font-12">05:59AM</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-5 pl-0">
-                                    <canvas id="areaChart4"></canvas>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-7">
-                                    <div class="row">
-                                        <div class="col-4 col-sm-4">
-                                            <img class="customer-img" src="assets/images/faces/face2.jpg"
-                                                alt="" />
-                                        </div>
-                                        <div class="col-8 col-sm-8 p-sm-0">
-                                            <h6 class="mb-0">Harry Holloway</h6>
-                                            <p class="text-muted font-12 mb-0">05:13AM</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-5 pl-0">
-                                    <canvas id="areaChart5" height="100"></canvas>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -622,7 +482,7 @@
                     <!--activity ends-->
                 </div>
             </div>
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col-xl-4 col-md-6 grid-margin stretch-card">
                     <div class="card card-invoice">
                         <div class="card-body">
@@ -848,17 +708,48 @@
                     </div>
                     <!--browser stats ends-->
                 </div>
-            </div>
+            </div> --}}
         </div>
         <footer class="footer">
             <div class="d-sm-flex justify-content-center justify-content-sm-between">
                 <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright ©
-                    bootstrapdash.com 2020</span>
-                <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Free <a
-                        href="https://www.bootstrapdash.com/" target="_blank">Bootstrap dashboard
-                        template</a> from Bootstrapdash.com</span>
+                    {{ env('APP_NAME') }} @php echo date("Y"); @endphp</span>
+                {{-- <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Free <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap dashboard template</a> from Bootstrapdash.com</span> --}}
             </div>
         </footer>
     </div>
     <!-- main-panel ends -->
 @endsection
+@push('script')
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        function addTask() {
+            var title = $("#todo_title").val();
+            if(title=="")
+            {
+                alert("Title Field Is Required");
+                return false;
+            }
+            $.ajax({
+                type: "POST",
+                url: "{{ route('todos.store') }}",
+                data: {
+                    title: title
+                },
+                success: function(data) {
+                    console.log(data);
+                    alert(data.message);
+                    $("#todo_title").val('');
+                },
+                error: function(xhr) {
+                    console.error(xhr.responseText);
+                }
+            });
+        }
+    </script>
+@endpush

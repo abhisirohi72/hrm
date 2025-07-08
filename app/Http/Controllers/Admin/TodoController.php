@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Todo;
+use Illuminate\Support\Facades\Validator;
 
 class TodoController extends Controller
 {
@@ -13,10 +14,10 @@ class TodoController extends Controller
      */
     public function index()
     {
-        $main_title= "Admin-Todo-View";
+        $main_title = "Admin-Todo-View";
 
         $title =    "View Todos";
-        
+
         $todos = Todo::orderByDesc('created_at')->get();
         return view('admin.todos.view', compact('todos', 'title', 'main_title'));
     }
@@ -34,7 +35,28 @@ class TodoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'title'    => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => $validator->errors(),
+            ]);
+        }
+
+        // Create the todo
+        $todo = Todo::create([
+            'title' => $request->title,
+        ]);
+
+        // Return JSON response
+        return response()->json([
+            'success' => true,
+            'message' => 'Task added successfully!',
+            'data' => $todo
+        ]);
     }
 
     /**
