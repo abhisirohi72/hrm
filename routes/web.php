@@ -332,6 +332,9 @@ Route::middleware("auth")->group(function () {
     Route::get('/whats_app_resend', [WhatsappController::class, 'viewWhatsAppResend'])->name('view.whats_app.resend');
     Route::get('/whats_app_resend/add', [WhatsappController::class, 'addWhatsAppResend'])->name('add.whats_app.resend');
     Route::post('/save_whats_app_resend', [WhatsappController::class, 'saveWhatsAppResend'])->name('save.whats_app.resend');
+
+    //QRCODE
+    Route::get('/whats_app_qrcode', [WhatsappController::class, 'viewWhatsAppQrcode'])->name('view.whats_app.qrcode');
 });
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

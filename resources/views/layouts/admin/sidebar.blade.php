@@ -398,6 +398,10 @@
                         <a class="nav-link @if (request()->segment(1) == 'whats_app_resend') active @endif"
                             href="{{ route('view.whats_app.resend') }}">Resend By Status</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link @if (request()->segment(1) == 'qrcode') active @endif"
+                            href="{{ route('view.whats_app.qrcode') }}">QR Code</a>
+                    </li>
                 </ul>
             </div>
         </li>

@@ -878,4 +878,19 @@ class WhatsappController extends Controller
             }
         }
     }
+
+    public function viewWhatsAppQrcode(Request $request){
+        $main_title = "Admin-Whatsapp-QR-Code";
+
+        $title =    "Whatsapp QRCode View";
+
+        // $details = WhatsappChat::where('type', 'resend')->get();
+
+        return view('whatsapp.qrcode.view', [
+            'main_title'    =>  $main_title,
+            'title'         =>  $title,
+            'instance'      =>  $this->setting->whats_app_instance,
+            'token'         =>  $this->setting->whats_app_token
+        ]);
+    }
 }
