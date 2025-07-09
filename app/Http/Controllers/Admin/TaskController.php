@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Task;
 use App\Models\User;
+use App\Notifications\TaskAssigned;
+use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
@@ -14,12 +16,15 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $main_title= "Admin-Task-View";
+        $main_title = "Admin-Task-View";
 
         $title =    "Task View";
+        if(session('role')=="1"){
+            $tasks = Task::where("assigned_to", Auth::user()->id)->get();
+        }else{
+            $tasks = Task::all();
+        }
 
-        $tasks = Task::all();
-        
         return view('admin.tasks.view', compact('tasks', 'title', 'main_title'));
     }
 
@@ -28,11 +33,11 @@ class TaskController extends Controller
      */
     public function create()
     {
-        $main_title= "Admin-Add-Task";
+        $main_title = "Admin-Add-Task";
 
         $title =    "Add Task";
 
-        $user_details = User::all();
+        $user_details = User::where("role", 1)->get();
 
         return view('admin.tasks.add', compact('title', 'main_title', 'user_details'));
     }
@@ -51,8 +56,10 @@ class TaskController extends Controller
             'due_date' => 'nullable|date',
         ]);
 
-        Task::create($data);
-        return redirect()->route('tasks.index')->with('success', 'Task created successfully.');
+        $task = Task::create($data);
+        $user = User::find($request->assigned_to);
+        $user->notify(new TaskAssigned($task));
+        return redirect()->route('tasks.create')->with('success', 'Task created successfully.');
     }
 
     /**
@@ -68,12 +75,12 @@ class TaskController extends Controller
      */
     public function edit($id)
     {
-        $main_title= "Admin-Edit-Task";
+        $main_title = "Admin-Edit-Task";
 
         $title =    "Edit Task";
-        
+
         $user_details = User::all();
-        
+
         $details = Task::findOrFail($id);
 
         return view('admin.tasks.add', compact('details', 'user_details', 'title', 'main_title'));

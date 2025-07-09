@@ -37,6 +37,7 @@ use App\Http\Controllers\Admin\MeetingController;
 use App\Http\Controllers\Admin\TemplateController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\WhatsappController;
+use App\Http\Controllers\Admin\NotificationController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::post('/contact_us_home', [HomeController::class, 'contactUs'])->name('contact.send');
@@ -178,6 +179,9 @@ Route::middleware("auth")->group(function () {
 
     /*TASK MANAGEMENT*/
     Route::resource('tasks', TaskController::class);
+    Route::get('/notifications/count', [NotificationController::class, 'count'])->name('notifications.count');
+    Route::get('/notifications/mark-as-read', [NotificationController::class, 'markAllAsRead'])->name('notifications.read');
+
 
     /*TODO CONTROLLER */
     Route::resource('todos', TodoController::class);

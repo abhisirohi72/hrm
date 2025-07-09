@@ -10,43 +10,33 @@
                 <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#"
                     data-toggle="dropdown">
                     <i class="mdi mdi-bell-outline"></i>
-                    <span class="count count-varient1">7</span>
+                    <span class="count count-varient1">{{ auth()->user()->unreadNotifications->count() }}</span>
                 </a>
                 <div class="dropdown-menu navbar-dropdown navbar-dropdown-large preview-list"
                     aria-labelledby="notificationDropdown">
                     <h6 class="p-3 mb-0">Notifications</h6>
-                    <a class="dropdown-item preview-item">
-                        <div class="preview-thumbnail">
-                            <img src="{{ asset('assets/images/faces/face4.jpg') }}" alt="" class="profile-pic" />
-                        </div>
-                        <div class="preview-item-content">
-                            <p class="mb-0"> Dany Miles <span class="text-small text-muted">commented on your
-                                    photo</span>
-                            </p>
-                        </div>
-                    </a>
-                    <a class="dropdown-item preview-item">
-                        <div class="preview-thumbnail">
-                            <img src="{{ asset('assets/images/faces/face3.jpg') }}" alt="" class="profile-pic" />
-                        </div>
-                        <div class="preview-item-content">
-                            <p class="mb-0"> James <span class="text-small text-muted">posted a
-                                    photo on your wall</span>
-                            </p>
-                        </div>
-                    </a>
-                    <a class="dropdown-item preview-item">
-                        <div class="preview-thumbnail">
-                            <img src="{{ asset('assets/images/faces/face2.jpg') }}" alt="" class="profile-pic" />
-                        </div>
-                        <div class="preview-item-content">
-                            <p class="mb-0"> Alex <span class="text-small text-muted">just mentioned
-                                    you in his post</span>
-                            </p>
-                        </div>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <p class="p-3 mb-0">View all activities</p>
+                    @php
+                        $notifications = auth()->user()->unreadNotifications;
+                    @endphp
+                    @foreach ($notifications as $notification)
+                        <a class="dropdown-item preview-item" href="{{ route('tasks.index')}}">
+                            <div class="preview-thumbnail">
+                                @if ($notification->data['image'] != '')
+                                    <img src="{{ asset('storage/users/' . $notification->data['image']) }}" alt=""
+                                        class="profile-pic" />
+                                @else
+                                    <img src="{{ asset('assets/images/faces/face4.jpg') }}" alt=""
+                                        class="profile-pic" />
+                                @endif
+                            </div>
+                            <div class="preview-item-content">
+                                <p class="mb-0"> {{ $notification->data['assigned_by'] }} <span
+                                        class="text-small text-muted">assigned a task for you.</span>
+                                </p>
+                            </div>
+                        </a>
+                    @endforeach
+                    <div class="dropdown-divider"></div> <p class="p-3 mb-0"><a href="{{ route('notifications.read') }}">Mark all as read.</a></p>
                 </div>
             </li>
             <li class="nav-item dropdown d-none d-sm-flex">
@@ -111,10 +101,12 @@
             </li>
             <li class="nav-item nav-profile dropdown border-0">
                 <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown">
-                    @if(session('image') && session('image') != "")
-                        <img class="nav-profile-img mr-2" alt="" src="{{ asset('storage/users').'/'.session('image') }}" />
+                    @if (session('image') && session('image') != '')
+                        <img class="nav-profile-img mr-2" alt=""
+                            src="{{ asset('storage/users') . '/' . session('image') }}" />
                     @else
-                        <img class="nav-profile-img mr-2" alt="" src="{{ asset('assets/images/faces/face1.jpg') }}" />
+                        <img class="nav-profile-img mr-2" alt=""
+                            src="{{ asset('assets/images/faces/face1.jpg') }}" />
                     @endif
                     <span class="profile-name">{{ session('name') }}</span>
                 </a>

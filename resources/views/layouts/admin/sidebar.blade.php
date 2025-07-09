@@ -157,7 +157,7 @@
                     </li>
                 @endif    
 
-                @if(session('role')=="0" || in_array('task_management',session('page_access')->pluck("page_name")->toArray()))
+                @if(session('role')=="1" || session('role')=="0" || in_array('task_management',session('page_access')->pluck("page_name")->toArray()))
                     <li class="nav-item @if((request()->segment(1)=='tasks')) active @endif">
                         <a class="nav-link" href="{{ route('tasks.index') }}">
                             <i class="mdi mdi-timer-sand menu-icon"></i>
