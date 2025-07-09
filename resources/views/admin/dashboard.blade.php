@@ -82,6 +82,36 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-xl-4 col-md-6 stretch-card grid-margin grid-margin-sm-0 pb-sm-3 pb-lg-0 pb-xl-3">
+                            <div class="card bg-success">
+                                <div class="card-body px-3 py-4">
+                                    <div class="d-flex justify-content-between align-items-start">
+                                        <div class="color-card">
+                                            <p class="mb-0 color-card-head">Last Login</p>
+                                            <h2 class="text-white">{{ session('last_login_at')->diffForHumans() }}</h2>
+                                        </div>
+                                        <i class="card-icon-indicator mdi mdi-account-group"></i>
+                                    </div>
+                                    {{-- <h6 class="text-white">20.32% Since last month</h6> --}}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-md-6 stretch-card grid-margin grid-margin-sm-0 pb-sm-3 pb-lg-0 pb-xl-3">
+                            <div class="card bg-success">
+                                <div class="card-body px-3 py-4">
+                                    <div class="d-flex justify-content-between align-items-start">
+                                        <div class="color-card">
+                                            <p class="mb-0 color-card-head">Current Time</p>
+                                            <h2 class="text-white"><span id="client-time"></span>
+                                            </h2>
+                                        </div>
+                                        <i class="card-icon-indicator mdi mdi-account-group"></i>
+                                    </div>
+                                    {{-- <h6 class="text-white">20.32% Since last month</h6> --}}
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 {{-- <div class="col-xl-9 stretch-card grid-margin">
@@ -296,15 +326,18 @@
                         <div class="card-body">
                             <h4 class="card-title text-black">Recent Customers</h4>
                             <p class="text-muted">All contacts</p>
-                            @foreach($r_customers as $key=>$data)
+                            @foreach ($r_customers as $key => $data)
                                 <div class="row pt-2 pb-1">
                                     <div class="col-12 col-sm-7">
                                         <div class="row">
                                             <div class="col-4 col-md-4">
-                                                @if($data->image=="")
-                                                    <img class="customer-img" src="assets/images/faces/face22.jpg" alt="" />
-                                                    @else
-                                                    <img class="customer-img" src="{{ asset('storage/users/'.$data->image) }}" alt="" />
+                                                @if ($data->image == '')
+                                                    <img class="customer-img" src="assets/images/faces/face22.jpg"
+                                                        alt="" />
+                                                @else
+                                                    <img class="customer-img"
+                                                        src="{{ asset('storage/users/' . $data->image) }}"
+                                                        alt="" />
                                                 @endif
                                             </div>
                                             <div class="col-8 col-md-8 p-sm-0">
@@ -314,7 +347,7 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-5 pl-0">
-                                        <canvas id="areaChart{{ $key+1   }}"></canvas>
+                                        <canvas id="areaChart{{ $key + 1 }}"></canvas>
                                     </div>
                                 </div>
                             @endforeach
@@ -722,16 +755,9 @@
 @endsection
 @push('script')
     <script>
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
         function addTask() {
             var title = $("#todo_title").val();
-            if(title=="")
-            {
+            if (title == "") {
                 alert("Title Field Is Required");
                 return false;
             }
@@ -753,3 +779,23 @@
         }
     </script>
 @endpush
+@push('script')
+<script>
+    function updateClientTime() {
+        const now = new Date();
+
+        // Format the time (e.g., 10:05:23 AM)
+        const timeString = now.toLocaleTimeString(); // You can also use .toLocaleString() for full date+time
+
+        // Update the span
+        document.getElementById('client-time').textContent = timeString;
+    }
+
+    // Update every second
+    setInterval(updateClientTime, 1000);
+
+    // Run immediately on load
+    updateClientTime();
+</script>
+@endpush
+    

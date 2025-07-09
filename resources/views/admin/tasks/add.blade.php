@@ -112,16 +112,6 @@
             dateFormat: "yy-mm-dd"
         });
     });
-    function fetchNotificationCount() {
-        $.ajax({
-            url: "{{ route('notifications.count') }}",
-            type: "GET",
-            success: function(data) {
-                $('#notif-count').text(data.count);
-            }
-        });
-    }
-
-    setInterval(fetchNotificationCount, 5000); // Every 5 seconds
+    
     </script>
 @endpush

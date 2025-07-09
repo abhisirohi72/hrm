@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="{{ asset('assets/vendors/font-awesome/css/font-awesome.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendors/bootstrap-datepicker/bootstrap-datepic') }}ker.min.css" />
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
-    <link rel="shortcut icon" href="{{ asset('frontend/images/logo.png')}}">
+    <link rel="shortcut icon" href="{{ asset('frontend/images/logo.png') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="user-id" content="{{ auth()->id() }}">
 </head>
@@ -20,19 +20,19 @@
 <body>
     <div class="container-scroller">
 
-    {{-- Include Sidebar --}}
-    @include('layouts.admin.sidebar')
+        {{-- Include Sidebar --}}
+        @include('layouts.admin.sidebar')
 
-    {{-- Include Header --}}
-    @include('layouts.admin.header')
+        {{-- Include Header --}}
+        @include('layouts.admin.header')
 
         @yield('content')
     </div>
-        <!-- page-body-wrapper ends -->
+    <!-- page-body-wrapper ends -->
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
-        <script src="{{ asset('assets/vendors/js/vendor.bundle.base.js') }}"></script>
+    <script src="{{ asset('assets/vendors/js/vendor.bundle.base.js') }}"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->
     <script src="{{ asset('assets/vendors/chart.js/Chart.min.js') }}"></script>
@@ -51,6 +51,25 @@
     <!-- endinject -->
     <!-- Custom js for this page -->
     <script src="{{ asset('assets/js/dashboard.js') }}"></script>
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        }); 
+        function fetchNotificationCount() {
+            console.log("eneter");
+            $.ajax({
+                url: "{{ route('notifications.count') }}",
+                type: "GET",
+                success: function(data) {
+                    $('.count-varient1').text(data.count);
+                }
+            });
+        }
+
+        setInterval(fetchNotificationCount, 5000); // Every 5 seconds
+    </script>
     <!-- End custom js for this page -->
     @stack('script')
 </body>

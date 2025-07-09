@@ -66,7 +66,7 @@ class AuthController extends Controller
         } else {
             // echo $response;
         }
-        
+
 
         return redirect()->back()->with("success", "Record has been inserted!!!");
     }
@@ -85,6 +85,11 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
+
+            $user = Auth::user(); // ✅ Fix: get the logged-in user
+            $user->last_login_at = now();
+            $user->save();
+
             $page_access_details = PageAccess::where("department_id", Auth::user()->role)->get();
             session([
                 'user'          =>  Auth::id(),
@@ -94,6 +99,7 @@ class AuthController extends Controller
                 'role'          =>  Auth::user()->role,
                 'stripe_id'     =>  Auth::user()->stripe_id,
                 'phone'         =>  Auth::user()->phone,
+                'last_login_at' =>  Auth::user()->last_login_at,
                 'page_access'   =>  $page_access_details,
             ]);
             $setting_details = Setting::where("id", 1)->first();
