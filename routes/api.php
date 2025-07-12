@@ -9,4 +9,5 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::post('webhook/receive', [WebhookController::class, 'handle'])->name('webhook.recieve');
+Route::post('webhook/create_purchase_code', [WebhookController::class, 'createPurchaseCode'])->name('webhook.create.purchase.code');
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PurchaseCode;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Models\Setting;
@@ -18,6 +19,28 @@ class WebhookController extends Controller
         $this->convertIntoWhatsapp = $convertIntoWhatsapp;
     }
 
+    public function createPurchaseCode(Request $request){
+        Log::info($request->purchase_code);
+        $isValid = PurchaseCode::where("purchase_code", $request->purchase_code)->where("is_used", "0")->first();
+        Log::info('isValid:', [$isValid]);
+        if($isValid){
+            PurchaseCode::where("purchase_code", $request->purchase_code)->update([
+                "is_used"       =>  "1",
+                "client_ip"     =>  $request->client_ip,
+                "created_at"    =>  date("Y-m-d H:i:s")
+            ]);
+            return response()->json([
+                'status'        =>  true,
+                'purchase_code' =>  $request->purchase_code
+            ], 200, ['Content-Type' => 'application/json']);
+        }else{
+            return response()->json([
+                'status'        =>  false,
+                'purchase_code' =>  $request->purchase_code
+            ], 200, ['Content-Type' => 'application/json']);
+        }
+    }
+    
     public function handle(Request $request)
     {
         // Log::info('Event run:');
