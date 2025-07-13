@@ -225,7 +225,7 @@ class InstallController extends Controller
             // Mark install
             File::put(storage_path('db.lock'), now());
 
-            return redirect()->route('installer.index')->with('success', 'DB saved & migrated.');
+            return redirect()->route('check.purchase.code')->with('success', 'DB saved & migrated.');
         } catch (\Throwable $e) {
             Log::error("❌ Unexpected error in saveDatabase", ['error' => $e->getMessage()]);
             return response("Something went wrong. Check logs.", 500);
