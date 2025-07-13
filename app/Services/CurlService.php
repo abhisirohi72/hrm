@@ -1,9 +1,28 @@
 <?php
 
 namespace App\Services;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class CurlService
 {
+    function sendPost($url, $params)
+    {
+        try {
+            $response = Http::post($url, $params);
+
+            if ($response->successful()) {
+                return $response->json();
+            } else {
+                Log::error('Request failed', ['body' => $response->body()]);
+                return ['error' => 'Request failed'];
+            }
+        } catch (\Exception $e) {
+            Log::error('CurlService Exception', ['message' => $e->getMessage()]);
+            return ['error' => $e->getMessage()];
+        }
+    }
+
     public function callCurl($params, $url)
     {
         $curl = curl_init();

@@ -1,6 +1,20 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\InstallController;
+
+/*INSTALLATION*/
+if (!file_exists(storage_path('installed.lock'))) {
+    Route::middleware([])->group(function () {
+        Route::get('/check_purchase_code', [InstallController::class, 'checkPurchaseCode'])->name('check.purchase.code');
+        Route::post("/save_purchase_code", [InstallController::class, 'savePurchaseCode'])->name('installer.save.purchase.code');
+        Route::get('/install', [InstallController::class, 'index'])->name('installer.index');
+        Route::get('/install/system-check', [InstallController::class, 'systemCheck'])->name('installer.system_check');
+        Route::get('/install/database', [InstallController::class, 'databaseForm'])->name('installer.database_form');
+        Route::post('/install/database', [InstallController::class, 'saveDatabase'])->name('installer.save_database');
+        Route::get('/install/success', [InstallController::class, 'success'])->name('installer.success');
+    });
+}
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -59,8 +73,6 @@ Route::post('/proceed_to_pay', [EcommerceController::class, 'proceedToPay'])->na
 Route::get('/razorpay/{order_id}/{total_price}/{final_price}/{coupon_id?}', [RazorpayPaymentController::class, 'index'])->name('razorpay.index');
 Route::post('/razorpay-payment', [RazorpayPaymentController::class, 'payment'])->name('razorpay.payment');
 Route::post('/razorpay_data', [RazorpayPaymentController::class, 'razorpayDetails'])->name('razorpay.index');
-
-
 
 Route::middleware("auth")->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'view'])->name("dashboard");
