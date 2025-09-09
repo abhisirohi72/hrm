@@ -3,93 +3,147 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="shortcut icon" href="{{ asset('frontend/images/logo.png') }}">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Product Demo</title>
     <style>
-        html,
         body {
+            font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
-            height: 100%;
+            background: #111;
+            color: #fff;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px;
+            background: #1b1b1d;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+            color: gold;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 40px auto;
+            background: #1e1e20;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .container h2 {
+            margin: 0 0 20px;
+            text-align: center;
+        }
+
+        input {
             width: 100%;
-            overflow: hidden;
-            /* prevents scrollbar from pushing content */
+            padding: 10px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 8px;
         }
 
-        .bg-video {
-            position: fixed;
-            top: 0;
-            left: 0;
+        button {
+            width: 105%;
+            padding: 10px;
+            margin-top: 12px;
+            background: gold;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .forgot {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1;
+            padding: 10px;
+            margin-top: 12px;
+            background: rgb(97, 95, 226);
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            float: left;
+            text-align: center;
+            text-decoration: none;
+            margin-bottom: 10px;
         }
 
-        .main-content {
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        .msg {
+            text-align: center;
+            margin-top: 12px;
+            color: tomato;
+            font-size: 14px;
         }
 
-        .card {
-            background: rgb(167 235 159 / 95%);
-            z-index: 1;
+        .demo-info {
+            background: #222;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 13px;
+        }
+
+        .dashboard {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .dashboard h2 {
+            color: gold;
+        }
+
+        .logout {
+            margin-top: 20px;
+            padding: 8px 16px;
+            background: #444;
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            cursor: pointer;
         }
     </style>
 </head>
 
 <body>
+    <header>
+        <h1>🌐 Digital Product Demo</h1>
+        <p>Showcasing User & Admin demo login</p>
+    </header>
 
-    <!-- Background Video -->
-    <video autoplay muted loop playsinline class="bg-video">
-        <source src="{{ asset('frontend/assets/video/bg.mp4') }}" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
+    <div class="container" id="loginBox">
+        <h2>Demo Login</h2>
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                {{ $errors->first() }}
+            </div>
+        @endif
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
 
-    <!-- Login Form Content -->
-    <div class="container main-content">
-        <div class="card p-4 shadow" style="width: 100%; max-width: 400px;">
-            <h3 class="mb-4 text-center">Login</h3>
+        <form action="{{ route('login') }}" method="POST">
+            @csrf
+            <input type="email" id="email" name="email" placeholder="Enter Username/Email">
+            <input type="password" id="password" name="password" placeholder="Enter Password">
+            <button type="submit" class="btn btn-primary">Login</button>
+            <a href="{{ route('register.form') }}" class="forgot">Register</a>
+            <p class="msg" id="msg"></p>
+        </form>
 
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    {{ $errors->first() }}
-                </div>
-            @endif
-            @if (session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-            @endif
-
-            <form action="{{ route('login') }}" method="POST">
-                @csrf
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email address</label>
-                    <input type="email" class="form-control" name="email" required autofocus>
-                </div>
-
-                <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" name="password" required>
-                </div>
-
-                <div class="d-grid">
-                    <button type="submit" class="btn btn-primary">Login</button>
-                </div>
-
-                <div class="text-center mt-3">
-                    <a href="#">Forgot Password</a><br>
-                    <a href="{{ route('register.form') }}">Register</a>
-                </div>
-            </form>
+        <div class="demo-info">
+            <strong>Demo Credentials:</strong><br>
+            👤 User → <b>user</b> / user@gmail.com<br>
+            🔑 Admin → <b>admin</b> / Admin@123
         </div>
     </div>
-
 </body>
 
 </html>

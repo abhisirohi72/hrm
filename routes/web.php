@@ -45,6 +45,7 @@ use App\Http\Controllers\Admin\HolidayController;
 use App\Http\Controllers\Admin\TargetController;
 use App\Http\Controllers\Admin\SopController;
 use App\Http\Controllers\Admin\CampaignController;
+use App\Http\Controllers\Admin\CredentialsController;
 use App\Http\Controllers\Admin\MaterialController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\UserController;
@@ -427,6 +428,13 @@ Route::middleware("auth")->group(function () {
     Route::get('/theme_contact/edit/{id}', [ThemeController::class, 'themeContact'])->name('theme.contact.edit');
     Route::get('/theme_contact/delete/{id}', [ThemeController::class, 'deleteContact'])->name("theme.contact.delete");
     Route::post('/save_theme_contact', [ThemeController::class, 'saveContact'])->name('save.theme.contact');
+
+    // *****CREDENTIALS******* //
+    Route::get('/credentials', [CredentialsController::class, 'viewCredentials'])->name('credentials.view');
+    Route::get('/credentials/add', [CredentialsController::class, 'addCredentials'])->name('credentials.add');
+    Route::get('/credentials/edit/{id}', [CredentialsController::class, 'editCredentials'])->name('credentials.edit');
+    Route::get('/credentials/delete/{id}', [CredentialsController::class, 'deleteCredentials'])->name("credentials.delete");
+    Route::post('/save_credentials', [CredentialsController::class, 'saveCredentials'])->name('save.credentials');
 });
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

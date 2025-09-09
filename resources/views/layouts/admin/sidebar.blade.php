@@ -465,6 +465,15 @@
             </div>
         </li>
 
+        @if (session('role') == '0' || in_array('credentials', session('page_access')->pluck('page_name')->toArray()))
+            <li class="nav-item @if (request()->segment(1) == 'credetails') active @endif">
+                <a class="nav-link" href="{{ route('credentials.view') }}">
+                    <i class="mdi mdi-account-box-outline menu-icon"></i>
+                    <span class="menu-title">Credentials</span>
+                </a>
+            </li>
+        @endif
+
         {{-- <li class="nav-item @if (request()->segment(1) == 'view_loans') active @endif">
                     <a class="nav-link" href="{{ route('loans.view') }}">
                         <i class="mdi mdi-contacts menu-icon"></i>
