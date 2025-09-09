@@ -41,7 +41,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="user_email">User Email</label>
+                                <label for="user_email">User Email @if(request()->segment(2)=="edit") (<a href="{{ route('login.form') }}">View</a>) @endif</label>
                                 <input type="text" class="form-control" id="user_email" name="user_email" value="{{ $details->user_email ?? '' }}">
                             </div>
 
@@ -51,7 +51,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="admin_email">Admin Email</label>
+                                <label for="admin_email">Admin Email @if(request()->segment(2)=="edit") (<a href="{{ route('login.form') }}">View</a>) @endif</label>
                                 <input type="text" class="form-control" id="admin_email" name="admin_email" value="{{ $details->admin_email ?? '' }}">
                             </div>
 
@@ -61,7 +61,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="developer_email">Developer Email</label>
+                                <label for="developer_email">Developer Email @if(request()->segment(2)=="edit") (<a href="{{ route('login.form') }}">View</a>) @endif</label>
                                 <input type="text" class="form-control" id="developer_email" name="developer_email" value="{{ $details->developer_email ?? '' }}">
                             </div>
 

@@ -139,9 +139,12 @@
         </form>
 
         <div class="demo-info">
-            <strong>Demo Credentials:</strong><br>
-            👤 User → <b>user</b> / user@gmail.com<br>
-            🔑 Admin → <b>admin</b> / Admin@123
+            <strong>Demo Credentials:</strong><br><br>
+            👤 User Email → user@gmail.com<br>
+            👤 User Password → user<br><hr>
+
+            🔑 Admin Email→ admin@gmail.com<br>
+            🔑 Admin Password→ admin
         </div>
     </div>
 </body>
